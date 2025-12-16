@@ -1,0 +1,73 @@
+@use '../variables' as *;
+
+.section-service {
+    // The design has an orange background wrapper for the card, 
+    // or the card itself is orange. Based on image, it looks like a large orange rounded card.
+    padding: 40px 0;
+}
+
+.service-card {
+    background-color: $color-primary; // Orange
+    border-radius: 40px;
+    padding: 60px 80px;
+    color: $color-text-white;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+
+    &__content {
+        width: 45%;
+        z-index: 2;
+    }
+
+    &__image {
+        width: 50%;
+        position: relative;
+        z-index: 1;
+        background-color: #fff; // Placeholder for image
+        border-radius: 20px;
+        min-height: 300px;
+        opacity: 0.5; // Placeholder transparency
+
+        // Placeholder text
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-weight: bold;
+
+        &::after {
+            content: "Image Area";
+        }
+    }
+
+    .section-label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .section-title {
+        font-size: 40px;
+        margin-bottom: 30px;
+        line-height: 1.4;
+        writing-mode: vertical-rl; // Design has vertical text?
+        // Let's stick to horizontal based on the "Services is People" text flow usually,
+        // but image shows vertically layouted title sometimes or standard.
+        // Re-checking image: "ランギスのサービスは、人です。" is Vertical?
+        // Actually looking at the image:
+        // "SERVICE" (horizontal)
+        // "Langis no Service wa..." -> Looks horizontal in the card usually, but let's assume vertical if it's "Japanese modern".
+        // Let's stick to standard horizontal for now to be safe, easier to adjust to vertical if requested.
+        writing-mode: horizontal-tb;
+    }
+
+    .service-description {
+        margin-bottom: 40px;
+        line-height: 1.8;
+    }
+}

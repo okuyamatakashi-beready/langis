@@ -1,0 +1,86 @@
+@use '../variables' as *;
+
+.hero {
+    position: relative;
+    padding-top: 40px;
+    padding-bottom: 80px;
+    overflow: hidden;
+
+    &__container {
+        // limit width
+    }
+
+    &__visual {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        z-index: 2;
+    }
+
+    &__person {
+        width: 40%;
+        position: relative;
+
+        .placeholder-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: #ddd; // Gray placeholder
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid $color-primary; // Orange border example
+            background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee),
+                linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+    }
+
+    &__name {
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 18px;
+
+        .script {
+            font-family: cursive; // Temporary
+            color: $color-accent;
+            font-size: 1.2em;
+            margin-left: 5px;
+        }
+    }
+
+    &__center-text {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            font-size: 24px;
+            font-weight: bold;
+            color: $color-text-white; // Assuming orange background behind it?
+            // Or if on white, verify design.
+            // Design shows vertical text on orange "blob" or background? 
+            // Let's assume text on white but framed or color.
+            color: $color-text;
+            letter-spacing: 0.2em;
+        }
+    }
+
+    &__big-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 12vw;
+        font-weight: 900;
+        color: $color-primary;
+        opacity: 0.2;
+        z-index: 1;
+        white-space: nowrap;
+        pointer-events: none;
+        line-height: 1;
+    }
+}

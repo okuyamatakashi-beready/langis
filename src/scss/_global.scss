@@ -1,0 +1,32 @@
+@use 'variables' as *;
+
+body {
+    font-family: $font-family-base;
+    color: $color-text;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.section {
+    padding: 60px 0;
+
+    &--orange {
+        background-color: $color-primary;
+        color: $color-text-white;
+    }
+}

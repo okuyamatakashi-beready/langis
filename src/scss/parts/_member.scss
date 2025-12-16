@@ -1,0 +1,64 @@
+@use '../variables' as *;
+
+.section-member {
+    // Orange background handles in global .section--orange or here
+    padding-bottom: 100px;
+
+    .section-title--white {
+        color: $color-text-white;
+        font-size: 32px;
+        margin-bottom: 40px;
+        background-color: transparent; // Reset label style if needed
+        display: inline-block;
+        padding: 5px 10px;
+        border: 2px solid $color-text-white; // Boxed style often seen
+        // Or just text. Design image shows white text on orange.
+    }
+
+    .member {
+        &__content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &__image-group {
+            width: 55%;
+            height: 300px;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.1); // Placeholder container
+            border-radius: 20px;
+
+            // Should have multiple images overlapping
+            &::before {
+                content: "Members Photo Group";
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                color: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        &__text-box {
+            width: 40%;
+            background-color: $color-bg-white;
+            padding: 40px;
+            border-radius: 20px;
+            color: $color-text;
+
+            h3 {
+                font-size: 24px;
+                margin-top: 0;
+                margin-bottom: 20px;
+                color: $color-primary;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 1.8;
+                margin-bottom: 30px;
+            }
+        }
+    }
+}

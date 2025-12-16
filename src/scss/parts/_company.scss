@@ -1,0 +1,66 @@
+@use '../variables' as *;
+
+.section-company {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .company {
+        &__content {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); // Semi-transparent card effect?
+            // Or simple text on orange. Design shows central text.
+            padding: 40px;
+            border-radius: 20px;
+            min-width: 300px;
+        }
+
+        &__visual {
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 180px;
+            background-color: #fff;
+            border-radius: 10px;
+            z-index: 1;
+            opacity: 0.8;
+
+            // Placeholder
+            &::after {
+                content: "Street View";
+                display: block;
+                padding: 20px;
+            }
+        }
+
+        &__office-visual {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 180px;
+            background-color: #fff;
+            border-radius: 10px;
+            z-index: 1;
+            opacity: 0.8;
+
+            // Placeholder
+            &::after {
+                content: "Office View";
+                display: block;
+                padding: 20px;
+            }
+        }
+    }
+}
