@@ -3,22 +3,173 @@
 
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-    <header class="site-header">
-        <h1><?php bloginfo('name'); ?></h1>
+
+    <header class="header">
+        <div class="container header__container">
+            <h1 class="header__logo">LANGIS</h1>
+            <div class="header__menu-trigger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
 
-    <main>
-        <div class="container">
-            <h2>Welcome to Langis Theme</h2>
-            <p>This is a custom theme using Vite + SCSS.</p>
-            <button class="btn">Test Button</button>
-        </div>
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__visual">
+                    <div class="hero__person hero__person--left">
+                        <!-- Placeholder for Left Person -->
+                        <div class="placeholder-img">Person A</div>
+                        <div class="hero__name">LANGIS <span class="script">goall</span></div>
+                    </div>
+                    <div class="hero__center-text">
+                        <p class="vertical-text">「人」の想いをカタチにする</p>
+                    </div>
+                    <div class="hero__person hero__person--right">
+                        <!-- Placeholder for Right Person -->
+                        <div class="placeholder-img">Person B</div>
+                        <div class="hero__name">LANGIS <span class="script">agreed</span></div>
+                    </div>
+                </div>
+                <div class="hero__big-text">LANGISLANGIS</div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section section-about">
+            <div class="container">
+                <div class="about__grid">
+                    <!-- Circular Images Grid -->
+                    <?php for ($i = 0; $i < 10; $i++): ?>
+                        <div class="about__circle-img"></div>
+                    <?php endfor; ?>
+
+                    <div class="about__center-content">
+                        <p class="section-label">ABOUT US</p>
+                        <h2 class="section-title">ランギスの<br>良さって、<br>どこにある？</h2>
+                    </div>
+                </div>
+                <div class="about__text-box">
+                    <p>テキストテキストテキストテキストテキストテキストテキスト</p>
+                </div>
+                <div class="about__actions">
+                    <a href="#" class="btn btn--circle">開発者が見る<br>環境の良さ</a>
+                    <a href="#" class="btn btn--circle">人柄、<br>ランギスの空気</a>
+                </div>
+                <div class="u-center u-mt-40">
+                    <a href="#" class="btn btn--pill">VIEW MORE</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Section -->
+        <section class="section section-service section--orange-bg-wrapper">
+            <div class="container">
+                <div class="service-card">
+                    <div class="service-card__content">
+                        <p class="section-label">SERVICE</p>
+                        <h2 class="section-title">ランギスの<br>サービスは、<br>人です。</h2>
+                        <p class="service-description">
+                            ただ作るだけじゃない。<br>
+                            クライアントと対話し、...
+                        </p>
+                        <a href="#" class="btn btn--pill btn--green">VIEW MORE</a>
+                    </div>
+                    <div class="service-card__image">
+                        <!-- Placeholder -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Member Section -->
+        <section class="section section-member section--orange">
+            <div class="container">
+                <p class="section-label">MEMBER</p>
+                <h2 class="section-title--white">ランギスの核となる<br>メンバーたち</h2>
+
+                <div class="member__content">
+                    <div class="member__image-group">
+                        <!-- Overlapping images placeholder -->
+                    </div>
+                    <div class="member__text-box">
+                        <h3>LANGIS</h3>
+                        <p>ここのメンバーが中心となって...</p>
+                        <a href="#" class="btn btn--pill btn--pink">VIEW MORE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Section -->
+        <section class="section section-company section--orange">
+            <div class="container">
+                <div class="company__visual">
+                    <!-- Street view placeholder -->
+                </div>
+                <div class="company__content">
+                    <p class="section-label">COMPANY</p>
+                    <h2 class="section-title">ランギスを知る。</h2>
+                    <div class="u-center">
+                        <a href="#" class="btn btn--pill btn--blue">VIEW MORE</a>
+                    </div>
+                </div>
+                <div class="company__office-visual">
+                    <!-- Office visual -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section section-gallery">
+            <div class="container">
+                <div class="gallery__grid">
+                    <!-- Grid items -->
+                    <?php for ($i = 0; $i < 8; $i++): ?>
+                        <div class="gallery__item"></div>
+                    <?php endfor; ?>
+
+                    <div class="gallery__center-text">
+                        <p class="section-label">GALLERY</p>
+                        <h2 class="section-title">ランギスの裏や<br>プライベートなんかも。</h2>
+                        <a href="#" class="btn btn--pill">VIEW MORE</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__logo">
+                <img src="<?php echo get_theme_file_uri('/assets/images/logo.png'); ?>" alt="LANGIS">
+            </div>
+            <div class="footer__nav">
+                <ul>
+                    <li>TOP</li>
+                    <li>ABOUT US</li>
+                    <li>SERVICE</li>
+                    <li>MEMBER</li>
+                    <li>COMPANY</li>
+                    <li>GALLERY</li>
+                </ul>
+            </div>
+            <div class="footer__contact">
+                <a href="#" class="btn btn--pill">CONTACT</a>
+            </div>
+        </div>
+        <div class="footer__copyright">
+            &copy; LANGIS Inc.
+        </div>
+    </footer>
 
     <?php wp_footer(); ?>
 </body>

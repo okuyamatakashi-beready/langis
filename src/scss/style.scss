@@ -1,27 +1,14 @@
-$primary-color: #c2bc08;
+@use 'variables' as *;
+@use 'global';
 
-body {
-    background-color: #fff;
-    font-family: sans-serif;
-    color: #211cc2;
-}
+// Components
+@use 'components/buttons';
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: $primary-color;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-
-    &:hover {
-        background-color: darken($primary-color, 10%);
-    }
-}
+// Parts
+@use 'parts/hero';
+@use 'parts/about';
+@use 'parts/service';
+@use 'parts/member';
+@use 'parts/company';
+@use 'parts/gallery';
+@use 'parts/footer';
