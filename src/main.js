@@ -1,8 +1,16 @@
 // SCSSをJavaScriptのエントリーポイントからインポートする
 import './scss/style.scss';
 
-console.log('Langis Theme: Vite is running!');
+console.log('Vite + WordPress = ❤️');
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM fully loaded and parsed');
+    const menuTrigger = document.querySelector('.header__menu-trigger');
+    const globalMenu = document.querySelector('.global-menu');
+
+    if (menuTrigger && globalMenu) {
+        menuTrigger.addEventListener('click', () => {
+            menuTrigger.classList.toggle('is-active');
+            globalMenu.classList.toggle('is-active');
+        });
+    }
 });

@@ -5,6 +5,8 @@
 @use 'components/buttons';
 
 // Parts
+@use 'parts/header';
+@use 'parts/global-menu';
 @use 'parts/hero';
 @use 'parts/about';
 @use 'parts/service';
