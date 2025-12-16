@@ -11,7 +11,23 @@
 
     <header class="header">
         <div class="container header__container">
-            <h1 class="header__logo">LANGIS</h1>
+            <div class="header__logo">
+                <a href="<?php echo home_url('/'); ?>">
+                    <img src="<?php echo get_theme_file_uri('src/images/common/logo.svg'); ?>" alt="LANGIS">
+                </a>
+            </div>
+            <nav class="header__nav">
+                <ul>
+                    <li><a href="#about">ABOUT US</a></li>
+                    <li><a href="#service">SERVICE</a></li>
+                    <li><a href="#member">MEMBER</a></li>
+                    <li><a href="#company">COMPANY</a></li>
+                    <li><a href="#gallery">GALLERY</a></li>
+                </ul>
+            </nav>
+            <div class="header__contact-btn">
+                <a href="#contact" class="btn btn--pill">CONTACT</a>
+            </div>
             <div class="header__menu-trigger">
                 <span></span>
                 <span></span>
@@ -19,6 +35,75 @@
             </div>
         </div>
     </header>
+
+    <!-- Global Menu -->
+    <!-- Global Menu -->
+    <div class="global-menu">
+        <div class="global-menu__overlay"></div>
+        <div class="global-menu__container">
+            <div class="global-menu__wrapper">
+                <div class="global-menu__bg-visual">
+                    <img src="<?php echo get_theme_file_uri('src/images/common/gnav-bg.png'); ?>" alt="">
+                </div>
+                <div class="global-menu__content">
+                    <div class="global-menu__logo">
+                        <img src="<?php echo get_theme_file_uri('src/images/common/gnav-logo.svg'); ?>" alt="LANGIS">
+                    </div>
+                    <div class="global-menu__grid">
+                        <div class="global-menu__col">
+                            <ul class="global-menu__list">
+                                <li class="global-menu__item">
+                                    <a href="<?php echo home_url('/'); ?>">
+                                        <span class="en">_TOP</span>
+                                        <span class="ja">トップページ</span>
+                                    </a>
+                                </li>
+                                <li class="global-menu__item">
+                                    <a href="#about">
+                                        <span class="en">_ABOUT US</span>
+                                        <span class="ja">ランギスの良さって、どこにある？</span>
+                                    </a>
+                                </li>
+                                <li class="global-menu__item">
+                                    <a href="#service">
+                                        <span class="en">_SERVICE</span>
+                                        <span class="ja">ランギスのサービスは、人です。</span>
+                                    </a>
+                                </li>
+                                <li class="global-menu__item">
+                                    <a href="#member">
+                                        <span class="en">_MEMBER</span>
+                                        <span class="ja">ランギスの核となるメンバーたち</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="global-menu__col">
+                            <ul class="global-menu__list">
+                                <li class="global-menu__item">
+                                    <a href="#company">
+                                        <span class="en">_COMPANY</span>
+                                        <span class="ja">ランギスを知る。</span>
+                                    </a>
+                                </li>
+                                <li class="global-menu__item">
+                                    <a href="#gallery">
+                                        <span class="en">_GALLERY</span>
+                                        <span class="ja">ギャラリー</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="global-menu__contact">
+                                <a href="#contact" class="btn btn--pill">
+                                    CONTACT
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="main-content">
         <!-- Hero Section -->

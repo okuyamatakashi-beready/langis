@@ -1,10 +1,30 @@
 import { defineConfig } from 'vite';
 import liveReload from 'vite-plugin-live-reload';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [
     liveReload([__dirname + '/**/*.php']),
+    ViteImageOptimizer({
+      png: { quality: 80 },
+      jpeg: { quality: 80 },
+      jpg: { quality: 80 },
+      webp: { lossless: true },
+      svg: {
+        multipass: true,
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+              },
+            },
+          },
+        ]
+      },
+    }),
   ],
   root: '',
   base: process.env.NODE_ENV === 'development' ? '/' : '/wp-content/themes/langis/dist/',

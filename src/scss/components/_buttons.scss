@@ -7,30 +7,37 @@
     text-decoration: none;
     font-weight: bold;
     color: $color-text;
-    transition: transform 0.2s, opacity 0.2s;
+    transition: all 0.2s;
     line-height: 1.2;
     cursor: pointer;
 
-    &:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
-    }
-
     &--pill {
+        background-color: $color-secondary; // #f9e79f (Yellow)
+        color: $color-text;
+        border: 2px solid #333;
         border-radius: 50px;
-        padding: 12px 60px;
-        background-color: $color-secondary; // Default yellow
-        font-size: 14px;
-        letter-spacing: 0.1em;
+        padding: 24px 30px;
+        font-size: 16px; // Slightly larger base
+        letter-spacing: 0.05em;
         position: relative;
+        box-shadow: 4px 4px 0 #333;
 
-        // Pseudo-element for arrow could be added here
         &::after {
-            content: "▼"; // Simple placeholder for arrow
-            font-size: 10px;
-            margin-left: 10px;
-            transform: rotate(-90deg);
-            display: inline-block;
+            content: "➜";
+            margin-left: 70px;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+
+        &:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #333;
+            opacity: 1; // Override default opacity
+        }
+
+        &:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 #333;
         }
     }
 
@@ -44,6 +51,12 @@
         font-size: 14px;
         flex-direction: column;
         line-height: 1.5;
+        transition: transform 0.2s, opacity 0.2s; // Keep simple transition
+
+        &:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
     }
 
     // Color Modifiers
@@ -52,10 +65,15 @@
     }
 
     &--pink {
-        background-color: #f5b7b1; // Need to add to variables if exact match needed
+        background-color: #f5b7b1;
     }
 
     &--blue {
-        background-color: #AED6F1; // Placeholder
+        background-color: #AED6F1;
+    }
+
+    &--contact {
+        // Alias for backward compatibility if needed, or explicitly removal target
+        @extend .btn--pill;
     }
 }
