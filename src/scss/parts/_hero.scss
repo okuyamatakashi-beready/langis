@@ -2,71 +2,114 @@
 
 .hero {
     position: relative;
-    padding-top: 40px;
+    padding-top: 100px;
     padding-bottom: 80px;
     overflow: hidden;
-
-    &__container {
-        // limit width
-    }
+    background-color: $color-primary; // 背景色追加
 
     &__visual {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: stretch; // 高さを揃える
         position: relative;
         z-index: 2;
+        gap: 2%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__slider {
+        width: 35%; // Adjust based on design
+        overflow: hidden; // For swiper
+        aspect-ratio: 720 / 1145; // 縦スライド用に高さを確保
     }
 
     &__person {
-        width: 40%;
+        width: 100%;
         position: relative;
+        // background-color: #fff; // 削除
+        // padding: 15px; // 削除
+        // box-shadow: 0 10px 20px rgba(0,0,0,0.1); // 削除
 
-        .placeholder-img {
+        img {
             width: 100%;
-            aspect-ratio: 3/4;
-            background-color: #ddd; // Gray placeholder
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 4px solid $color-primary; // Orange border example
-            background-image: linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee),
-                linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
     }
 
-    &__name {
-        margin-top: 10px;
-        font-weight: bold;
-        font-size: 18px;
+    // Right slider specific color for script text
 
-        .script {
-            font-family: cursive; // Temporary
-            color: $color-accent;
-            font-size: 1.2em;
-            margin-left: 5px;
-        }
-    }
 
     &__center-text {
-        width: 10%;
+        width: 20%;
         display: flex;
+        flex-direction: column; // 縦並び
         justify-content: center;
-        padding-top: 50px;
+        align-items: center; // 中央揃え
+        position: relative;
+        z-index: 3;
+    }
 
-        .vertical-text {
-            writing-mode: vertical-rl;
-            font-size: 24px;
-            font-weight: bold;
-            color: $color-text-white; // Assuming orange background behind it?
-            // Or if on white, verify design.
-            // Design shows vertical text on orange "blob" or background? 
-            // Let's assume text on white but framed or color.
-            color: $color-text;
-            letter-spacing: 0.2em;
+    &__center-bg {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        width: 100%;
+        min-height: 400px; // Adjust based on image aspect ratio
+        display: flex;
+        flex-direction: row-reverse; // Vertical text flows right to left visually usually
+        justify-content: center;
+        align-items: center;
+        padding: 40px 0;
+        gap: 20px;
+    }
+
+    &__pagination {
+        display: flex;
+        gap: 15px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20; // Increase z-index
+        height: 40px;
+        align-items: flex-end;
+
+        .swiper-pagination-bullet {
+            width: 2px !important; // Force valid size
+            height: 18px !important;
+            background-color: #ffffff !important; // Force white
+            opacity: 1 !important; // Force visible
+            border-radius: 0;
+            margin: 0 !important;
+            transition: height 0.3s ease;
+            display: block;
+
+            &-active {
+                height: 35px !important; // Force active height
+                background-color: #ffffff !important;
+            }
         }
+    }
+
+    .vertical-text {
+        writing-mode: vertical-rl;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        letter-spacing: 0.2em;
+        line-height: 2;
+    }
+
+    .vertical-text-sub {
+        writing-mode: vertical-rl;
+        font-size: 14px;
+        font-weight: normal;
+        color: #fff;
+        letter-spacing: 0.1em;
+        line-height: 1.8;
     }
 
     &__big-text {
@@ -74,10 +117,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 12vw;
+        font-size: 15vw;
         font-weight: 900;
-        color: $color-primary;
-        opacity: 0.2;
+        color: #ffffff;
+        opacity: 0.1;
         z-index: 1;
         white-space: nowrap;
         pointer-events: none;
