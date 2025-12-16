@@ -1,0 +1,35 @@
+name: Deploy to XServer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Deploy via SSH/RSYNC
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.XSERVER_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "/"
+          REMOTE_HOST: ${{ secrets.XSERVER_HOST }}
+          REMOTE_USER: ${{ secrets.XSERVER_USER }}
+          TARGET: ${{ secrets.DEPLOY_PATH }}
+          EXCLUDE: "/node_modules/, /.git/, /.github/, /src/, /README.md, /multi_device_guide.md, /.gitignore, /package.json, /package-lock.json, /vite.config.js"
