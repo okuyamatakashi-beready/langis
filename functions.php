@@ -5,8 +5,10 @@
 
 // ViteのDevサーバーが動いているかどうか判定 (簡易的な方法)
 // 本番運用時はこの判定ロジックをより厳密にすることをお勧めします
-// 開発環境の判定 (MAMP環境等でIP判定がうまくいかない場合があるため、開発中はtrue固定にします)
-define('IS_VITE_DEVELOPMENT', true);
+// 開発環境と本番環境の自動判定
+// localhostが含まれる、またはIPがローカルの場合のみ開発モード(true)にする
+$is_local = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+define('IS_VITE_DEVELOPMENT', $is_local);
 
 function langis_enqueue_scripts()
 {
