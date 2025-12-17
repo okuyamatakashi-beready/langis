@@ -69,18 +69,115 @@
         }
     }
 
+    &__slider {
+        width: 30%;
+        height: 100%; // 親要素の高さに合わせる
+        overflow: hidden;
+        border-radius: 200px; // 丸める
+        position: relative;
+        z-index: 2;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        height: 100%;
+
+        // 画像コンテナ
+        .hero__person {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block; // 画像の下の隙間を消す
+            }
+        }
+    }
+
+    &__pagination {
+        display: flex;
+        gap: 15px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 20; // Increase z-index
+        height: 40px;
+        align-items: flex-end;
+
+        .swiper-pagination-bullet {
+            width: 2px !important; // Force valid size
+            height: 18px !important;
+            background-color: #ffffff !important; // Force white
+            opacity: 1 !important; // Force visible
+            border-radius: 0;
+            margin: 0 !important;
+            transition: height 0.3s ease;
+            display: block;
+
+            &-active {
+                height: 35px !important; // Force active height
+                background-color: #ffffff !important;
+            }
+        }
+    }
+
+    .vertical-text {
+        writing-mode: vertical-rl;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        letter-spacing: 0.2em;
+        line-height: 2;
+    }
+
+    .vertical-text-sub {
+        writing-mode: vertical-rl;
+        font-size: 20px;
+        font-weight: bold;
+        color: #fff;
+        letter-spacing: 0.1em;
+        line-height: 1.8;
+    }
+
     &__big-text {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 12vw;
-        font-weight: 900;
-        color: $color-primary;
-        opacity: 0.2;
+        bottom: -40px;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
         z-index: 1;
-        white-space: nowrap;
         pointer-events: none;
-        line-height: 1;
+    }
+
+    &__big-text-track {
+        display: flex;
+        width: max-content;
+        animation: marquee 30s linear infinite;
+
+        span {
+            font-size: 200px; // 200px指定
+            font-weight: 900;
+            color: #ffffff;
+            opacity: 0.1;
+            white-space: nowrap;
+            line-height: 1;
+            padding-right: 0.2em; // テキスト間の余白
+        }
     }
 }
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+// 2セットあるうちの1セット分移動したらリセット

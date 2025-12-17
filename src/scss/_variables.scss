@@ -7,7 +7,9 @@ $color-text-white: #ffffff;
 $color-bg-white: #ffffff;
 
 // Fonts
-$font-family-base: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+$font-ja: "Noto Sans JP", sans-serif;
+$font-en: "Outfit", sans-serif;
+$font-family-base: "Outfit", $font-ja; // 欧文はOutfit、和文はNoto Sans JP
 $font-family-heading: $font-family-base;
 
 // Breakpoints
