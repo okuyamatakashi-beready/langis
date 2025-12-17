@@ -135,8 +135,9 @@
                             style="background-image: url(<?php echo get_theme_file_uri('src/images/top/hero-bg.png'); ?>);">
                             <p class="vertical-text-sub">ロゴのグッドサインのような<br>「いいね！わかった！賛成！」が<br>自然と出てくる会社でありつづけたい。</p>
                         </div>
-                        <div class="hero__pagination"></div>
                     </div>
+
+                    <div class="hero__pagination"></div>
 
                     <!-- Right Slider -->
                     <div class="hero__slider hero__slider--right swiper">
@@ -152,11 +153,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="hero__big-text">
-                    <div class="hero__big-text-track">
-                        <span>LANGIS LANGIS LANGIS LANGIS</span>
-                        <span>LANGIS LANGIS LANGIS LANGIS</span>
-                    </div>
+            </div>
+            <div class="hero__big-text">
+                <div class="hero__big-text-track">
+                    <span>LANGIS LANGIS LANGIS LANGIS</span>
+                    <span>LANGIS LANGIS LANGIS LANGIS</span>
                 </div>
             </div>
         </section>

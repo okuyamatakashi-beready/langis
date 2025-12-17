@@ -6,29 +6,35 @@
     padding-bottom: 80px;
     overflow: hidden;
     background-color: $color-primary;
+    height: 100vh; // 画面いっぱいに広げる
+    min-height: 700px; // 安全策
 
     &__container {
-        // limit width
+        height: 100%; // コンテナも高さを確保
+        display: flex;
+        flex-direction: column;
+        justify-content: center; // 内容を上下中央に
     }
 
     &__visual {
         display: flex;
         justify-content: center;
-        align-items: stretch; // 高さを揃える
+        align-items: stretch;
         position: relative;
         z-index: 2;
         gap: 2%;
         max-width: 1200px;
         margin: 0 auto;
+        height: 70%; // Visual area takes most of the height
     }
 
     &__slider {
-        width: 30%;
-        height: 100%; // 親要素の高さに合わせる
+        width: 35%; // 少し幅広に
         overflow: hidden;
-        border-radius: 200px; // 丸める
+        aspect-ratio: 720 / 1145; // 元の比率を維持
         position: relative;
         z-index: 2;
+        // border-radius removed
     }
 
     .swiper-slide {
@@ -43,9 +49,9 @@
 
             img {
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block; // 画像の下の隙間を消す
+                height: auto; // 高さは自動
+                object-fit: contain; // 全体を表示
+                display: block;
             }
         }
     }
@@ -89,16 +95,23 @@
 
     &__pagination {
         display: flex;
+        justify-content: center; // Flexbox centering
         gap: 15px;
         position: absolute;
         bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 0; // Full width method
+        width: 100%;
         z-index: 20;
         height: 40px;
         align-items: flex-end;
+        pointer-events: none; // Allow clicks on underlying elements if empty, but bullets usually have pointer-events: auto? 
+        // Swiper bullets have auto, container can be none to be safe, but clickable: true means container catches clicks? 
+        // Let's safe-guard pointer events for bullets only if needed, but usually fine.
+        // Actually, Swiper pagination shouldn't block content, but bottom 0 is fine.
+
 
         .swiper-pagination-bullet {
+            pointer-events: auto; // Ensure clickable
             width: 2px !important;
             height: 18px !important;
             background-color: #ffffff !important;
@@ -135,7 +148,7 @@
 
     &__big-text {
         position: absolute;
-        bottom: -40px;
+        bottom: -100px; // 下に移動 (-40px -> -100px)
         left: 0;
         width: 100%;
         overflow: hidden;
@@ -149,13 +162,13 @@
         animation: marquee 30s linear infinite;
 
         span {
-            font-size: 200px; // 200px指定
+            font-size: 200px;
             font-weight: 900;
-            color: #ffffff;
-            opacity: 0.1;
+            color: #ffffff; // color: #fff
+            opacity: 1; // 100% opacity
             white-space: nowrap;
             line-height: 1;
-            padding-right: 0.2em; // テキスト間の余白
+            padding-right: 0.2em;
         }
     }
 }

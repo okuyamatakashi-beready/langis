@@ -4,9 +4,14 @@ html {
     font-family: $font-family-base;
     color: $color-text;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
     margin: 0;
     padding: 0;
-    -webkit-font-smoothing: antialiased;
+    // Hide horizontal scrollbar if needed globally, though usually handle section by section
+    // overflow-x: hidden; 
 }
 
 img {
