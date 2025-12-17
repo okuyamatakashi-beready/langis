@@ -47,8 +47,8 @@
         <div class="global-menu__overlay"></div>
         <div class="global-menu__container">
             <div class="global-menu__wrapper">
-                <div class="global-menu__bg-visual">
-                    <img src="<?php echo get_theme_file_uri('src/images/common/gnav-bg.png'); ?>" alt="">
+                <div class="global-menu__bg-visual"
+                    style="background-image: url(<?php echo get_theme_file_uri('src/images/common/gnav-bg.png'); ?>);">
                 </div>
                 <div class="global-menu__content">
                     <div class="global-menu__logo">
@@ -115,18 +115,41 @@
         <section class="hero">
             <div class="container hero__container">
                 <div class="hero__visual">
-                    <div class="hero__person hero__person--left">
-                        <!-- Placeholder for Left Person -->
-                        <div class="placeholder-img">Person A</div>
-                        <div class="hero__name">LANGIS <span class="script">goall</span></div>
+                    <!-- Left Slider -->
+                    <div class="hero__slider hero__slider--left swiper">
+                        <div class="swiper-wrapper">
+                            <?php for ($i = 1; $i <= 3; $i++): ?>
+                                <div class="swiper-slide">
+                                    <div class="hero__person">
+                                        <img src="<?php echo get_theme_file_uri('src/images/top/mv0' . $i . '.png'); ?>"
+                                            alt="Staff <?php echo $i; ?>">
+                                    </div>
+                                </div>
+                            <?php endfor; ?>
+                        </div>
                     </div>
+
+                    <!-- Center Text -->
                     <div class="hero__center-text">
-                        <p class="vertical-text">「人」の想いをカタチにする</p>
+                        <div class="hero__center-bg"
+                            style="background-image: url(<?php echo get_theme_file_uri('src/images/top/hero-bg.png'); ?>);">
+                            <p class="vertical-text-sub">ロゴのグッドサインのような<br>「いいね！わかった！賛成！」が<br>自然と出てくる会社でありつづけたい。</p>
+                        </div>
+                        <div class="hero__pagination"></div>
                     </div>
-                    <div class="hero__person hero__person--right">
-                        <!-- Placeholder for Right Person -->
-                        <div class="placeholder-img">Person B</div>
-                        <div class="hero__name">LANGIS <span class="script">agreed</span></div>
+
+                    <!-- Right Slider -->
+                    <div class="hero__slider hero__slider--right swiper">
+                        <div class="swiper-wrapper">
+                            <?php for ($i = 4; $i <= 6; $i++): ?>
+                                <div class="swiper-slide">
+                                    <div class="hero__person">
+                                        <img src="<?php echo get_theme_file_uri('src/images/top/mv0' . $i . '.png'); ?>"
+                                            alt="Staff <?php echo $i; ?>">
+                                    </div>
+                                </div>
+                            <?php endfor; ?>
+                        </div>
                     </div>
                 </div>
                 <div class="hero__big-text">

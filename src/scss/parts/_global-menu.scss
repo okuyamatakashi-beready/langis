@@ -14,6 +14,25 @@
     &.is-active {
         opacity: 1;
         visibility: visible;
+
+        // 各アイテムを少しずつ遅らせて表示
+        .global-menu__item {
+            opacity: 1;
+            transform: translateX(0);
+
+            @for $i from 1 through 6 {
+                &:nth-child(#{$i}) {
+                    transition-delay: #{0.2 + ($i * 0.1)}s;
+                }
+            }
+        }
+
+        // Contactボタンも遅らせる
+        .global-menu__contact {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 0.8s;
+        }
     }
 
     &__overlay {
@@ -32,71 +51,150 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 40px;
+        padding: 0; // 画面端まで使うためpadding削除
     }
 
     &__wrapper {
         display: flex;
         width: 100%;
         height: 100%;
-        max-width: 1200px; // 全体の最大幅
+        // max-width削除して全幅に
         align-items: center;
     }
 
     &__bg-visual {
         flex: 1;
+        width: 50%; // 明示的に幅確保
         height: 100%;
         position: relative;
-        display: flex;
-        align-items: flex-end; // 下寄せ
-        justify-content: center;
+        background-repeat: no-repeat;
+        background-position: left center; // 左端・中央
+        background-size: contain;
+        opacity: 1;
 
-        img {
-            max-width: 100%;
-            max-height: 90vh; // 画面内に収まるように
-            width: auto;
-            object-fit: contain;
+        @media screen and (max-width: $breakpoint-mobile) {
+            width: 100%;
+            height: 30%; // スマホでは高さを抑える
+            background-position: center bottom; // 下寄せ
+            background-size: cover;
+            position: absolute; // 絶対配置で背面に
+            bottom: 0;
+            left: 0;
+            opacity: 0.1; // 薄く表示
+            z-index: -1;
         }
     }
 
     &__content {
         flex: 1;
-        padding-left: 5%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding-left: 5%;
+        padding-right: 5%; // 右端にも余白
+        max-width: 800px; // コンテンツ側は広がりすぎないように
+
+        @media screen and (max-width: $breakpoint-mobile) {
+            padding: 20px;
+            width: 100%;
+            justify-content: flex-start;
+            padding-top: 100px; // ヘッダー分空ける
+        }
     }
 
     &__logo {
         margin-bottom: 50px;
 
         img {
-            width: 200px; // ロゴサイズ調整
+            width: 350px; // ロゴサイズ調整
             height: auto;
+
+            @media screen and (max-width: $breakpoint-mobile) {
+                width: 200px; // スマホサイズ
+                margin-bottom: 30px;
+            }
         }
     }
 
     &__grid {
-        display: flex;
-        gap: 60px; // 列間の余白
+        display: grid;
+        grid-template-columns: 1fr 1fr; // 2列
+        grid-template-rows: repeat(4, min-content); // 4行（各項目の高さに合わせる）
+        gap: 30px 60px; // 行間、列間
+        width: 100%;
+
+        @media screen and (max-width: $breakpoint-mobile) {
+            display: flex; // スマホはFlexで縦積み
+            flex-direction: column;
+            gap: 20px;
+        }
     }
 
-    &__col {
-        display: flex;
-        flex-direction: column;
-    }
-
+    &__col,
     &__list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        display: contents; // グリッドの直接の子要素として扱うためにラッパーを無視させる
 
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
+        @media screen and (max-width: $breakpoint-mobile) {
+            display: flex; // Flexに戻す
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
+    // 左列のアイテム配置
+    &__col:first-child {
+        .global-menu__item {
+            grid-column: 1;
+
+            &:nth-child(1) {
+                grid-row: 1;
+            }
+
+            &:nth-child(2) {
+                grid-row: 2;
+            }
+
+            &:nth-child(3) {
+                grid-row: 3;
+            }
+
+            &:nth-child(4) {
+                grid-row: 4;
+            }
+
+            // MEMBER
+        }
+    }
+
+    // 右列のアイテム配置
+    &__col:last-child {
+        .global-menu__item {
+            grid-column: 2;
+
+            &:nth-child(1) {
+                grid-row: 1;
+            }
+
+            // COMPANY
+            &:nth-child(2) {
+                grid-row: 2;
+            }
+
+            // GALLERY
+        }
     }
 
     &__item {
+        list-style: none; // マーカー削除
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+
+        &::marker {
+            display: none; // 念のため
+            content: "";
+        }
+
         a {
             text-decoration: none;
             display: block;
@@ -115,6 +213,10 @@
             margin-bottom: 5px;
             font-family: $font-family-base;
             letter-spacing: 0.05em;
+
+            @media screen and (max-width: $breakpoint-mobile) {
+                font-size: 18px; // スマホサイズ
+            }
         }
 
         .ja {
@@ -122,12 +224,27 @@
             font-size: 14px;
             color: $color-text;
             font-weight: bold;
+
+            @media screen and (max-width: $breakpoint-mobile) {
+                font-size: 12px;
+            }
         }
     }
 
     &__contact {
-        margin-top: 50px; // リストとの余白
-        // Contactボタンは右列の下に配置
+        grid-column: 2;
+        grid-row: 4; // MEMBERと同じ行に配置
+        align-self: start; // 上揃え（文字サイズ差などでずれないように）
+        margin-top: 0;
+        padding-top: 0;
+
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+
+        @media screen and (max-width: $breakpoint-mobile) {
+            margin-top: 30px; // 上に余白
+        }
     }
 }
 

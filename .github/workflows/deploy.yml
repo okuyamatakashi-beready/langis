@@ -30,6 +30,7 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "/"
           REMOTE_HOST: ${{ secrets.XSERVER_HOST }}
+          REMOTE_PORT: "10022"
           REMOTE_USER: ${{ secrets.XSERVER_USER }}
           TARGET: ${{ secrets.DEPLOY_PATH }}
           EXCLUDE: "/node_modules/, /.git/, /.github/, /src/scss/, /src/main.js, /README.md, /multi_device_guide.md, /.gitignore, /package.json, /package-lock.json, /vite.config.js"
