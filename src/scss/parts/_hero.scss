@@ -3,17 +3,12 @@
 .hero {
     position: relative;
     padding-top: 100px;
-    padding-bottom: 80px;
+    padding-bottom: 250px; // テキストが入るように広げる
     overflow: hidden;
     background-color: $color-primary;
-    height: 100vh; // 画面いっぱいに広げる
-    min-height: 700px; // 安全策
 
     &__container {
-        height: 100%; // コンテナも高さを確保
-        display: flex;
-        flex-direction: column;
-        justify-content: center; // 内容を上下中央に
+        // height removed
     }
 
     &__visual {
@@ -25,12 +20,11 @@
         gap: 2%;
         max-width: 1200px;
         margin: 0 auto;
-        height: 70%; // Visual area takes most of the height
     }
 
     &__slider {
         width: 35%; // 少し幅広に
-        overflow: hidden;
+        overflow: visible; // Allows slides to be seen flying in from screen edges
         aspect-ratio: 720 / 1145; // 元の比率を維持
         position: relative;
         z-index: 2;
@@ -148,7 +142,7 @@
 
     &__big-text {
         position: absolute;
-        bottom: -100px; // 下に移動 (-40px -> -100px)
+        bottom: 0; // 底辺に合わせる
         left: 0;
         width: 100%;
         overflow: hidden;

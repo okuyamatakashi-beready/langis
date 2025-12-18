@@ -20,18 +20,54 @@ img {
     vertical-align: bottom;
 }
 
+// Prevent FOUC (Flash of Unstyled Content)
+.wrapper {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px; // Reverted to 20px
     position: relative;
 }
 
 .section {
-    padding: 60px 0;
+    padding: 60px 0; // Reverted to 60px
 
     &--orange {
         background-color: $color-primary;
         color: $color-text-white;
     }
+}
+
+.section-label {
+    font-family: $font-en;
+    font-size: 22px; // Updated size
+    font-weight: 400; // Regular weight
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 20px; // Reverted to 20px
+    display: block; // Ensures it takes width
+
+    // Default color is text color, overridden by sections
+    &::before {
+        content: '_';
+    }
+}
+
+// Utility Classes
+.u-center {
+    text-align: center;
+}
+
+.u-mt-40 {
+    margin-top: 40px;
+}
+
+.u-text-nowrap {
+    white-space: nowrap;
+    letter-spacing: -0.02em; // Tighten slightly to ensure fit
+    display: inline-block;
 }

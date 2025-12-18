@@ -43,15 +43,15 @@
 
     &--circle {
         border-radius: 50%;
-        width: 120px;
-        height: 120px;
+        width: 200px; // Updated size
+        height: 200px; // Updated size
         background-color: $color-primary;
         color: $color-text-white;
         text-align: center;
-        font-size: 14px;
+        font-size: 20px; // Updated font size
         flex-direction: column;
         line-height: 1.5;
-        transition: transform 0.2s, opacity 0.2s; // Keep simple transition
+        transition: transform 0.2s, opacity 0.2s;
 
         &:hover {
             opacity: 0.9;
