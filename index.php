@@ -252,17 +252,41 @@
             <!-- Member Section -->
             <section class="section section-member section--orange">
                 <div class="container">
-                    <h3 class="section-label">MEMBER</h3>
-                    <h2 class="section-title--white">ランギスの核となる<br>メンバーたち</h2>
+                    <h3 class="section-label js-animate fade-in-up">MEMBER</h3>
+                    <h2 class="section-title--white js-animate fade-in-up delay-200">
+                        <span>ランギスの核となる</span><br>
+                        <span>メンバーたち</span>
+                    </h2>
 
-                    <div class="member__content">
-                        <div class="member__image-group">
-                            <!-- Overlapping images placeholder -->
-                        </div>
-                        <div class="member__text-box">
-                            <h3>LANGIS</h3>
-                            <p>ここのメンバーが中心となって...</p>
-                            <a href="#" class="btn btn--pill btn--pink">VIEW MORE</a>
+                    <div class="member__layout-wrapper">
+                        <div class="member__vertical-text js-animate fade-in-up delay-400">上からも下からも信頼を集める頼りになるメンバー</div>
+
+                        <div class="member__card js-animate fade-in-up delay-400">
+                            <div class="member__images">
+                                <?php
+                                $member_order = [4, 2, 3, 1];
+                                foreach ($member_order as $index => $img_num):
+                                    ?>
+                                    <div
+                                        class="member__image member__image--0<?php echo $img_num; ?> js-animate fade-in-up delay-<?php echo 100 + (($index + 1) * 100); ?>">
+                                        <img src="<?php echo get_theme_file_uri('src/images/member/member0' . $img_num . '.png'); ?>"
+                                            alt="Member <?php echo $img_num; ?>">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <div class="member__info">
+                                <h3 class="member__title">LANGIS</h3>
+                                <p class="member__description">
+                                    いつも笑顔で大きすぎることが多いランギスのメンバーですが、<br>
+                                    仕事をするときは真剣になります。とはいえ、堅苦しくない程度に。<br>
+                                    接客が多いため、人と接するときには自然と笑顔に。<br>
+                                    仕事面と共に仕事へのモチベーションや会社への想いを紹介しています。
+                                </p>
+                                <div class="member__btn-wrapper">
+                                    <a href="#" class="btn btn--pill btn--pink">VIEW MORE</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

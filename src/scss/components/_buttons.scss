@@ -65,7 +65,12 @@
     }
 
     &--pink {
-        background-color: #f5b7b1;
+        background-color: #FFB6C1; // Light pink
+        color: #333;
+
+        &:hover {
+            background-color: #FFA0B4;
+        }
     }
 
     &--blue {

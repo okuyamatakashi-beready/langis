@@ -1,64 +1,240 @@
 @use '../variables' as *;
 
 .section-member {
-    // Orange background handles in global .section--orange or here
-    padding-bottom: 100px;
+    padding: 100px 0;
 
-    .section-title--white {
-        color: $color-text-white;
-        font-size: 32px;
-        margin-bottom: 40px;
-        background-color: transparent; // Reset label style if needed
-        display: inline-block;
-        padding: 5px 10px;
-        border: 2px solid $color-text-white; // Boxed style often seen
-        // Or just text. Design image shows white text on orange.
+    .container {
+        max-width: 1020px;
     }
 
-    .member {
-        &__content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    // Specific override for Member section title
+    .section-title--white {
+        font-size: 80px;
+        line-height: 1.6; // Increased line-height
+        margin-bottom: 0; // Removed margin to allow overlap
+        color: #333; // Black text
+        position: relative;
+        z-index: 10; // Ensure title is above card
+
+        // "Zabuton" style (White background per line)
+        span {
+            background-color: #fff;
+            padding: 4px 10px; // Padding around text
+            box-decoration-break: clone; // Ensure padding applies to wrap if needed (though br handles break)
+            -webkit-box-decoration-break: clone;
         }
+    }
+}
 
-        &__image-group {
-            width: 55%;
-            height: 300px;
-            position: relative;
-            background-color: rgba(255, 255, 255, 0.1); // Placeholder container
-            border-radius: 20px;
+// Layout Wrapper (Vertical Text + Card)
+.member__layout-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    align-items: flex-start;
+}
 
-            // Should have multiple images overlapping
-            &::before {
-                content: "Members Photo Group";
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-                color: rgba(255, 255, 255, 0.5);
-            }
+// Vertical Text
+.member__vertical-text {
+    writing-mode: vertical-rl;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff; // White text on orange bg
+    flex-shrink: 0;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    height: auto;
+    margin-top: 140px; // Adjusted for card overlap
+}
+
+// Card - Now Width 720px
+.member__card {
+    width: 720px;
+    box-sizing: border-box; // Include padding in width
+    flex-shrink: 0;
+    // Removed padding and background-color from here based on "member__card is 720px" context
+    // implying it's the container of content.
+    // If the card ITSELF should be white, restore bg.
+    // User said "section-title--white is white zabuton", impliying maybe card isn't?
+    // But prev design had white card. Let's assume content wrapper.
+    // Actually, "member__card is 720px" usually means the white box.
+    // Let's keep bg white but exact width 720px.
+    background-color: #fff;
+    padding: 60px; // Internal padding
+    // border-radius removed per request
+    margin-top: -60px; // Negative margin to pull card up under title
+    z-index: 1; // Below title
+    position: relative;
+
+    // Reset display from previous flex row
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+// Images Grid
+// Images Container - Clipping Mask
+.member__images {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1; // Square container
+    overflow: hidden; // Clip overflowing images
+    background-color: $color-primary; // Orange background
+}
+
+.member__image {
+    position: absolute;
+    // Gap total 20px -> each side 10px from center.
+    // Container width 100%. Half is 50%.
+    // To leave 10px gap from center line, width must be calc(50% - 10px).
+    width: calc(50% - 10px);
+    height: calc(50% - 10px);
+    // background-color: #fff; removed per request
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    // Individual positioning
+
+    // Top Left (04)
+    &--04 {
+        top: 0;
+        left: 0;
+
+        img {
+            object-position: center top;
+            transform: scale(1.1) rotate(180deg);
         }
+    }
 
-        &__text-box {
-            width: 40%;
-            background-color: $color-bg-white;
-            padding: 40px;
-            border-radius: 20px;
-            color: $color-text;
+    // Top Right (02)
+    &--02 {
+        top: 0;
+        right: 0;
 
-            h3 {
-                font-size: 24px;
-                margin-top: 0;
-                margin-bottom: 20px;
-                color: $color-primary;
-            }
-
-            p {
-                font-size: 14px;
-                line-height: 1.8;
-                margin-bottom: 30px;
-            }
+        img {
+            object-position: center top;
+            transform: scale(1.1) rotate(180deg);
         }
+    }
+
+    // Bottom Left (03)
+    &--03 {
+        bottom: 0;
+        left: 0;
+
+        img {
+            object-position: center bottom;
+            transform: scale(1.1);
+        }
+    }
+
+    // Bottom Right (01)
+    &--01 {
+        bottom: 0;
+        right: 0;
+
+        img {
+            object-position: center bottom;
+            transform: scale(1.1);
+        }
+    }
+}
+
+// Member Info Section
+.member__info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.member__title {
+    font-family: $font-en;
+    font-size: 60px; // LANGIS title
+    color: $color-text;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.member__description {
+    font-size: 16px;
+    line-height: 2;
+    color: $color-text;
+    margin: 0;
+}
+
+.member__btn-wrapper {
+    margin-top: 20px;
+    text-align: right;
+}
+
+// Responsive
+@media (max-width: 1200px) {
+    .section-member .section-title--white {
+        font-size: 60px;
+    }
+
+    .member__layout-wrapper {
+        gap: 60px;
+    }
+
+    .member__card {
+        padding: 40px;
+        width: 600px; // Shrink on smaller screens? Or keep full width and scroll? Better shrink/fluid.
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .member__layout-wrapper {
+        flex-direction: column; // Stack vertical text on top of card
+        align-items: center;
+        gap: 40px;
+    }
+
+    .member__vertical-text {
+        writing-mode: horizontal-tb;
+        font-size: 24px;
+        text-align: center;
+        margin-top: 0;
+        color: #fff;
+    }
+
+    .member__card {
+        width: 100%; // Fluid width
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-member .section-title--white {
+        font-size: 40px;
+    }
+
+    .member__card {
+        padding: 30px;
+        gap: 30px;
+    }
+
+    .member__images {
+        gap: 15px;
+    }
+
+    .member__title {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .member__description {
+        text-align: left;
+    }
+
+    .member__btn-wrapper {
+        text-align: center;
     }
 }
