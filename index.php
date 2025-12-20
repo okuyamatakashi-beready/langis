@@ -292,24 +292,12 @@
                 </div>
             </section>
 
-            <!-- Company Section -->
-            <section class="section section-company section--orange">
-                <div class="container">
-                    <div class="company__visual">
-                        <!-- Street view placeholder -->
-                    </div>
-                    <div class="company__content">
-                        <h3 class="section-label">COMPANY</h3>
-                        <h2 class="section-title">ランギスを知る。</h2>
-                        <div class="u-center">
-                            <a href="#" class="btn btn--pill btn--blue">VIEW MORE</a>
-                        </div>
-                    </div>
-                    <div class="company__office-visual">
-                        <!-- Office visual -->
-                    </div>
-                </div>
-            </section>
+            <!-- Company Section (Hidden by request) -->
+            <!-- 
+            <section class="section section-company">
+               ...
+            </section> 
+            -->
 
             <!-- Gallery Section -->
             <section class="section section-gallery">

@@ -1,66 +1,88 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .section-company {
-    position: relative;
-    padding: 100px 0;
-    overflow: hidden;
+    padding: 120px 0;
+    background-color: #fff;
 
-    .container {
+    .company__wrapper {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 80px;
+        max-width: 900px;
+        margin: 0 auto;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
     }
 
-    .company {
-        &__content {
+    .company__head {
+        flex-shrink: 0;
+
+        @media (max-width: 768px) {
+            width: 100%;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9); // Semi-transparent card effect?
-            // Or simple text on orange. Design shows central text.
-            padding: 40px;
-            border-radius: 20px;
-            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        &__visual {
-            position: absolute;
-            left: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px;
-            height: 180px;
-            background-color: #fff;
-            border-radius: 10px;
-            z-index: 1;
-            opacity: 0.8;
-
-            // Placeholder
-            &::after {
-                content: "Street View";
-                display: block;
-                padding: 20px;
-            }
+        .section-label {
+            margin-bottom: 20px;
         }
 
-        &__office-visual {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px;
-            height: 180px;
-            background-color: #fff;
-            border-radius: 10px;
-            z-index: 1;
-            opacity: 0.8;
-
-            // Placeholder
-            &::after {
-                content: "Office View";
-                display: block;
-                padding: 20px;
+        .section-title--vertical {
+            @media (max-width: 768px) {
+                writing-mode: horizontal-tb;
+                margin-bottom: 20px;
             }
+        }
+    }
+
+    .company__body {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .company__list {
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .company__row {
+        display: flex;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 24px 0;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding: 20px 0;
+            gap: 8px;
+        }
+    }
+
+    dt {
+        font-weight: 700;
+        width: 180px;
+        flex-shrink: 0;
+        font-size: 16px;
+        color: $color-text;
+
+        @media (max-width: 768px) {
+            width: 100%;
+            font-size: 15px;
+        }
+    }
+
+    dd {
+        line-height: 1.8;
+        font-size: 16px;
+        color: $color-text;
+
+        @media (max-width: 768px) {
+            font-size: 15px;
         }
     }
 }
