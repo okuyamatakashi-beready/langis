@@ -173,38 +173,68 @@
 
     // Responsive
     @media (max-width: 768px) {
-        flex-direction: column;
-        padding: 60px 40px;
-        gap: 60px;
-        text-align: center; // Center on mobile?
+        padding: 60px 20px;
 
-        &__left {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .service-card {
+            padding: 40px 30px;
+            gap: 40px;
+            border-radius: 40px;
 
-        // Vertical title on mobile? Usually keep vertical or switch to horizontal
-        // Let's keep vertical for impact if short, or horizontal if requested.
-        // Assuming kept vertical but centered container.
-        .section-title--vertical-big {
-            // height: 400px;
-            margin: 0 auto;
-        }
+            &__body {
+                flex-direction: column;
+                gap: 40px;
+            }
 
-        &__right {
-            align-items: center; // Center align items
-            text-align: left; // Keep text left aligned for readability?
-        }
+            &__left {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+            }
 
-        .service-keywords {
-            align-items: center; // Center keywords
-        }
+            &__right {
+                width: 100%;
+                align-items: center;
+                text-align: center; // Align text center for mobile balance
+            }
 
-        .service-btn-wrapper {
-            justify-content: center; // Center button
-            width: 100%;
+            // Switch large vertical title to horizontal on mobile
+            .section-title--vertical-big {
+                writing-mode: horizontal-tb;
+                font-size: 40px;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .section-label {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+
+            .service-keywords {
+                align-items: center;
+                width: 100%;
+            }
+
+            .service-description {
+                text-align: left; // Description easier to read if left aligned? or center?
+                // Visual balance: if keywords are center, description might look okay center or left.
+                // Let's keep Left for readability of long text, or Center if short.
+                // User's text is multiple lines. Left is safer for readability.
+                text-align: justify;
+            }
+
+            .service-btn-wrapper {
+                justify-content: center;
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            .btn--service-custom {
+                width: 100%; // Full width button on mobile? Or auto?
+                max-width: 300px; // Limit max width
+                padding: 0 20px;
+            }
         }
     }
 }

@@ -68,6 +68,10 @@ img {
 
 .u-text-nowrap {
     white-space: nowrap;
-    letter-spacing: -0.02em; // Tighten slightly to ensure fit
+    letter-spacing: -0.02em;
     display: inline-block;
+
+    @media (max-width: 768px) {
+        white-space: normal;
+    }
 }
