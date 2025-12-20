@@ -30,16 +30,34 @@ function langis_enqueue_scripts()
         // 簡易的に直接読み込むか、manifest読み込みロジックを実装します。
 
         $manifest_path = get_theme_file_path('dist/.vite/manifest.json');
+
         if (file_exists($manifest_path)) {
+            // Manifest loading (Primary method)
             $manifest = json_decode(file_get_contents($manifest_path), true);
             $js_file = $manifest['src/main.js']['file'];
-            $css_file = $manifest['src/main.js']['css'][0] ?? null; // JSのエントリーポイントにCSSが含まれる場合
+            $css_file = $manifest['src/main.js']['css'][0] ?? null;
 
             if ($css_file) {
                 wp_enqueue_style('langis-style', get_theme_file_uri('dist/' . $css_file), [], null);
             }
-
             wp_enqueue_script('langis-main', get_theme_file_uri('dist/' . $js_file), [], null, true);
+        } else {
+            // Fallback: Scan dist/assets for any .css and .js files
+            // This handles cases where .vite/manifest.json is missing on server
+            $asset_dir = get_theme_file_path('dist/assets');
+            $asset_uri = get_theme_file_uri('dist/assets');
+
+            if (is_dir($asset_dir)) {
+                $files = scandir($asset_dir);
+                foreach ($files as $file) {
+                    if (pathinfo($file, PATHINFO_EXTENSION) === 'css') {
+                        wp_enqueue_style('langis-style-fallback', $asset_uri . '/' . $file, [], null);
+                    }
+                    if (pathinfo($file, PATHINFO_EXTENSION) === 'js') {
+                        wp_enqueue_script('langis-main-fallback', $asset_uri . '/' . $file, [], null, true);
+                    }
+                }
+            }
         }
     }
 }
