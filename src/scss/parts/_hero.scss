@@ -165,6 +165,74 @@
             padding-right: 0.2em;
         }
     }
+
+    // Responsive
+    @media (max-width: 768px) {
+        padding-top: 80px;
+        padding-bottom: 150px;
+
+        &__visual {
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        &__slider {
+            width: 80%;
+            aspect-ratio: 3 / 4; // Adjust aspect ratio for mobile if needed
+        }
+
+        &__center-text {
+            width: 100%;
+            order: -1; // Move text to top? Or keep in middle?
+            // Usually Hero message is important. Let's keep it in flow or top. 
+            // Design has 3 cols: Slider | Text | Slider.
+            // Stack: Slider(Left) -> Text -> Slider(Right) is natural order.
+            // Or Text -> Slider -> Slider.
+            // Let's try Text first for semantic importance, but visual might look better interleaved.
+            // Default col stack: Slider -> Text -> Slider.
+            margin: 40px 0;
+        }
+
+        &__center-bg {
+            min-height: auto;
+            flex-direction: column-reverse; // Stack title and vertical text
+            gap: 20px;
+        }
+
+        .vertical-text {
+            writing-mode: horizontal-tb; // Switch to horizontal on mobile for better readability?
+            // Or keep vertical but resize?
+            // "Clean Numbers" usually implies vertical is key. Let's keep vertical but smaller.
+            font-size: 18px;
+            height: 200px; // Limit height
+        }
+
+        .vertical-text-sub {
+            writing-mode: horizontal-tb;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        &__big-text-track {
+            span {
+                font-size: 80px; // Reduce marquee size
+            }
+        }
+
+        &__pagination {
+            bottom: -30px; // Adjust position
+
+            .swiper-pagination-bullet {
+                width: 2px !important;
+                height: 10px !important;
+
+                &-active {
+                    height: 20px !important;
+                }
+            }
+        }
+    }
 }
 
 @keyframes marquee {

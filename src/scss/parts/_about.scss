@@ -106,4 +106,63 @@
             text-align: left;
         }
     }
+
+    // Responsive
+    @media (max-width: 768px) {
+        padding-top: 60px;
+        padding-bottom: 80px;
+
+        .about__wrapper {
+            flex-direction: column-reverse; // Stack text on top of image? Or image top?
+            // PC: Img | Title/Text | Img
+            // SP: Title/Text -> Img -> Img?
+            // Usually Title comes first.
+            gap: 40px;
+        }
+
+        .about__center-col {
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .section-title--vertical {
+            writing-mode: horizontal-tb; // Switch to horizontal on mobile
+            font-size: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            min-height: auto;
+        }
+
+        .about__lower-grid {
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .about__img-col {
+            width: 80%; // Slightly smaller than full width for visual balance
+            margin: 0 auto;
+
+            &--left,
+            &--right {
+                top: 0; // Reset any offsets
+                transform: none; // Reset transforms
+            }
+        }
+
+        .about__lower-col {
+            width: 100%;
+            order: 3; // Button at bottom
+        }
+
+        .about__text-box {
+            font-size: 14px;
+            line-height: 1.8;
+            padding: 0 20px; // Add side padding
+        }
+
+        .u-center {
+            margin-top: 40px;
+        }
+    }
 }
