@@ -253,13 +253,16 @@
             <section class="section section-member section--orange">
                 <div class="container">
                     <h3 class="section-label js-animate fade-in-up">MEMBER</h3>
-                    <h2 class="section-title--zabuton js-animate fade-in-up delay-200">
+                    <h2 class="section-title--zabuton js-animate">
                         <span class="zabuton">ランギスの核となる</span><br>
                         <span class="zabuton">メンバーたち</span>
                     </h2>
 
                     <div class="member__layout-wrapper">
-                        <div class="member__vertical-text js-animate fade-in-up delay-400">上からも下からも信頼を集める頼りになるメンバー</div>
+                        <div class="member__vertical-text js-animate fade-in-up delay-400">
+                            <span>上からも下からも信頼を集める</span>
+                            <span>頼りになるメンバー</span>
+                        </div>
 
                         <div class="member__card js-animate fade-in-up delay-400">
                             <div class="member__images">
@@ -292,47 +295,44 @@
                 </div>
             </section>
 
-            <!-- Company Section (Hidden by request) -->
-            <!-- 
-            <section class="section section-company">
-                <div class="container">
-                    <div class="company__wrapper">
-                        <div class="company__head js-animate fade-in-up">
-                            <h3 class="section-label">COMPANY</h3>
-                            <h2 class="section-title--vertical">会社概要</h2>
-                        </div>
-                        <div class="company__body js-animate fade-in-up delay-200">
-                            <dl class="company__list">
-                                <div class="company__row">
-                                    <dt>会社名</dt>
-                                    <dd>株式会社ランギス</dd>
-                                </div>
-                                <div class="company__row">
-                                    <dt>設立</dt>
-                                    <dd>2014年8月</dd>
-                                </div>
-                                <div class="company__row">
-                                    <dt>代表者</dt>
-                                    <dd>代表取締役 田中 太郎</dd>
-                                </div>
-                                <div class="company__row">
-                                    <dt>所在地</dt>
-                                    <dd>〒123-4567 東京都渋谷区...</dd>
-                                </div>
-                                <div class="company__row">
-                                    <dt>事業内容</dt>
-                                    <dd>
-                                        通信事業<br>
-                                        人材紹介事業<br>
-                                        営業アウトソーシング事業
-                                    </dd>
-                                </div>
-                            </dl>
+            <!-- Company Section -->
+            <section class="section section-company" id="company">
+                <div class="company__bg-decor">
+                    <!-- Hand Illustration (CSS background) -->
+                </div>
+                <div class="container company__container">
+                    <!-- Company Logo (Top Right) -->
+                    <div class="company__logo js-animate fade-in-up">
+                        <img src="<?php echo get_theme_file_uri('src/images/company/company-logo.png'); ?>"
+                            alt="Company Logo" width="307">
+                    </div>
+
+                    <!-- Top Left Image -->
+                    <div class="company__image company__image--01 js-animate fade-in-up">
+                        <img src="<?php echo get_theme_file_uri('src/images/company/company_img01.png'); ?>"
+                            alt="Office Exterior">
+                    </div>
+
+                    <!-- Central Card -->
+                    <div class="company__card js-animate fade-in-up delay-200">
+                        <span class="section-label">COMPANY</span>
+                        <h2 class="section-title">ランギスを知る。</h2>
+                        <p class="company__description">
+                            名古屋市港区にオフィスを構えています。<br>
+                            東海エリアを中心に関西エリアにも進出中。
+                        </p>
+                        <div class="company__btn">
+                            <a href="#" class="btn btn--pill btn--company-teal">VIEW MORE</a>
                         </div>
                     </div>
+
+                    <!-- Bottom Right Image -->
+                    <div class="company__image company__image--02 js-animate fade-in-up delay-400">
+                        <img src="<?php echo get_theme_file_uri('src/images/company/company_img02.png'); ?>"
+                            alt="Office Interior">
+                    </div>
                 </div>
-            </section> 
-            -->
+            </section>
 
             <!-- Gallery Section -->
             <section class="section section-gallery">

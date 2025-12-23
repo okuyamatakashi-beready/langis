@@ -2,64 +2,167 @@
 
 .section-company {
     position: relative;
-    padding: 100px 0;
-    overflow: hidden;
+    padding: 276px 0 170px 0;
+    background-color: $color-primary; // Orange background
 
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
-    }
+    // Background decoration (Hand icon placeholder)
+    .company__bg-decor {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        width: 400px;
+        height: 600px;
+        background-image: url('../images/common/hand-bg.png'); // Placeholder path
 
-    .company {
-        &__content {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.9); // Semi-transparent card effect?
-            // Or simple text on orange. Design shows central text.
-            padding: 40px;
-            border-radius: 20px;
-            min-width: 300px;
+        // Illustration placeholder visualization
+        &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            // Assuming we don't have the exact image yet, stick to rudimentary styling or verify existing assets?
+            // User provided image shows a white outline hand.
+            // Using opacity for subtle effect
+            opacity: 0.2;
         }
 
-        &__visual {
-            position: absolute;
-            left: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px;
-            height: 180px;
-            background-color: #fff;
-            border-radius: 10px;
-            z-index: 1;
-            opacity: 0.8;
+        pointer-events: none;
+        z-index: 1;
+    }
 
-            // Placeholder
-            &::after {
-                content: "Street View";
-                display: block;
-                padding: 20px;
+    .company__logo {
+        position: absolute;
+        top: -270px;
+        right: 0px;
+        width: 307px;
+        z-index: 5;
+
+
+        @media (max-width: 768px) {
+            width: 150px; // スマホでは小さく
+            top: -40px;
+            right: 0;
+        }
+    }
+
+    .container.company__container {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 600px; // Ensure height for images to float
+        width: 1040px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding-top: 200px; // Space for Top Image
+            padding-bottom: 200px; // Space for Bottom Image
+        }
+    }
+
+    // Central Card
+    .company__card {
+        background-color: rgba(255, 255, 255, 0.5); // White with 0.5 alpha
+        border-radius: 100px;
+        padding: 190px 160px;
+        text-align: center;
+        width: 800px;
+        max-width: 90%;
+        // opacity removed to keep content opaque
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+        @media (max-width: 768px) {
+            padding: 50px 30px;
+            width: 95%;
+        }
+
+        .section-label {
+            display: block;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            margin-bottom: 0px;
+            color: $color-text;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 60px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: $color-text;
+            margin-top: 0;
+
+            @media (max-width: 768px) {
+                font-size: 28px;
             }
         }
 
-        &__office-visual {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px;
-            height: 180px;
-            background-color: #fff;
-            border-radius: 10px;
-            z-index: 1;
-            opacity: 0.8;
+        .company__description {
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
 
-            // Placeholder
-            &::after {
-                content: "Office View";
-                display: block;
-                padding: 20px;
+        .company__btn {
+            margin-top: 40px;
+            // Global .btn--pill used
+        }
+    }
+
+    // Decorative Images
+    .company__image {
+        position: absolute;
+        border-radius: 30px;
+        overflow: hidden;
+        z-index: 3;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        &--01 {
+            // Top Left
+            width: 528px;
+            height: auto;
+            top: -50px; // Overlap properly
+            left: 0; // Align with container left, or slightly outside?
+            // Design shows it protruding from card but contained in section?
+            // Let's position relative to container
+            top: 0;
+            left: 0;
+            transform: translate(-15%, -60%); // Pull out to corner
+
+            @media (max-width: 768px) {
+                width: 250px;
+                height: 180px;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -20%);
+            }
+        }
+
+        &--02 {
+            // Bottom Right
+            width: 400px;
+            height: auto;
+            bottom: 0;
+            right: 0;
+            transform: translate(13%, 20%); // Pull out to corner
+
+            @media (max-width: 768px) {
+                width: 250px;
+                height: 180px;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 20%);
             }
         }
     }
