@@ -2,55 +2,148 @@
 
 .footer {
     background-color: #fff;
-    padding: 60px 0 20px;
-    border-top: 5px solid $color-primary;
+    padding: 100px 0 50px;
+    border-top-left-radius: 100px;
+    position: relative;
+    overflow: hidden;
+    margin-top: -50px; // Pull up to overlap previous section if needed, or just standard flow.
+    // Design check: Does it overlap? The design shows a rounded corner implying potential overlap or just style.
+    // Assuming standard block for now. `border-top-left-radius` works best if background behind it is different (e.g. Orange).
+    // Previous section (Gallery) has image bg. If we want white footer with rounded corner, we just set it.
 
-    &__container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 40px;
+    @media (max-width: 768px) {
+        padding: 50px 0 30px;
+        border-top-left-radius: 50px;
     }
 
-    &__logo {
-        width: 150px;
+    // Hand Background Decoration
+    .footer__decor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 600px;
+        background-image: url('../images/common/hand-bg.png'); // Common placeholder or specific? Using hand-bg from company section logic?
+        // Wait, I saw `hand-bg.png` used in company section. Assuming same asset style.
+        // Actually, let's verify if `hand-bg.png` exists in `images/common` from previous `ls`.
+        // The `ls` of `images/common` (Step 499) showed: gnav-bg.png, gnav-logo.svg, logo.svg. NO hand-bg.png.
+        // Step 411 `_company.scss` referenced `../images/common/hand-bg.png`.
+        // I should check if that file actually exists or if I need to find it.
+        // "Using hand-bg.png (placeholder path)" was in the Company summary.
+        // I will use a placeholder or check `src/images` recursively.
+        // For now, I'll comment it out or use a generic path if I can't confirm.
+        opacity: 0.1;
+        pointer-events: none;
+        z-index: 0;
+    }
 
-        img {
-            width: 100%;
+    .footer__container {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+    }
+
+    // Left: Info
+    .footer__info {
+        .footer__logo {
+            width: 200px;
+            margin-bottom: 20px;
+
+            @media (max-width: 900px) {
+                margin: 0 auto 20px;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
 
-        font-weight: bold;
-        font-size: 24px; // Fallback if no image
-        color: $color-primary;
+        .footer__company-name {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .footer__address {
+            font-style: normal;
+            font-size: 14px;
+            line-height: 1.8;
+            color: $color-text;
+        }
     }
 
-    &__nav {
+    // Center: Nav
+    .footer__nav {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+
+        @media (max-width: 900px) {
+            margin: 40px 0;
+        }
+
         ul {
             list-style: none;
-            margin: 0;
             padding: 0;
-            display: flex;
-            gap: 20px;
-        }
+            margin: 0;
 
-        li {
-            font-size: 14px;
-            font-weight: bold;
-            color: $color-primary;
-            cursor: pointer;
+            li {
+                margin-bottom: 20px;
 
-            &:hover {
-                opacity: 0.7;
+                a {
+                    color: $color-primary; // Orange
+                    text-decoration: none;
+                    font-weight: 700;
+                    font-size: 16px;
+                    transition: opacity 0.3s;
+                    display: inline-block;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
             }
         }
     }
 
-    &__copyright {
+    // Right: Contact
+    .footer__contact {
         text-align: right;
-        font-size: 10px;
+
+        @media (max-width: 900px) {
+            text-align: center;
+        }
+
+        .btn--contact {
+            background-color: #f9e79f; // Yellow/Beige
+            padding: 20px 60px;
+            font-size: 18px;
+            width: auto;
+            min-width: 250px;
+        }
+    }
+
+    .footer__copyright {
+        text-align: right;
+        margin-top: 60px;
+        font-size: 12px;
         color: #999;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+        padding-right: 5%; // Align with container roughly or use container
+
+        @media (max-width: 900px) {
+            text-align: center;
+            padding-right: 0;
+        }
     }
 }

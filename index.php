@@ -335,49 +335,21 @@
             </section>
 
             <!-- Gallery Section -->
-            <section class="section section-gallery">
-                <div class="container">
-                    <div class="gallery__grid">
-                        <!-- Grid items -->
-                        <?php for ($i = 0; $i < 8; $i++): ?>
-                            <div class="gallery__item"></div>
-                        <?php endfor; ?>
-
-                        <div class="gallery__center-text">
-                            <h3 class="section-label">GALLERY</h3>
-                            <h2 class="section-title">ランギスの裏や<br>プライベートなんかも。</h2>
-                            <a href="#" class="btn btn--pill">VIEW MORE</a>
+            <section class="section section-gallery" id="gallery">
+                <div class="gallery__bg">
+                    <img src="<?php echo get_theme_file_uri('src/images/gallery/gallery_bg.jpg'); ?>"
+                        alt="Gallery Background">
+                </div>
+                <div class="container gallery__container">
+                    <div class="gallery__card js-animate fade-in-up">
+                        <span class="section-label">_GALLERY</span>
+                        <h2 class="section-title">ランギスの素や<br>プライベートなんかも。</h2>
+                        <div class="gallery__btn">
+                            <a href="#" class="btn btn--pill btn--gallery">VIEW MORE</a>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <footer class="footer">
-            <div class="container footer__container">
-                <div class="footer__logo">
-                    <img src="<?php echo get_theme_file_uri('/assets/images/logo.png'); ?>" alt="LANGIS">
-                </div>
-                <div class="footer__nav">
-                    <ul>
-                        <li>TOP</li>
-                        <li>ABOUT US</li>
-                        <li>SERVICE</li>
-                        <li>MEMBER</li>
-                        <li>COMPANY</li>
-                        <li>GALLERY</li>
-                    </ul>
-                </div>
-                <div class="footer__contact">
-                    <a href="#" class="btn btn--pill">CONTACT</a>
-                </div>
-            </div>
-            <div class="footer__copyright">
-                &copy; LANGIS Inc.
-            </div>
-        </footer>
-
-        <?php wp_footer(); ?>
-</body>
-
-</html>
+        <?php get_footer(); ?>
