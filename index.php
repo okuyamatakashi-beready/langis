@@ -253,9 +253,15 @@
             <section class="section section-member section--orange">
                 <div class="container">
                     <h3 class="section-label js-animate fade-in-up">MEMBER</h3>
+<<<<<<< HEAD
                     <h2 class="section-title--white js-animate fade-in-up delay-200">
                         <span>ランギスの核となる</span><br>
                         <span>メンバーたち</span>
+=======
+                    <h2 class="section-title--zabuton js-animate fade-in-up delay-200">
+                        <span class="zabuton">ランギスの核となる</span><br>
+                        <span class="zabuton">メンバーたち</span>
+>>>>>>> develop
                     </h2>
 
                     <div class="member__layout-wrapper">
@@ -295,7 +301,46 @@
             <!-- Company Section (Hidden by request) -->
             <!-- 
             <section class="section section-company">
+<<<<<<< HEAD
                ...
+=======
+                <div class="container">
+                    <div class="company__wrapper">
+                        <div class="company__head js-animate fade-in-up">
+                            <h3 class="section-label">COMPANY</h3>
+                            <h2 class="section-title--vertical">会社概要</h2>
+                        </div>
+                        <div class="company__body js-animate fade-in-up delay-200">
+                            <dl class="company__list">
+                                <div class="company__row">
+                                    <dt>会社名</dt>
+                                    <dd>株式会社ランギス</dd>
+                                </div>
+                                <div class="company__row">
+                                    <dt>設立</dt>
+                                    <dd>2014年8月</dd>
+                                </div>
+                                <div class="company__row">
+                                    <dt>代表者</dt>
+                                    <dd>代表取締役 田中 太郎</dd>
+                                </div>
+                                <div class="company__row">
+                                    <dt>所在地</dt>
+                                    <dd>〒123-4567 東京都渋谷区...</dd>
+                                </div>
+                                <div class="company__row">
+                                    <dt>事業内容</dt>
+                                    <dd>
+                                        通信事業<br>
+                                        人材紹介事業<br>
+                                        営業アウトソーシング事業
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> develop
             </section> 
             -->
 
