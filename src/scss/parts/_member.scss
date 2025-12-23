@@ -69,28 +69,38 @@
         border-radius: 0;
         padding: 0;
         display: flex;
+        flex-direction: column; // 縦並びに変更
         align-items: stretch;
         position: relative;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         margin-left: auto;
         margin-right: 0;
+        box-sizing: border-box; // Paddingを含めて幅を計算
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
         @media (max-width: 768px) {
             width: 100%;
-            flex-direction: column;
             margin: 0 auto;
         }
     }
 
     .member__images {
-        width: 50%;
+        width: 100%; // 横幅いっぱいに
         position: relative;
-        min-height: 400px;
+        min-height: 420px;
         background-color: $color-primary;
+        border: solid #fff;
+        border-width: 20px 20px 0 20px; // 上左右に20px border
+        overflow: hidden; // はみ出る部分を隠す
 
         @media (max-width: 768px) {
-            width: 100%;
             min-height: 300px;
+            border-width: 10px 10px 0 10px; // スマホは少し細く
         }
     }
 
@@ -98,13 +108,9 @@
         position: absolute;
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-
-        &:hover {
-            transform: scale(1.05);
-            z-index: 10;
-        }
+        // box-shadow is managed individually
+        transition: transform 0.8s ease, opacity 0.8s ease; // アニメーション設定
+        opacity: 0; // 初期状態：非表示
 
         img {
             width: 100%;
@@ -112,74 +118,107 @@
             object-fit: cover;
         }
 
-        // 配置調整 (ランダム感を出す)
+        // 表示時 (JavaScriptで is-visible クラスが付与されたら)
+        &.is-visible {
+            opacity: 1;
+            transform: translate(0, 0) !important; // 元の位置に戻る (他の指定を上書き)
+        }
+
+        // --- 個別の配置とアニメーション初期位置 ---
+
         &--01 {
-            // 手前
-            width: 160px;
-            height: 220px;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            // 右下配置
+            width: 450px;
+            height: auto;
+            bottom: -255px;
+            right: -60px;
+            left: auto;
             z-index: 4;
+            box-shadow: none;
+
+            // アニメーション: 4番目 (真下から)
+            transform: translate(0, 80px);
+            transition-delay: 0.6s;
+
+            img {
+                height: auto;
+            }
 
             @media (max-width: 768px) {
-                width: 120px;
-                height: 160px;
+                width: 260px;
             }
         }
 
         &--02 {
-            width: 140px;
-            height: 190px;
-            top: 20px;
-            left: 10%;
+            // 右上
+            width: 296px;
+            height: auto;
+            top: -173px;
+            right: -15px;
+            left: auto;
             z-index: 2;
+            box-shadow: none;
+
+            // アニメーション初期位置: 右上から
+            transform: translate(50px, -50px);
+            transition-delay: 0.2s; // 2番目
 
             @media (max-width: 768px) {
-                width: 100px;
-                height: 140px;
-                left: 0;
+                width: 180px;
             }
         }
 
         &--03 {
-            width: 150px;
-            height: 200px;
-            top: 50px;
-            right: 0;
+            // 左下
+            width: 438px;
+            height: auto;
+            bottom: -160px;
+            left: -64px;
+            top: auto;
+            right: auto;
             z-index: 3;
+            box-shadow: none;
+
+            // アニメーション: 3番目 (真下から)
+            transform: translate(0, 80px);
+            transition-delay: 0.4s;
 
             @media (max-width: 768px) {
-                width: 110px;
-                height: 150px;
+                width: 260px;
             }
         }
 
         &--04 {
-            width: 130px;
-            height: 180px;
-            bottom: 0;
-            right: 20%;
+            // 左上
+            width: 550px;
+            height: auto;
+            top: -280px;
+            left: -153px;
+            bottom: auto;
+            right: auto;
             z-index: 1;
-            opacity: 0.8;
+            box-shadow: none;
+            // opacity: 1; // 削除 (共通で制御)
+
+            // アニメーション: 1番目 (左上から)
+            transform: translate(-50px, -50px);
+            transition-delay: 0s;
 
             @media (max-width: 768px) {
-                width: 90px;
-                height: 130px;
+                width: 220px;
             }
         }
     }
 
     .member__info {
-        width: 50%;
+        width: 100%; // 横幅いっぱいに
         padding: 50px;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 100px;
+        gap: 40px; // 少し狭める
 
         @media (max-width: 768px) {
-            width: 100%;
             padding: 30px 20px;
             gap: 30px;
         }
