@@ -8,8 +8,8 @@
 // 開発環境と本番環境の自動判定
 // localhostが含まれる、またはIPがローカルの場合のみ開発モード(true)にする
 // shared hosting (XServer)などでREMOTE_ADDRが127.0.0.1になる可能性があるためIP判定は削除し、
-// HTTP_HOSTのみで判定します。
-$is_local = strpos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+// HTTP_HOSTのみで判定します。 (localhost または langis を含む場合)
+$is_local = strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'langis') !== false;
 define('IS_VITE_DEVELOPMENT', $is_local);
 
 function langis_enqueue_scripts()
