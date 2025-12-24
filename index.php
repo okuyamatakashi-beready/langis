@@ -12,7 +12,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> id="top">
     <!-- Loading Overlay -->
     <div class="page-loader" id="pageLoader">
         <div class="page-loader__content">
@@ -342,7 +342,7 @@
                 </div>
                 <div class="container gallery__container">
                     <div class="gallery__card js-animate fade-in-up">
-                        <span class="section-label">_GALLERY</span>
+                        <span class="section-label">GALLERY</span>
                         <h2 class="section-title">ランギスの素や<br>プライベートなんかも。</h2>
                         <div class="gallery__btn">
                             <a href="#" class="btn btn--pill btn--gallery">VIEW MORE</a>

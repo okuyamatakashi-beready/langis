@@ -5,6 +5,7 @@ html {
     color: $color-text;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
 }
 
 body {

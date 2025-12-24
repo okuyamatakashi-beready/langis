@@ -26,6 +26,11 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
   root: '',
   base: process.env.NODE_ENV === 'development' ? '/' : '/wp-content/themes/langis/dist/',
   build: {

@@ -7,6 +7,20 @@
     padding: 0;
     min-height: 0;
     display: block;
+    margin-bottom: 160px; // Spacing for footer flow
+
+    // Orange margin area covers gap AND extends behind footer
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 280px; // 160px (gap) + 120px (under footer)
+        background-color: $color-primary;
+        position: absolute;
+        bottom: -280px;
+        left: 0;
+        z-index: 0;
+    }
 
     // Full Background Image (Responsive)
     .gallery__bg {
@@ -38,9 +52,9 @@
 
     .gallery__card {
         background-color: #fff;
-        padding: 5%; // Liquid padding
+        padding: 4% 4% 5% 4%; // Liquid padding
         text-align: left;
-        width: 44%; // Liquid width based on screen size
+        width: 50%; // Liquid width based on screen size
         min-width: 500px; // Maintain readable width on smaller desktops
         position: relative;
         border-radius: 0;
@@ -56,19 +70,20 @@
 
         .section-label {
             display: block;
-            margin-bottom: 20px;
-            font-weight: 700;
+            margin-bottom: 10px;
+            font-weight: 500;
             color: $color-text;
             line-height: 1;
-            font-size: 14px;
+            font-size: 22px;
             letter-spacing: 0.05em;
         }
 
         .section-title {
-            font-size: 32px;
+            font-size: 50px;
             font-weight: 700;
+            margin-top: 0;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: $color-text;
 
             @media (max-width: 768px) {
@@ -86,4 +101,5 @@
             }
         }
     }
+
 }

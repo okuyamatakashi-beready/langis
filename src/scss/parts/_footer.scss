@@ -5,8 +5,9 @@
     padding: 100px 0 50px;
     border-top-left-radius: 100px;
     position: relative;
-    overflow: hidden;
-    margin-top: -50px; // Pull up to overlap previous section if needed, or just standard flow.
+    // overflow: hidden; // Removed to allow back-to-top button visibility outside
+    margin-top: 0;
+    // Overlapping managed by previous section's pseudo-element extensions
     // Design check: Does it overlap? The design shows a rounded corner implying potential overlap or just style.
     // Assuming standard block for now. `border-top-left-radius` works best if background behind it is different (e.g. Orange).
     // Previous section (Gallery) has image bg. If we want white footer with rounded corner, we just set it.
@@ -16,33 +17,32 @@
         border-top-left-radius: 50px;
     }
 
-    // Hand Background Decoration
+    // Hand Background Decoration (Large Logo)
     .footer__decor {
         position: absolute;
-        top: 0;
+        bottom: 0;
         left: 0;
-        width: 300px;
-        height: 600px;
-        background-image: url('../images/common/hand-bg.png'); // Common placeholder or specific? Using hand-bg from company section logic?
-        // Wait, I saw `hand-bg.png` used in company section. Assuming same asset style.
-        // Actually, let's verify if `hand-bg.png` exists in `images/common` from previous `ls`.
-        // The `ls` of `images/common` (Step 499) showed: gnav-bg.png, gnav-logo.svg, logo.svg. NO hand-bg.png.
-        // Step 411 `_company.scss` referenced `../images/common/hand-bg.png`.
-        // I should check if that file actually exists or if I need to find it.
-        // "Using hand-bg.png (placeholder path)" was in the Company summary.
-        // I will use a placeholder or check `src/images` recursively.
-        // For now, I'll comment it out or use a generic path if I can't confirm.
-        opacity: 0.1;
         pointer-events: none;
         z-index: 0;
+
+        img {
+            width: 270px;
+            height: auto;
+            display: block;
+
+            @media (max-width: 768px) {
+                width: 200px;
+            }
+        }
     }
 
     .footer__container {
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 40px;
+        grid-template-columns: auto auto;
+        gap: 0px;
+        width: 1030px;
         align-items: start;
 
         @media (max-width: 900px) {
@@ -53,8 +53,14 @@
 
     // Left: Info
     .footer__info {
+        width: 320px;
+
+        @media (max-width: 900px) {
+            width: 100%;
+        }
+
         .footer__logo {
-            width: 200px;
+            width: 300px;
             margin-bottom: 20px;
 
             @media (max-width: 900px) {
@@ -85,10 +91,12 @@
     .footer__nav {
         display: flex;
         justify-content: center;
-        gap: 60px;
+        gap: 80px; // Updated from 60px
 
         @media (max-width: 900px) {
             margin: 40px 0;
+            gap: 40px; // Adjust for mobile
+            flex-direction: column; // Likely needed if gap is wide
         }
 
         ul {
@@ -99,38 +107,37 @@
             li {
                 margin-bottom: 20px;
 
-                a {
+                a:not(.btn) {
                     color: $color-primary; // Orange
                     text-decoration: none;
-                    font-weight: 700;
-                    font-size: 16px;
+                    letter-spacing: 0.05em;
+                    font-weight: 500;
+                    font-size: 22px; // Updated from 16px
                     transition: opacity 0.3s;
                     display: inline-block;
+                    white-space: nowrap; // Prevent wrapping
 
                     &:hover {
                         opacity: 0.7;
                     }
                 }
+
+                // Style the button specially if needed, or let it inherit if .btn handles it.
+                // User said "footer link button size is 22px".
+                .btn--contact {
+                    font-size: 22px;
+                    white-space: nowrap;
+                    padding: 20px 40px; // Adjust padding if text is larger
+                }
             }
         }
     }
 
-    // Right: Contact
-    .footer__contact {
-        text-align: right;
+    // Right: Contact (Old selector, check if still needed. Removed from HTML but style remains?)
+    // Remove .footer__contact block if empty/unused in HTML.
+    // HTML in footer.php removed .footer__contact div.
+    // So we can remove this block or keep it for safety. I'll comment it out or leave as is but the button is now in nav.
 
-        @media (max-width: 900px) {
-            text-align: center;
-        }
-
-        .btn--contact {
-            background-color: #f9e79f; // Yellow/Beige
-            padding: 20px 60px;
-            font-size: 18px;
-            width: auto;
-            min-width: 250px;
-        }
-    }
 
     .footer__copyright {
         text-align: right;
@@ -139,11 +146,64 @@
         color: #999;
         position: relative;
         z-index: 1;
-        padding-right: 5%; // Align with container roughly or use container
+        padding-right: 5%;
 
         @media (max-width: 900px) {
             text-align: center;
             padding-right: 0;
+        }
+    }
+
+    // Page Top Button
+    .pagetop {
+        position: absolute;
+        top: -100px; // Position in orange area
+        right: 5%;
+        width: 80px;
+        height: 80px;
+        background-color: #f9e79f;
+        border: 2px solid #333; // Add border
+        border-radius: 50%;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 #333; // Hard shadow like .btn
+        transition: all 0.2s; // Consistent transition
+
+        &::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19.18 20'%3E%3Cpath fill='%23333' d='M7.24,17.66v-9.16l-3.21,3.21c-.91.91-2.39.91-3.31,0l-.03-.03c-.91-.91-.91-2.39,0-3.31L6.25,2.8,8.67.38c.51-.51,1.33-.51,1.84,0l2.42,2.42,5.56,5.56c.91.91.91,2.39,0,3.31l-.03.03c-.91.91-2.39.91-3.31,0l-3.19-3.19v9.14c0,1.29-1.05,2.34-2.34,2.34h-.05c-1.29,0-2.34-1.05-2.34-2.34Z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        &:hover {
+            transform: translate(2px, 2px); // Press effect
+            box-shadow: 2px 2px 0 #333;
+            opacity: 1;
+        }
+
+        &:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 #333;
+        }
+
+        @media (max-width: 768px) {
+            width: 60px;
+            height: 60px;
+            top: -30px; // Keep closer on mobile or adjust as needed
+            right: 20px;
+
+            &::before {
+                width: 10px;
+                height: 10px;
+                border-width: 2px;
+            }
         }
     }
 }

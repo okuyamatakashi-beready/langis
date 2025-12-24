@@ -1,18 +1,24 @@
 <footer class="footer">
     <!-- Hand Background Decoration -->
-    <div class="footer__decor"></div>
+    <div class="footer__decor">
+        <img src="<?php echo get_theme_file_uri('src/images/common/footer-bg.png'); ?>" alt=""
+            class="footer__decor-img">
+    </div>
+
+    <!-- Page Top Button -->
+    <a href="#top" class="pagetop" id="js-pagetop"></a>
 
     <div class="container footer__container">
         <!-- Left Column: Logo & Company Info -->
         <div class="footer__info">
             <div class="footer__logo">
-                <img src="<?php echo get_theme_file_uri('src/images/common/logo.svg'); ?>" alt="LANGIS">
+                <img src="<?php echo get_theme_file_uri('src/images/common/footer-logo.svg'); ?>" alt="LANGIS">
             </div>
             <p class="footer__company-name">株式会社LANGIS</p>
             <address class="footer__address">
                 〒455-0037<br>
                 愛知県名古屋市港区名港一丁目20-11 宝来ビル2階<br>
-                TEL:052-380-3442 FAX:000-000-0000
+                TEL:052-380-3442 <span style="margin-left: 20px;">FAX:000-000-0000</span>
             </address>
         </div>
 
@@ -27,13 +33,10 @@
             <ul>
                 <li><a href="#company">_COMPANY</a></li>
                 <li><a href="#gallery">_GALLERY</a></li>
+                <li style="margin-top: 20px;"><a href="#contact" class="btn btn--pill btn--contact">CONTACT</a></li>
             </ul>
         </div>
 
-        <!-- Right Column: Contact -->
-        <div class="footer__contact">
-            <a href="#contact" class="btn btn--pill btn--contact">CONTACT</a>
-        </div>
     </div>
 
     <!-- Copyright -->
