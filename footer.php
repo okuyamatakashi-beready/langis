@@ -42,8 +42,8 @@
     <!-- Copyright -->
     <p class="footer__copyright">
         Copyright &copy; 株式会社LANGIS All Rights Reserved.
-    </p>
 </footer>
+</div><!-- /.wrapper -->
 
 <?php wp_footer(); ?>
 </body>

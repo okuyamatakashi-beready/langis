@@ -87,7 +87,7 @@
             color: $color-text;
 
             @media (max-width: 768px) {
-                font-size: 20px; // Smaller for mobile to fit potential small height
+                font-size: 30px; // Increased visibility from 20px
                 margin-bottom: 20px;
             }
         }

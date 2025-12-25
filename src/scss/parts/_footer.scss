@@ -42,8 +42,10 @@
         display: grid;
         grid-template-columns: auto auto;
         gap: 0px;
-        width: 1030px;
+        width: 100%;
+        max-width: 1030px;
         align-items: start;
+        box-sizing: border-box; // Fix padding overflow
 
         @media (max-width: 900px) {
             grid-template-columns: 1fr;

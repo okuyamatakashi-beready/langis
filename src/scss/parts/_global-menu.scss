@@ -5,15 +5,23 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    z-index: 900; // ヘッダーの下、またはヘッダーのトリガーより下
+    height: 100%;
+    z-index: 1000;
+
+    // 初期状態を確実に非表示にしてフラッシュを防ぐ
+    display: none; // display: none prevents FOUC
     opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s ease;
+    pointer-events: none;
+    transition: opacity 0.3s ease; // visibility transition removed due to display:none change
 
     &.is-active {
-        opacity: 1;
-        visibility: visible;
+        display: block; // Show when active
+        // Need a small delay or animation frame to trigger fade-in after display block, 
+        // but for now let's just use keyframes or accept instant appearance if needed, 
+        // OR better: use visibility but move z-index to -1 when hidden?
+        // Let's stick to display: none/block for safety against flash.
+        animation: fadeInMenu 0.3s forwards;
+        pointer-events: auto;
 
         // 各アイテムを少しずつ遅らせて表示
         .global-menu__item {
