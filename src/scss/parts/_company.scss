@@ -1,6 +1,7 @@
 @use "../variables" as *;
 
 .section-company {
+<<<<<<< HEAD
     padding: 120px 0;
     background-color: #fff;
 
@@ -38,6 +39,212 @@
             @media (max-width: 768px) {
                 writing-mode: horizontal-tb;
                 margin-bottom: 20px;
+=======
+    position: relative;
+    padding: 276px 0 170px 0;
+    background-color: $color-primary; // Orange background
+
+    // Background decoration (Hand icon placeholder)
+    .company__bg-decor {
+        position: absolute;
+        top: 10%;
+        right: 0;
+        width: 400px;
+        height: 600px;
+        background-image: url('../images/common/hand-bg.png'); // Placeholder path
+
+        // Illustration placeholder visualization
+        &::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            // Assuming we don't have the exact image yet, stick to rudimentary styling or verify existing assets?
+            // User provided image shows a white outline hand.
+            // Using opacity for subtle effect
+            opacity: 0.2;
+        }
+
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .company__logo {
+        position: absolute;
+        top: -270px;
+        right: 0px;
+        width: 307px;
+        z-index: 5;
+
+
+        @media (max-width: 768px) {
+            width: 120px; // スマホでは小さく
+            top: -60px;
+            right: 0;
+            left: 0;
+            margin: auto; // Center logo on mobile? Or keep right? Original was Right. Let's keep Right but ensure it doesn't overflow.
+            // Actually, centering might look better if card is centered.
+            // Let's stick to Right aligned to card, but safer.
+            left: auto;
+            right: 10px;
+        }
+    }
+
+    .container.company__container {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: auto; // Reset min-height
+        width: 100%; // Full width
+        padding-left: 20px;
+        padding-right: 20px;
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+            padding-top: 100px; // Space for Top Image + Logo
+            padding-bottom: 100px; // Space for Bottom Image
+        }
+    }
+
+    // Central Card
+    .company__card {
+        background-color: rgba(255, 255, 255, 0.5); // White with 0.5 alpha
+        border-radius: 60px; // Slightly smaller radius
+        padding: 190px 160px;
+        text-align: center;
+        width: 100%;
+        max-width: 800px;
+        box-sizing: border-box; // Fix padding overflow
+        max-width: 100%;
+        // opacity removed to keep content opaque
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+        @media (max-width: 768px) {
+            padding: 60px 20px;
+            width: 100%;
+            border-radius: 40px;
+        }
+
+        .section-label {
+            display: block;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            margin-bottom: 0px;
+            color: $color-text;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 60px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: $color-text;
+            margin-top: 0;
+
+            @media (max-width: 768px) {
+                font-size: 40px; // Slightly bigger than 28px
+                margin-bottom: 20px;
+            }
+        }
+
+        .company__description {
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 40px;
+            font-weight: 700;
+
+            @media (max-width: 768px) {
+                font-size: 14px;
+                text-align: left; // Align left on mobile? Or Center?
+                // Usually center is okay for short text, but let's see.
+                text-align: justify;
+                margin-bottom: 30px;
+            }
+        }
+
+        .company__btn {
+            margin-top: 40px;
+
+            // Global .btn--pill used
+            @media (max-width: 768px) {
+                margin-top: 20px;
+            }
+        }
+    }
+
+    // Decorative Images
+    .company__image {
+        position: absolute;
+        border-radius: 30px;
+        overflow: hidden;
+        z-index: 3;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        &--01 {
+            // Top Left
+            width: 528px;
+            height: auto;
+            top: 0;
+            left: 0;
+            transform: translate(-15%, -60%); // Pull out to corner
+
+            @media (max-width: 768px) {
+                width: 200px;
+                height: 120px; // Maintain aspect somewhat
+                top: 0;
+                left: 50%;
+                // Center relative to container, then move UP
+                // .company__container has padding-top 100px.
+                // We want this image to sit ON TOP of the card edge roughly.
+                // Card is inside container. 
+                // Let's rely on absolute positioning relative to SECTION or CONTAINER?
+                // Currently absolute to SECTION (since .section-company has relative? No, wait)
+                // .company__image is a sibling of .company__container?
+                // Let's check structure. Assuming it's inside .company__container?
+                // If inside container, `top: 0` is inside padding.
+                // If siblings, `top: 0` is section top.
+                // Let's assume structure is:
+                // SECTION (relative)
+                //   > CONTAINER
+                //   > IMG 01
+                //   > IMG 02
+                // If so, left: 50%, transform: translate(-50%, Y) is good for centering.
+                transform: translate(-50%, 120px); // Move down a bit? No, it should be top of CARD.
+                // With padding-top 276px on section (PC), images are positioned.
+                // Mobile padding is reduced? 
+                // Let's just hardcode a visual position:
+                top: 50px;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        &--02 {
+            // Bottom Right
+            width: 400px;
+            height: auto;
+            bottom: 0;
+            right: 0;
+            transform: translate(13%, 20%); // Pull out to corner
+
+            @media (max-width: 768px) {
+                width: 200px;
+                height: 120px;
+                bottom: 50px; // Position near bottom
+                left: 50%;
+                transform: translate(-50%, 0);
+                right: auto;
+>>>>>>> develop
             }
         }
     }

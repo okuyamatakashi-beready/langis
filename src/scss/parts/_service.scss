@@ -1,7 +1,7 @@
 @use '../variables' as *;
 
 .section-service {
-    padding: 80px 0; // 100px -> 80px
+    padding: 0px 0 140px 0; // 100px -> 80px
     // Section background is white/transparent default, content is in the card
 }
 
@@ -15,6 +15,7 @@
     flex-direction: column; // Stack Label and Body
     gap: 20px; // 40px -> 20px
     align-items: flex-start; // Align everything left
+    box-sizing: border-box; // Fix padding overflow
 
     // ... (lines 19-58 unchanged)
 
@@ -176,25 +177,35 @@
         padding: 60px 20px;
 
         .service-card {
-            padding: 40px 30px;
+            padding: 40px 20px; // Reduce padding
             gap: 40px;
             border-radius: 40px;
 
             &__body {
                 flex-direction: column;
-                gap: 40px;
+                gap: 30px;
+                align-items: stretch; // Full width items
             }
 
             &__left {
                 width: 100%;
-                align-items: center;
+                align-items: center; // Center content
                 text-align: center;
+                gap: 15px;
             }
 
             &__right {
                 width: 100%;
                 align-items: center;
-                text-align: center; // Align text center for mobile balance
+                text-align: left; // Keep description text aligned left for readability
+                gap: 30px;
+            }
+
+            // Label
+            .section-label {
+                text-align: center;
+                margin-bottom: 0px;
+                font-size: 16px;
             }
 
             // Switch large vertical title to horizontal on mobile
@@ -203,36 +214,39 @@
                 font-size: 40px;
                 width: 100%;
                 text-align: center;
-                margin-bottom: 10px;
+                margin: 0;
             }
 
-            .section-label {
-                text-align: center;
-                margin-bottom: 10px;
-            }
-
+            // Keyword Box Styles for Mobile
             .service-keywords {
-                align-items: center;
+                align-items: center; // Center keywords
                 width: 100%;
+                gap: 15px;
+            }
+
+            .keyword-box {
+                font-size: 16px;
+                padding: 8px 16px;
             }
 
             .service-description {
-                text-align: left; // Description easier to read if left aligned? or center?
-                // Visual balance: if keywords are center, description might look okay center or left.
-                // Let's keep Left for readability of long text, or Center if short.
-                // User's text is multiple lines. Left is safer for readability.
-                text-align: justify;
+                text-align: justify; // Justify for clean blocks of text
+                font-size: 14px;
             }
 
             .service-btn-wrapper {
                 justify-content: center;
                 width: 100%;
-                margin-top: 30px;
+                margin-top: 20px;
+                text-align: center;
             }
 
             .btn--service-custom {
-                width: 100%; // Full width button on mobile? Or auto?
-                max-width: 300px; // Limit max width
+                width: 100%;
+                max-width: 280px;
+                height: 50px; // Smaller button height
+                line-height: 50px;
+                font-size: 16px;
                 padding: 0 20px;
             }
         }

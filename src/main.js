@@ -9,38 +9,63 @@ import './scss/style.scss'; // Move to end to override Swiper defaults
 console.log('Vite + WordPress = ❤️');
 
 // Page Loader - Hide after page fully loads with minimum duration
+// Only show on first visit (session-based)
 const loadStartTime = Date.now();
 const minLoadDuration = 2000; // Minimum 2 seconds
+const isFirstVisit = !sessionStorage.getItem('visited');
 
 window.addEventListener('load', () => {
     const loader = document.getElementById('pageLoader');
     const wrapper = document.querySelector('.wrapper');
 
     if (loader) {
-        const elapsedTime = Date.now() - loadStartTime;
-        const remainingTime = Math.max(0, minLoadDuration - elapsedTime);
+        if (isFirstVisit) {
+            // First visit: Show full page loader
+            sessionStorage.setItem('visited', 'true');
 
-        setTimeout(() => {
-            loader.classList.add('is-hidden');
+            const elapsedTime = Date.now() - loadStartTime;
+            const remainingTime = Math.max(0, minLoadDuration - elapsedTime);
 
-            // Show wrapper content after loader fades
+            setTimeout(() => {
+                loader.classList.add('is-hidden');
+
+                // Show wrapper content after loader fades
+                if (wrapper) {
+                    wrapper.style.opacity = '1';
+                }
+
+                // Trigger Hero entrance animations
+                setTimeout(() => {
+                    const heroElements = document.querySelectorAll('.hero-entrance');
+                    heroElements.forEach(el => {
+                        el.classList.add('is-visible');
+                    });
+                }, 100); // Small delay after wrapper appears
+
+                // Remove from DOM after transition
+                setTimeout(() => {
+                    loader.remove();
+                }, 500);
+            }, remainingTime);
+        } else {
+            // Subsequent visits: Skip loader, use simple fade-in
+            loader.style.display = 'none';
+
             if (wrapper) {
                 wrapper.style.opacity = '1';
             }
 
-            // Trigger Hero entrance animations
+            // Add page transition class for fade-in animation
+            document.body.classList.add('page-transition');
+
+            // Trigger Hero entrance animations immediately
             setTimeout(() => {
                 const heroElements = document.querySelectorAll('.hero-entrance');
                 heroElements.forEach(el => {
                     el.classList.add('is-visible');
                 });
-            }, 100); // Small delay after wrapper appears
-
-            // Remove from DOM after transition
-            setTimeout(() => {
-                loader.remove();
-            }, 500);
-        }, remainingTime);
+            }, 100);
+        }
     }
 });
 

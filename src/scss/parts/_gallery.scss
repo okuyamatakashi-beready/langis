@@ -1,42 +1,105 @@
 @use '../variables' as *;
 
 .section-gallery {
-    background-color: #fcefe9; // Very light orange/pink tint often used
-    padding-bottom: 100px;
+    position: relative;
+    width: 100%;
+    // Remove padding/min-height to let image dictate size
+    padding: 0;
+    min-height: 0;
+    display: block;
+    margin-bottom: 160px; // Spacing for footer flow
 
-    .gallery {
-        &__grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+    // Orange margin area covers gap AND extends behind footer
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 280px; // 160px (gap) + 120px (under footer)
+        background-color: $color-primary;
+        position: absolute;
+        bottom: -280px;
+        left: 0;
+        z-index: 0;
+    }
 
-        &__item {
-            aspect-ratio: 1/1;
-            background-color: #ccc;
+    // Full Background Image (Responsive)
+    .gallery__bg {
+        position: relative;
+        width: 100%;
+        line-height: 0; // Remove inline image spacing
+        z-index: 1;
 
-            // Random colors for placeholder
-            &:nth-child(odd) {
-                background-color: #d7bde2;
-            }
-
-            &:nth-child(even) {
-                background-color: #a9cce3;
-            }
-        }
-
-        &__center-text {
-            grid-column: 2 / span 2; // Center 2 columns
-            grid-row: 2 / span 2; // Center 2 rows (making a hole in the grid)
-            background-color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     }
+
+    // Container Overlay
+    .gallery__container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none; // Allow clicks to pass through to image if needed (though button needs pointer-events)
+    }
+
+    .gallery__card {
+        background-color: #fff;
+        padding: 4% 4% 5% 4%; // Liquid padding
+        text-align: left;
+        width: 50%; // Liquid width based on screen size
+        min-width: 500px; // Maintain readable width on smaller desktops
+        position: relative;
+        border-radius: 0;
+        pointer-events: auto; // Re-enable clicks
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); // Added shadow for better visibility
+
+        @media (max-width: 768px) {
+            padding: 40px 20px;
+            width: 90%;
+            min-width: 0; // Reset min-width for mobile
+            text-align: center;
+        }
+
+        .section-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: $color-text;
+            line-height: 1;
+            font-size: 22px;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-size: 50px;
+            font-weight: 700;
+            margin-top: 0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: $color-text;
+
+            @media (max-width: 768px) {
+                font-size: 30px; // Increased visibility from 20px
+                margin-bottom: 20px;
+            }
+        }
+
+        .gallery__btn {
+            margin-top: 10px;
+
+            .btn--gallery {
+                background-color: #f9e79f;
+                color: $color-text;
+            }
+        }
+    }
+
 }
