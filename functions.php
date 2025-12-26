@@ -8,7 +8,13 @@
 // 開発環境と本番環境の自動判定
 
 // localhostが含まれる、またはIPがローカルの場合判定（修正版）
-$http_host = $_SERVER['HTTP_HOST'];
+// Enable error logging for debugging (remove in production if not needed)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// localhostが含まれる、またはIPがローカルの場合判定（修正版）
+$http_host = $_SERVER['HTTP_HOST'] ?? '';
 $is_local = false;
 
 if (strpos($http_host, 'localhost') !== false) {
@@ -46,13 +52,16 @@ function langis_enqueue_scripts()
         if (file_exists($manifest_path)) {
             // Manifest loading (Primary method)
             $manifest = json_decode(file_get_contents($manifest_path), true);
-            $js_file = $manifest['src/main.js']['file'];
-            $css_file = $manifest['src/main.js']['css'][0] ?? null;
 
-            if ($css_file) {
-                wp_enqueue_style('langis-style', get_theme_file_uri('dist/' . $css_file), [], null);
+            if (is_array($manifest) && isset($manifest['src/main.js']['file'])) {
+                $js_file = $manifest['src/main.js']['file'];
+                $css_file = $manifest['src/main.js']['css'][0] ?? null;
+
+                if ($css_file) {
+                    wp_enqueue_style('langis-style', get_theme_file_uri('dist/' . $css_file), [], null);
+                }
+                wp_enqueue_script('langis-main', get_theme_file_uri('dist/' . $js_file), [], null, true);
             }
-            wp_enqueue_script('langis-main', get_theme_file_uri('dist/' . $js_file), [], null, true);
         } else {
             // Fallback: Scan dist/assets for any .css and .js files
             // This handles cases where .vite/manifest.json is missing on server
