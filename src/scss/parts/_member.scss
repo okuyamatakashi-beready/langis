@@ -1,51 +1,23 @@
 @use '../variables' as *;
 
 .section-member {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    padding: 100px 0;
-
-    .container {
-        max-width: 1020px;
-    }
-
-    // Specific override for Member section title
-    .section-title--white {
-        font-size: 80px;
-        line-height: 1.6; // Increased line-height
-        margin-bottom: 0; // Removed margin to allow overlap
-        color: #333; // Black text
-        position: relative;
-        z-index: 10; // Ensure title is above card
-
-        // "Zabuton" style (White background per line)
-        span {
-            background-color: #fff;
-            padding: 4px 10px; // Padding around text
-            box-decoration-break: clone; // Ensure padding applies to wrap if needed (though br handles break)
-            -webkit-box-decoration-break: clone;
-=======
-=======
-    padding-top: 120px; // 上の余白を追加
->>>>>>> develop
+    padding-top: 120px;
     padding-bottom: 120px;
     position: relative;
-    overflow: hidden; // 装飾などが溢れる場合
+    overflow: hidden;
 
     .section-title--zabuton {
         text-align: left;
-        margin-bottom: -200px; // さらに深く被せる
+        margin-bottom: -200px;
         position: relative;
-        z-index: 5; // 画像 (max z-index: 4) より上に
+        z-index: 5;
         line-height: 1.4;
 
-        // Animation Trigger
         &.is-visible {
             .zabuton {
                 clip-path: inset(0 0 0 0);
             }
 
-            // Delay for the second line
             .zabuton:nth-of-type(2) {
                 transition-delay: 0.2s;
             }
@@ -64,7 +36,6 @@
             position: relative;
             z-index: 1;
 
-            // Initial State: Hidden from right
             clip-path: inset(0 100% 0 0);
             transition: clip-path 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 
@@ -84,6 +55,17 @@
         @media (max-width: 768px) {
             flex-direction: column;
             padding-right: 0;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            padding-right: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            padding-right: 0;
         }
     }
 
@@ -100,48 +82,45 @@
         font-weight: 700;
 
         span {
-            display: inline-block; // vertical-rl内では列として振る舞う
-            border-right: 1px solid #fff; // 各行の右側に罫線
-            padding-right: 20px; // 線と文字の間隔
-            margin-left: 30px; // 行間の間隔（左側へ送る）
+            display: inline-block;
+            border-right: 1px solid #fff;
+            padding-right: 20px;
+            margin-left: 30px;
         }
 
-        // コンテナ自体の疑似要素は削除
-        &::after {
-            content: none;
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             writing-mode: horizontal-tb;
             position: static;
             margin-bottom: 20px;
-            font-size: 18px;
+            font-size: 24px;
             text-align: center;
             transform: none;
+            color: #fff;
 
-            // スマホは罫線なし、または下など調整（今回は一旦消すか、そのまま横書き用にするか）
-            // スマホレイアウトでの右側罫線は不自然なので消す
-            &::after {
-                content: none;
+            span {
+                border-right: none;
+                padding-right: 0;
+                margin-left: 0;
+                display: block; // Stack lines or keep inline? inline usually for horizontal
             }
         }
     }
 
     .member__card {
         width: 100%;
-        max-width: 720px;
-        max-width: 100%;
+        max-width: 720px; // Enforce 720px width
         background-color: #fff;
         border-radius: 0;
-        padding: 0;
+        padding: 60px;
         display: flex;
-        flex-direction: column; // 縦並びに変更
+        flex-direction: column;
         align-items: stretch;
         position: relative;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         margin-left: auto;
         margin-right: 0;
-        box-sizing: border-box; // Paddingを含めて幅を計算
+        box-sizing: border-box;
+        z-index: 1;
 
         *,
         *::before,
@@ -149,24 +128,35 @@
             box-sizing: border-box;
         }
 
+        @media (max-width: 1200px) {
+            width: 600px;
+            padding: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         @media (max-width: 768px) {
             width: 100%;
-            margin: 0 auto;
+            padding: 30px;
         }
     }
 
     .member__images {
-        width: 100%; // 横幅いっぱいに
+        width: 100%;
         position: relative;
-        min-height: 420px;
+        aspect-ratio: 1 / 1;
         background-color: $color-primary;
         border: solid #fff;
-        border-width: 20px 20px 0 20px; // 上左右に20px border
-        overflow: hidden; // はみ出る部分を隠す
+        border-width: 20px 20px 0 20px;
+        overflow: hidden;
 
         @media (max-width: 768px) {
             min-height: 300px;
-            border-width: 10px 10px 0 10px; // スマホは少し細く
+            border-width: 10px 10px 0 10px;
         }
     }
 
@@ -174,210 +164,57 @@
         position: absolute;
         border-radius: 10px;
         overflow: hidden;
-<<<<<<< HEAD
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+        transition: transform 0.8s ease, opacity 0.8s ease;
+        opacity: 0;
 
-        &:hover {
-            transform: scale(1.05);
-            z-index: 10;
->>>>>>> develop
-        }
-    }
-}
-=======
-        // box-shadow is managed individually
-        transition: transform 0.8s ease, opacity 0.8s ease; // アニメーション設定
-        opacity: 0; // 初期状態：非表示
->>>>>>> develop
-
-<<<<<<< HEAD
-// Layout Wrapper (Vertical Text + Card)
-.member__layout-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    align-items: flex-start;
-}
-
-// Vertical Text
-.member__vertical-text {
-    writing-mode: vertical-rl;
-    font-size: 30px;
-    font-weight: bold;
-    color: #fff; // White text on orange bg
-    flex-shrink: 0;
-    line-height: 1.6;
-    letter-spacing: 0.05em;
-    height: auto;
-    margin-top: 140px; // Adjusted for card overlap
-}
-
-// Card - Now Width 720px
-.member__card {
-    width: 720px;
-    box-sizing: border-box; // Include padding in width
-    flex-shrink: 0;
-    // Removed padding and background-color from here based on "member__card is 720px" context
-    // implying it's the container of content.
-    // If the card ITSELF should be white, restore bg.
-    // User said "section-title--white is white zabuton", impliying maybe card isn't?
-    // But prev design had white card. Let's assume content wrapper.
-    // Actually, "member__card is 720px" usually means the white box.
-    // Let's keep bg white but exact width 720px.
-    background-color: #fff;
-    padding: 60px; // Internal padding
-    // border-radius removed per request
-    margin-top: -60px; // Negative margin to pull card up under title
-    z-index: 1; // Below title
-    position: relative;
-
-    // Reset display from previous flex row
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-// Images Grid
-// Images Container - Clipping Mask
-.member__images {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1; // Square container
-    overflow: hidden; // Clip overflowing images
-    background-color: $color-primary; // Orange background
-}
-
-.member__image {
-    position: absolute;
-    // Gap total 20px -> each side 10px from center.
-    // Container width 100%. Half is 50%.
-    // To leave 10px gap from center line, width must be calc(50% - 10px).
-    width: calc(50% - 10px);
-    height: calc(50% - 10px);
-    // background-color: #fff; removed per request
-
-    img {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-    }
-
-    // Individual positioning
-
-    // Top Left (04)
-    &--04 {
-        top: 0;
-        left: 0;
-
-        img {
-            object-position: center top;
-            transform: scale(1.1) rotate(180deg);
-=======
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        // 表示時 (JavaScriptで is-visible クラスが付与されたら)
         &.is-visible {
             opacity: 1;
-            transform: translate(0, 0) !important; // 元の位置に戻る (他の指定を上書き)
+            transform: translate(0, 0) !important;
         }
 
-        // --- 個別の配置とアニメーション初期位置 ---
+        // Layout positions
 
-        &--01 {
-            // 右下配置
-            width: 450px;
-            height: auto;
-            bottom: -255px;
-            right: -60px;
-            left: auto;
-            z-index: 4;
-            box-shadow: none;
-
-            // アニメーション: 4番目 (真下から)
-            transform: translate(0, 80px);
-            transition-delay: 0.6s;
-
-            img {
-                height: auto;
-            }
-
-            @media (max-width: 768px) {
-                width: 260px;
-            }
->>>>>>> develop
-        }
-    }
-
-<<<<<<< HEAD
-    // Top Right (02)
-    &--02 {
-        top: 0;
-        right: 0;
-
-        img {
-            object-position: center top;
-            transform: scale(1.1) rotate(180deg);
-=======
+        // Right Top (02)
         &--02 {
-            // 右上
             width: 296px;
-            height: auto;
             top: -173px;
             right: -15px;
-            left: auto;
             z-index: 2;
-            box-shadow: none;
-
-            // アニメーション初期位置: 右上から
             transform: translate(50px, -50px);
-            transition-delay: 0.2s; // 2番目
+            transition-delay: 0.2s;
 
             @media (max-width: 768px) {
                 width: 180px;
             }
         }
 
+        // Left Bottom (03)
         &--03 {
-            // 左下
             width: 438px;
-            height: auto;
             bottom: -160px;
             left: -64px;
-            top: auto;
-            right: auto;
             z-index: 3;
-            box-shadow: none;
-
-            // アニメーション: 3番目 (真下から)
             transform: translate(0, 80px);
             transition-delay: 0.4s;
 
             @media (max-width: 768px) {
                 width: 260px;
             }
->>>>>>> develop
         }
 
+        // Left Top (04)
         &--04 {
-            // 左上
             width: 550px;
-            height: auto;
             top: -280px;
             left: -153px;
-            bottom: auto;
-            right: auto;
             z-index: 1;
-            box-shadow: none;
-            // opacity: 1; // 削除 (共通で制御)
-
-            // アニメーション: 1番目 (左上から)
             transform: translate(-50px, -50px);
             transition-delay: 0s;
 
@@ -385,31 +222,37 @@
                 width: 220px;
             }
         }
-    }
 
-    .member__info {
-        width: 100%; // 横幅いっぱいに
-        padding: 25px 50px 50px 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px; // 少し狭める
+        // Right Bottom (01)
+        &--01 {
+            width: 450px;
+            bottom: -255px;
+            right: -60px;
+            z-index: 4;
+            transform: translate(0, 80px);
+            transition-delay: 0.6s;
 
-        @media (max-width: 768px) {
-            padding: 30px 20px;
-            gap: 30px;
+            @media (max-width: 768px) {
+                width: 260px;
+            }
         }
     }
 
+    .member__info {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
     .member__title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #333;
+        font-family: $font-en;
+        font-size: 60px;
+        color: $color-text;
         margin: 0;
-        letter-spacing: 0em;
+        line-height: 1.2;
 
         @media (max-width: 768px) {
-            font-size: 32px;
+            font-size: 40px;
             text-align: center;
         }
     }
@@ -418,135 +261,19 @@
         font-size: 16px;
         line-height: 2;
         color: $color-text;
-        font-weight: bold;
-        margin: 0 0 20px 0;
+        margin: 0;
 
         @media (max-width: 768px) {
-            font-size: 14px;
-            margin-bottom: 30px;
+            text-align: left;
         }
     }
 
     .member__btn-wrapper {
+        margin-top: 20px;
         text-align: right;
 
         @media (max-width: 768px) {
             text-align: center;
         }
-    }
-
-    // Bottom Left (03)
-    &--03 {
-        bottom: 0;
-        left: 0;
-
-        img {
-            object-position: center bottom;
-            transform: scale(1.1);
-        }
-    }
-
-    // Bottom Right (01)
-    &--01 {
-        bottom: 0;
-        right: 0;
-
-        img {
-            object-position: center bottom;
-            transform: scale(1.1);
-        }
-    }
-}
-
-// Member Info Section
-.member__info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.member__title {
-    font-family: $font-en;
-    font-size: 60px; // LANGIS title
-    color: $color-text;
-    margin: 0;
-    line-height: 1.2;
-}
-
-.member__description {
-    font-size: 16px;
-    line-height: 2;
-    color: $color-text;
-    margin: 0;
-}
-
-.member__btn-wrapper {
-    margin-top: 20px;
-    text-align: right;
-}
-
-// Responsive
-@media (max-width: 1200px) {
-    .section-member .section-title--white {
-        font-size: 60px;
-    }
-
-    .member__layout-wrapper {
-        gap: 60px;
-    }
-
-    .member__card {
-        padding: 40px;
-        width: 600px; // Shrink on smaller screens? Or keep full width and scroll? Better shrink/fluid.
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 1024px) {
-    .member__layout-wrapper {
-        flex-direction: column; // Stack vertical text on top of card
-        align-items: center;
-        gap: 40px;
-    }
-
-    .member__vertical-text {
-        writing-mode: horizontal-tb;
-        font-size: 24px;
-        text-align: center;
-        margin-top: 0;
-        color: #fff;
-    }
-
-    .member__card {
-        width: 100%; // Fluid width
-        max-width: 600px;
-    }
-}
-
-@media (max-width: 768px) {
-    .section-member .section-title--white {
-        font-size: 40px;
-    }
-
-    .member__card {
-        padding: 30px;
-        gap: 30px;
-    }
-
-    .member__images {
-        gap: 15px;
-    }
-
-    .member__title {
-        font-size: 40px;
-        text-align: center;
-    }
-
-    .member__description {
-        text-align: left;
-    }
-
-    .member__btn-wrapper {
-        text-align: center;
     }
 }
