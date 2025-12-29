@@ -3,24 +3,13 @@
  * Theme Functions
  */
 
-// ViteのDevサーバーが動いているかどうか判定 (簡易的な方法)
-// 本番運用時はこの判定ロジックをより厳密にすることをお勧めします
-// 開発環境と本番環境の自動判定
-<<<<<<< HEAD
-
-// localhostが含まれる、またはIPがローカルの場合判定（修正版）
-// Enable error logging for debugging (remove in production if not needed)
-=======
-// localhostが含まれる、またはIPがローカルの場合のみ開発モード(true)にする
-// shared hosting (XServer)などでREMOTE_ADDRが127.0.0.1になる可能性があるためIP判定は削除し、
-// HTTP_HOSTのみで判定します。 (localhost または langis を含む場合)
 // Enable error logging for debugging (safe to leave in dev/staging)
->>>>>>> develop
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// localhostが含まれる、またはIPがローカルの場合判定（修正版）
+// ローカル環境判定 (修正版)
+// localhostが含まれる、またはIPがローカルの場合判定
 $http_host = $_SERVER['HTTP_HOST'] ?? '';
 $is_local = false;
 
@@ -52,12 +41,8 @@ function langis_enqueue_scripts()
 
         if (file_exists($manifest_path)) {
             // Manifest loading (Primary method)
-<<<<<<< HEAD
-            $manifest = json_decode(file_get_contents($manifest_path), true);
-=======
             $manifest_content = file_get_contents($manifest_path);
             $manifest = json_decode($manifest_content, true);
->>>>>>> develop
 
             if (is_array($manifest) && isset($manifest['src/main.js']['file'])) {
                 $js_file = $manifest['src/main.js']['file'];
