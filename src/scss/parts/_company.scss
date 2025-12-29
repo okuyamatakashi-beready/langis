@@ -1,45 +1,6 @@
 @use "../variables" as *;
 
 .section-company {
-<<<<<<< HEAD
-    padding: 120px 0;
-    background-color: #fff;
-
-    .company__wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 80px;
-        max-width: 900px;
-        margin: 0 auto;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            gap: 40px;
-            align-items: center;
-        }
-    }
-
-    .company__head {
-        flex-shrink: 0;
-
-        @media (max-width: 768px) {
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .section-label {
-            margin-bottom: 20px;
-        }
-
-        .section-title--vertical {
-            @media (max-width: 768px) {
-                writing-mode: horizontal-tb;
-                margin-bottom: 20px;
-=======
     position: relative;
     padding: 276px 0 170px 0;
     background-color: $color-primary; // Orange background
@@ -59,8 +20,6 @@
             display: block;
             width: 100%;
             height: 100%;
-            // Assuming we don't have the exact image yet, stick to rudimentary styling or verify existing assets?
-            // User provided image shows a white outline hand.
             // Using opacity for subtle effect
             opacity: 0.2;
         }
@@ -76,14 +35,12 @@
         width: 307px;
         z-index: 5;
 
-
         @media (max-width: 768px) {
             width: 120px; // スマホでは小さく
             top: -60px;
             right: 0;
             left: 0;
             margin: auto; // Center logo on mobile? Or keep right? Original was Right. Let's keep Right but ensure it doesn't overflow.
-            // Actually, centering might look better if card is centered.
             // Let's stick to Right aligned to card, but safer.
             left: auto;
             right: 10px;
@@ -159,8 +116,6 @@
 
             @media (max-width: 768px) {
                 font-size: 14px;
-                text-align: left; // Align left on mobile? Or Center?
-                // Usually center is okay for short text, but let's see.
                 text-align: justify;
                 margin-bottom: 30px;
             }
@@ -202,29 +157,8 @@
             @media (max-width: 768px) {
                 width: 200px;
                 height: 120px; // Maintain aspect somewhat
-                top: 0;
-                left: 50%;
-                // Center relative to container, then move UP
-                // .company__container has padding-top 100px.
-                // We want this image to sit ON TOP of the card edge roughly.
-                // Card is inside container. 
-                // Let's rely on absolute positioning relative to SECTION or CONTAINER?
-                // Currently absolute to SECTION (since .section-company has relative? No, wait)
-                // .company__image is a sibling of .company__container?
-                // Let's check structure. Assuming it's inside .company__container?
-                // If inside container, `top: 0` is inside padding.
-                // If siblings, `top: 0` is section top.
-                // Let's assume structure is:
-                // SECTION (relative)
-                //   > CONTAINER
-                //   > IMG 01
-                //   > IMG 02
-                // If so, left: 50%, transform: translate(-50%, Y) is good for centering.
-                transform: translate(-50%, 120px); // Move down a bit? No, it should be top of CARD.
-                // With padding-top 276px on section (PC), images are positioned.
-                // Mobile padding is reduced? 
-                // Let's just hardcode a visual position:
                 top: 50px;
+                left: 50%;
                 transform: translate(-50%, 0);
             }
         }
@@ -244,52 +178,7 @@
                 left: 50%;
                 transform: translate(-50%, 0);
                 right: auto;
->>>>>>> develop
             }
-        }
-    }
-
-    .company__body {
-        flex-grow: 1;
-        width: 100%;
-    }
-
-    .company__list {
-        border-top: 1px solid #e0e0e0;
-    }
-
-    .company__row {
-        display: flex;
-        border-bottom: 1px solid #e0e0e0;
-        padding: 24px 0;
-
-        @media (max-width: 768px) {
-            flex-direction: column;
-            padding: 20px 0;
-            gap: 8px;
-        }
-    }
-
-    dt {
-        font-weight: 700;
-        width: 180px;
-        flex-shrink: 0;
-        font-size: 16px;
-        color: $color-text;
-
-        @media (max-width: 768px) {
-            width: 100%;
-            font-size: 15px;
-        }
-    }
-
-    dd {
-        line-height: 1.8;
-        font-size: 16px;
-        color: $color-text;
-
-        @media (max-width: 768px) {
-            font-size: 15px;
         }
     }
 }
