@@ -9,7 +9,24 @@
 // localhostが含まれる、またはIPがローカルの場合のみ開発モード(true)にする
 // shared hosting (XServer)などでREMOTE_ADDRが127.0.0.1になる可能性があるためIP判定は削除し、
 // HTTP_HOSTのみで判定します。 (localhost または langis を含む場合)
-$is_local = strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], 'langis') !== false;
+// Enable error logging for debugging (safe to leave in dev/staging)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// localhostが含まれる、またはIPがローカルの場合判定（修正版）
+$http_host = $_SERVER['HTTP_HOST'] ?? '';
+$is_local = false;
+
+if (strpos($http_host, 'localhost') !== false) {
+    $is_local = true;
+} elseif (strpos($http_host, 'langis') !== false) {
+    // ステージング環境(stg-)や本番ドメイン(llc-beready)を除外する
+    if (strpos($http_host, 'stg-') === false && strpos($http_host, 'llc-beready') === false) {
+        $is_local = true;
+    }
+}
+
 define('IS_VITE_DEVELOPMENT', $is_local);
 
 function langis_enqueue_scripts()
@@ -23,26 +40,24 @@ function langis_enqueue_scripts()
         // エントリーポイントの読み込み
         wp_enqueue_script('langis-main', 'http://localhost:3000/src/main.js', [], null, true);
 
-        // SCSSもJS内でimportしていればViteが注入しますが、依存関係として定義
-        // wp_enqueue_style('langis-style', 'http://localhost:3000/src/scss/style.scss', [], null);
-
     } else {
         // 本番環境（ビルド後）
-        // dist/manifest.json を読み込んでファイル名を特定するのが正解ですが、
-        // 簡易的に直接読み込むか、manifest読み込みロジックを実装します。
-
         $manifest_path = get_theme_file_path('dist/.vite/manifest.json');
 
         if (file_exists($manifest_path)) {
             // Manifest loading (Primary method)
-            $manifest = json_decode(file_get_contents($manifest_path), true);
-            $js_file = $manifest['src/main.js']['file'];
-            $css_file = $manifest['src/main.js']['css'][0] ?? null;
+            $manifest_content = file_get_contents($manifest_path);
+            $manifest = json_decode($manifest_content, true);
 
-            if ($css_file) {
-                wp_enqueue_style('langis-style', get_theme_file_uri('dist/' . $css_file), [], null);
+            if (is_array($manifest) && isset($manifest['src/main.js']['file'])) {
+                $js_file = $manifest['src/main.js']['file'];
+                $css_file = $manifest['src/main.js']['css'][0] ?? null;
+
+                if ($css_file) {
+                    wp_enqueue_style('langis-style', get_theme_file_uri('dist/' . $css_file), [], null);
+                }
+                wp_enqueue_script('langis-main', get_theme_file_uri('dist/' . $js_file), [], null, true);
             }
-            wp_enqueue_script('langis-main', get_theme_file_uri('dist/' . $js_file), [], null, true);
         } else {
             // Fallback: Scan dist/assets for any .css and .js files
             // This handles cases where .vite/manifest.json is missing on server
