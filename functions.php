@@ -51,11 +51,14 @@ function langis_enqueue_scripts()
 
             if (is_array($manifest) && isset($manifest['src/main.js']['file'])) {
                 $js_file = $manifest['src/main.js']['file'];
-                $css_file = $manifest['src/main.js']['css'][0] ?? null;
 
-                if ($css_file) {
-                    wp_enqueue_style('langis-style', get_theme_file_uri('dist/' . $css_file), [], null);
+                // Load all CSS files associated with the entry
+                if (isset($manifest['src/main.js']['css']) && is_array($manifest['src/main.js']['css'])) {
+                    foreach ($manifest['src/main.js']['css'] as $index => $css_file) {
+                        wp_enqueue_style('langis-style-' . $index, get_theme_file_uri('dist/' . $css_file), [], null);
+                    }
                 }
+
                 wp_enqueue_script('langis-main', get_theme_file_uri('dist/' . $js_file), [], null, true);
             }
         } else {
