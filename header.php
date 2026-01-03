@@ -32,15 +32,15 @@
                 </div>
                 <nav class="header__nav">
                     <ul>
-                        <li><a href="<?php echo home_url('/'); ?>#about">ABOUT US</a></li>
-                        <li><a href="<?php echo home_url('/'); ?>#service">SERVICE</a></li>
+                        <li><a href="<?php echo home_url('/about/'); ?>">ABOUT US</a></li>
+                        <li><a href="<?php echo home_url('/service/'); ?>">SERVICE</a></li>
                         <li><a href="<?php echo home_url('/'); ?>#member">MEMBER</a></li>
-                        <li><a href="<?php echo home_url('/'); ?>#company">COMPANY</a></li>
-                        <li><a href="<?php echo home_url('/'); ?>#gallery">GALLERY</a></li>
+                        <li><a href="<?php echo home_url('/company/'); ?>">COMPANY</a></li>
+                        <li><a href="<?php echo home_url('/gallery/'); ?>">GALLERY</a></li>
                     </ul>
                 </nav>
                 <div class="header__contact-btn">
-                    <a href="<?php echo home_url('/'); ?>#contact" class="btn btn--pill">CONTACT</a>
+                    <a href="<?php echo home_url('/contact/'); ?>" class="btn btn--pill">CONTACT</a>
                 </div>
                 <div class="header__menu-trigger">
                     <span></span>
@@ -73,13 +73,13 @@
                                         </a>
                                     </li>
                                     <li class="global-menu__item">
-                                        <a href="<?php echo home_url('/'); ?>#about">
+                                        <a href="<?php echo home_url('/about/'); ?>">
                                             <span class="en">_ABOUT US</span>
                                             <span class="ja">ランギスの良さって、どこにある？</span>
                                         </a>
                                     </li>
                                     <li class="global-menu__item">
-                                        <a href="<?php echo home_url('/'); ?>#service">
+                                        <a href="<?php echo home_url('/service/'); ?>">
                                             <span class="en">_SERVICE</span>
                                             <span class="ja">ランギスのサービスは、人です。</span>
                                         </a>
@@ -95,20 +95,20 @@
                             <div class="global-menu__col">
                                 <ul class="global-menu__list">
                                     <li class="global-menu__item">
-                                        <a href="<?php echo home_url('/'); ?>#company">
+                                        <a href="<?php echo home_url('/company/'); ?>">
                                             <span class="en">_COMPANY</span>
                                             <span class="ja">ランギスを知る。</span>
                                         </a>
                                     </li>
                                     <li class="global-menu__item">
-                                        <a href="<?php echo home_url('/'); ?>#gallery">
+                                        <a href="<?php echo home_url('/gallery/'); ?>">
                                             <span class="en">_GALLERY</span>
                                             <span class="ja">ギャラリー</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <div class="global-menu__contact">
-                                    <a href="<?php echo home_url('/'); ?>#contact" class="btn btn--pill">
+                                    <a href="<?php echo home_url('/contact/'); ?>" class="btn btn--pill">
                                         CONTACT
                                     </a>
                                 </div>
