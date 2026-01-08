@@ -1,168 +1,524 @@
 @use '../variables' as *;
 
-.section-about {
-    padding-top: 100px;
-    padding-bottom: 130px; // 100px -> 130px (Red text instruction)
-    background-color: #fff;
+.about-intro {
+    background-color: $color-primary;
+    padding-top: 40px;
+    padding-bottom: 250px; // Space for the overlapping image
+    margin-bottom: 0px; // The overlap is handled by the image's negative margin
 
-    .about__container {
-        max-width: 1024px; // User request
+    &__container {
+        position: relative;
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 20px;
     }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+        position: relative; // Ensure z-index works if needed
+        z-index: 2; // Text above bg
+    }
+
+    &__text-area {
+        flex: 1;
+        padding-top: 40px; // Align somewhat with the image
+    }
+
+    &__heading {
+        margin-bottom: 30px;
+        line-height: 2;
+    }
+
+    .u-highlight-white {
+        background-color: #fff;
+        color: $color-primary;
+        font-weight: 700;
+        font-size: 24px;
+        padding: 8px 20px;
+        border-radius: 4px; // Slightly rounded corners? Design looks sharp/slightly rounded.
+        display: inline-block; // Allow padding to work and breaks
+        margin-bottom: 15px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__desc {
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 2.0;
+
+        // Ensure text is readable
+    }
+
+    &__image-area {
+        flex: 0 0 400px; // Fixed width for image column
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__circle-img {
+        width: 380px;
+        height: 380px;
+        background-color: $color-secondary; // Yellow circle background
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end; // Align image to bottom if needed
+        justify-content: center;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Or contain depending on the image
+            object-position: top center;
+        }
+    }
+
+    // Overlapping Team Image
+    &__team-image {
+        position: absolute;
+        top: 100%; // Position it relative to the container/section bottom
+        left: 50%;
+        transform: translate(-50%, 0); // Align top edge with the anchor point
+        width: calc(100% - 40px); // Full width minus padding
+        max-width: 1000px;
+        z-index: 10;
+        line-height: 0; // Fix image spacing
+        margin-top: 100px; // Explicit gap between content bottom and image top
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 40px; // Rounded corners for the container
+            // If the image itself doesn't have rounded corners, we clip it via the container
+        }
+    }
+}
+
+// Spacer to push content down because of the absolute positioned overlapping image
+.about-content-spacer {
+    height: 200px; // 250px padding-bottom - ~50% of image height + margin. 
+    // Adjust this based on actual image aspect ratio.
+    // Assuming image is 1000x500 -> height 500 -> overlap 250.
+    // So we need clear space. 
+    // Actually, if the image is absolute centered on the edge, the section below needs margin-top.
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+    .about-intro {
+        padding-bottom: 150px;
+
+        &__content {
+            flex-direction: column-reverse; // Image on top or text on top? 
+            // Design usually text then image, or image then text.
+            // "Zabuton" text looks like main query.
+            // Let's keep Text then Image for now.
+            // Wait, user provided design image shows Image Right.
+            // On mobile, usually stacked.
+            flex-direction: column;
+        }
+
+        &__image-area {
+            flex: 0 0 auto;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        &__circle-img {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+        }
+
+        &__team-image {
+            width: calc(100% - 30px);
+        }
+
+        .u-highlight-white {
+            font-size: 18px;
+            padding: 6px 15px;
+        }
+
+        &__desc {
+            font-size: 14px;
+        }
+    }
+
+}
+
+
+// Features Section
+.about-features {
+    background-color: $color-secondary; // Light yellow
+    padding-top: 200px; // Space for the overlapping image from previous section
+    padding-bottom: 100px;
+    margin-top: -100px; // Pull up to sit under the overlap if needed, but padding-top handles visual space
+    // Actually, because the previous section ends, and the image is absolute + margin-top, 
+    // the document flow thinks the previous section ends at the bottom of the orange box.
+    // So this section starts naturally after the orange box.
+    // The image margin-top: 100px pushes the image down. 
+    // We need to ensure THIS section starts below the image, or we pad it top enough.
+    // The user said "margin-top: 100px" on the image. That pushes image down.
+    // The image is absolute. It doesn't affect flow.
+    // So this section starts immediately after .about-intro.
+    // We need padding-top here to clear the image. 
+    // Image height ~500px + 100px margin = 600px overlap.
+    padding-top: 550px; // Adjust based on image height + gap
+
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__title-wrapper {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    &__title {
+        display: inline-block;
+        background-color: $color-primary; // Orange
+        color: #fff;
+        font-size: 60px;
+        font-weight: 700;
+        padding: 10px 20px;
+        // Blue border in design? No, design shows just orange box? 
+        // Wait, design image shows orange box with blue outline? 
+        // Let's look closer at the image.
+        // It has a thin blue border maybe? No looks like selection highlight in the tool.
+        // I will assume simple orange box for now.
+        // "ランギスの みっつ の特徴"
+        // "みっつ" seems to have "x" button on top? Ah that is the design tool UI.
+
+        position: relative;
+        letter-spacing: 0em;
+
+        .u-handwriting {
+            // font-family: "Oooh Baby", cursive; 
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #ffe89d;
+        }
+    }
+
+    // Feature Block Shared Styles
+    .about-feature-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        position: relative;
+        margin-bottom: 150px;
+
+        // 1. Vertical Text Side (Left)
+        &__vertical-side {
+            width: 15%; // Estimate width
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 40px; // Gap between vertical text and body with margin
+            flex-shrink: 0;
+        }
+
+        &__vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.8;
+            color: $color-primary;
+            font-feature-settings: "palt";
+            letter-spacing: 0.1em;
+            height: auto;
+            // border-right: 1px solid $color-primary; // Removed container border
+            // padding-right: 30px; 
+            padding-right: 0;
+            display: inline-block;
+
+            p {
+                margin-left: 20px;
+                margin-bottom: 0;
+                border-right: 1px solid $color-primary; // Line on the right side
+                padding-right: 15px;
+                border-left: none; // Reset previous
+                padding-left: 0;
+                white-space: nowrap; // Prevent wrapping
+                height: fit-content; // Border matches text length
+            }
+
+            .is-large {
+                font-size: 30px;
+                letter-spacing: 0em;
+            }
+        }
+
+        // 2. Center Body (Number + Description)
+        &__body {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-grow: 1;
+        }
+
+        &__num {
+            font-family: $font-family-base;
+            font-size: 120px;
+            color: $color-primary;
+            font-weight: 500;
+            line-height: 0.8;
+            margin-bottom: 30px;
+        }
+
+        &__desc {
+            font-size: 15px;
+            line-height: 2;
+            font-weight: 700;
+            width: 100%;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+        &__vertical-text {
+            writing-mode: vertical-rl;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.5;
+            color: $color-primary;
+            font-feature-settings: "palt";
+            letter-spacing: 0.1em;
+            height: 300px; // Estimate height
+
+            p {
+                margin-left: 10px; // Spacing between vertical lines
+            }
+
+            .u-highlight-orange {
+                color: $color-primary; // It is already orange
+            }
+        }
+
+
+
+        // 3. Right Image
+        &__image {
+            width: 38.8%;
+            position: relative;
+            flex-shrink: 0;
+            transform: translateY(0px); // Push image down
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
+
+
+
+        // Specific for 01
+        &--01 {
+            align-items: flex-start; // Align top for standard flow
+        }
+
+        // Specific for 02
+        &--02 {
+            .about-feature-block__image {
+                margin-right: 00px;
+                width: 45%;
+            }
+
+            .about-feature-block__body {
+                width: auto;
+                flex: 1;
+            }
+
+            .about-feature-block__vertical-side {
+                width: 8%;
+            }
+        }
+
+        // Specific for 03
+        &--03 {
+            align-items: flex-start;
+        }
+    }
+}
+
+// Mobile Responsive
+@media screen and (max-width: $breakpoint-mobile) {
+    .about-features {
+        padding-top: 400px; // Adjust for mobile image size
+
+        &__title {
+            font-size: 20px;
+            padding: 8px 20px;
+            width: 90%;
+
+            br {
+                display: none;
+            }
+        }
+
+        .about-feature-block {
+            flex-direction: column-reverse;
+            gap: 40px;
+
+            &__content {
+                width: 100%;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            &__num {
+                font-size: 80px;
+            }
+
+            &__body {
+                flex-direction: column;
+            }
+
+            &__vertical-text {
+                writing-mode: horizontal-tb;
+                height: auto;
+                font-size: 24px;
+                text-align: center;
+                width: 100%;
+
+                p {
+                    margin: 0;
+                    margin-bottom: 5px;
+                }
+            }
+
+            &__desc {
+                padding-top: 0;
+            }
+
+            &__image {
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            &__bg-num {
+                font-size: 200px;
+                left: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+// Restore Top Page About Section Styles (section-about)
+.section-about {
+    padding: 120px 0;
+    position: relative;
 
     .about__wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 80px;
-        position: relative;
+        gap: 60px;
+        margin-bottom: 80px;
     }
 
-    // ... (omitted)
+    .about__center-col {
+        text-align: center;
+    }
 
-    // Lower Section Grid
-    .about__lower-grid {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 80px;
-        margin-top: 60px; // Reverted to 60px
+    // Reuse vertical title style if possible, or define locally
+    .section-title--vertical {
+        writing-mode: vertical-rl;
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        line-height: 1.6;
+        margin: 0 auto;
+        display: inline-block;
+        color: $color-text;
+        text-align: left;
     }
 
     .about__img-col {
-        width: 330px;
-        flex-shrink: 0;
-        position: relative;
+        width: 300px; // Estimate
 
         img {
             width: 100%;
             height: auto;
-            display: block;
+            border-radius: 20px;
         }
 
         &--left {
-            // Specific styles if needed
+            margin-top: -40px; // Offset
         }
 
         &--right {
-            // Specific styles if needed
+            margin-top: 40px; // Offset
         }
     }
 
-    .about__center-col {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        width: auto;
-        max-width: 500px;
-    }
-
-    // Lower Section Grid
     .about__lower-grid {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 40px; // 80px -> 40px (Red text instruction)
-        margin-top: 60px;
-    }
-
-    // View More Button Wrapper override
-    .u-center {
-        margin-top: 50px; // 40px -> 50px (Red text instruction)
-    }
-
-    .about__lower-col {
-        width: 200px;
-        display: flex;
-        justify-content: center;
-        flex-shrink: 0;
+        gap: 40px;
+        max-width: 1000px;
+        margin: 0 auto;
     }
 
     .about__text-box {
-        width: 100%;
-        max-width: 800px;
+        flex: 1;
+        font-size: 16px;
         line-height: 2;
-        text-align: center; // justify -> center
-        margin: 0;
-        font-weight: bold; // Added
-        font-size: 16px; // Added/Explicit
-        word-break: keep-all; // Prevent mid-word breaks (CJK orphan fix)
-        overflow-wrap: break-word;
-        text-wrap: pretty; // Modern browser support for better wrapping
+        text-align: center; // Or left? Text suggests reading.
     }
 
-    .section-title {
-        &--vertical {
-            writing-mode: vertical-rl;
-            font-size: 60px;
-            line-height: 1.2;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            margin: 0 auto;
-            height: auto;
-            min-height: 200px;
-            font-feature-settings: "palt";
-            text-align: left;
+    .btn--circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background-color: #fff; // or color
+        border: 2px solid $color-primary;
+        color: $color-primary;
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.4;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: $color-primary;
+            color: #fff;
         }
     }
 
-    // Responsive
     @media (max-width: 768px) {
-        padding-top: 60px;
-        padding-bottom: 80px;
-
         .about__wrapper {
-            flex-direction: column-reverse; // Stack text on top of image? Or image top?
-            // PC: Img | Title/Text | Img
-            // SP: Title/Text -> Img -> Img?
-            // Usually Title comes first.
+            flex-direction: column;
             gap: 40px;
         }
 
-        .about__center-col {
-            max-width: 100%;
-            margin-bottom: 20px;
-        }
-
         .section-title--vertical {
-            writing-mode: horizontal-tb; // Switch to horizontal on mobile
-            font-size: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-            min-height: auto;
+            writing-mode: horizontal-tb;
+            font-size: 32px;
         }
 
         .about__lower-grid {
             flex-direction: column;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .about__img-col {
-            width: 80%; // Slightly smaller than full width for visual balance
-            margin: 0 auto;
-
-            &--left,
-            &--right {
-                top: 0; // Reset any offsets
-                transform: none; // Reset transforms
-            }
-        }
-
-        .about__lower-col {
-            width: 100%;
-            order: 3; // Button at bottom
-        }
-
-        .about__text-box {
-            font-size: 14px;
-            line-height: 1.8;
-            padding: 0 20px; // Add side padding
-        }
-
-        .u-center {
-            margin-top: 40px;
         }
     }
 }

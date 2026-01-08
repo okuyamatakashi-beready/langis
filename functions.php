@@ -99,3 +99,29 @@ function langis_setup()
     add_theme_support('post-thumbnails');
 }
 add_action('after_setup_theme', 'langis_setup');
+
+// 初回有効化時などに必要な固定ページを自動生成する
+function langis_create_pages()
+{
+    $pages = [
+        ['slug' => 'about', 'title' => 'About Us'],
+        ['slug' => 'service', 'title' => 'Service'],
+        ['slug' => 'company', 'title' => 'Company'],
+        ['slug' => 'gallery', 'title' => 'Gallery'],
+        ['slug' => 'contact', 'title' => 'Contact'],
+    ];
+
+    foreach ($pages as $page) {
+        $existing_page = get_page_by_path($page['slug']);
+        if (!$existing_page) {
+            wp_insert_post([
+                'post_title' => $page['title'],
+                'post_name' => $page['slug'],
+                'post_status' => 'publish',
+                'post_type' => 'page',
+                'post_content' => '', // テンプレート側で表示するので空でOK
+            ]);
+        }
+    }
+}
+add_action('init', 'langis_create_pages');

@@ -25,15 +25,16 @@
         <!-- Center Column: Navigation -->
         <div class="footer__nav">
             <ul>
-                <li><a href="#top">_TOP</a></li>
-                <li><a href="#about">_ABOUT US</a></li>
-                <li><a href="#service">_SERVICE</a></li>
-                <li><a href="#member">_MEMBER</a></li>
+                <li><a href="<?php echo home_url('/'); ?>">_TOP</a></li>
+                <li><a href="<?php echo home_url('/about/'); ?>">_ABOUT US</a></li>
+                <li><a href="<?php echo home_url('/service/'); ?>">_SERVICE</a></li>
+                <li><a href="<?php echo home_url('/#member'); ?>">_MEMBER</a></li>
             </ul>
             <ul>
-                <li><a href="#company">_COMPANY</a></li>
-                <li><a href="#gallery">_GALLERY</a></li>
-                <li style="margin-top: 20px;"><a href="#contact" class="btn btn--pill btn--contact">CONTACT</a></li>
+                <li><a href="<?php echo home_url('/company/'); ?>">_COMPANY</a></li>
+                <li><a href="<?php echo home_url('/gallery/'); ?>">_GALLERY</a></li>
+                <li style="margin-top: 20px;"><a href="<?php echo home_url('/contact/'); ?>"
+                        class="btn btn--pill btn--contact">CONTACT</a></li>
             </ul>
         </div>
 
