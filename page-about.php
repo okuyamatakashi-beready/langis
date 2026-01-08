@@ -162,6 +162,27 @@
         </div>
     </section>
 
+    <!-- Bottom Section -->
+    <section class="about-bottom">
+        <div class="about-bottom__bg-text">LANGIS</div>
+        <div class="container about-bottom__container">
+            <div class="about-bottom__images">
+                <div class="about-bottom__img-item js-animate fade-in-up delay-200">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom01.png'); ?>" alt="Staff 01">
+                </div>
+                <div class="about-bottom__img-item js-animate fade-in-up delay-400">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom02.png'); ?>" alt="Staff 02">
+                </div>
+                <div class="about-bottom__img-item js-animate fade-in-up delay-600">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom03.png'); ?>" alt="Staff 03">
+                </div>
+                <div class="about-bottom__img-item js-animate fade-in-up delay-800">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom04.png'); ?>" alt="Staff 04">
+                </div>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <?php get_footer(); ?>

@@ -57,6 +57,14 @@
             line-height: 2; // Increase line-height slightly to separate lines
             box-decoration-break: clone;
             -webkit-box-decoration-break: clone;
+
+            &--green {
+                background: #a6e5a4; // Green highlight for Service page
+            }
+
+            &--blue {
+                background: #a9e0db; // Blue highlight for Company page
+            }
         }
 
         @media screen and (max-width: $breakpoint-mobile) {

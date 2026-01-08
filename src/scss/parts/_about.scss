@@ -357,6 +357,87 @@
     }
 }
 
+// About Bottom Section
+.about-bottom {
+    background-color: $color-secondary; // Yellow background to match features
+    padding-top: 100px;
+    padding-bottom: 0px; // Footer overlaps or sits flush
+    position: relative;
+    overflow: hidden;
+    z-index: 0; // Ensure it is below footer if footer has z-index
+
+    &__bg-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 25vw; // Huge text
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.4); // Faded white
+        line-height: 1;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: -1; // Behind everything in this section
+        font-family: $font-en; // Use English font if available, or base
+    }
+
+    &__container {
+        position: relative;
+        z-index: 2;
+        max-width: 1300px; // Wider for images
+        margin: 0 auto;
+        padding-bottom: 0px; // Space for the images before footer starts
+        // Footer has negative margin or this has padding?
+        // Footer says "margin-top: 0" and "padding-top: 100px".
+        // To make the images pop up or sit well, use padding.
+    }
+
+    &__images {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 0; // Images might overlap slightly or just touch
+        margin-bottom: 0px; // Push down into footer area if needed
+        // Actually, let's keep them contained.
+        // Design shows 4 people.
+        flex-wrap: nowrap;
+        position: relative;
+        z-index: 1; // Ensure images are above bg text
+    }
+
+    &__img-item {
+        flex: 0 0 auto; // Allow width to be determined by content (image)
+        width: auto; // Reset any fixed width
+        max-width: none; // Remove max-width restriction
+        position: relative;
+        transition: transform 0.3s ease;
+
+        img {
+            height: 277px; // Fixed height per request
+            width: auto; // Proportional width
+            display: block;
+        }
+
+        &:not(:first-child) {
+            margin-left: -50px; // Create overlap
+        }
+
+        // Ensure 1st image is on top, then 2nd, etc.
+        @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+                z-index: 5 - $i;
+            }
+        }
+
+        // Specific adjustment for 4th image per request
+        &:nth-child(4) {
+            margin-left: -80px;
+        }
+
+        // Hover removed per request
+    }
+}
+
 // Mobile Responsive
 @media screen and (max-width: $breakpoint-mobile) {
     .about-features {
@@ -417,6 +498,30 @@
                 left: 0;
                 top: 0;
             }
+        }
+    }
+
+    .about-bottom {
+        padding-top: 50px;
+
+        &__bg-text {
+            font-size: 30vw;
+        }
+
+        &__images {
+            flex-direction: row; // Keep row but maybe 2x2 if too tight?
+            // Design usually collapses to grid.
+            // Let's try 2x2.
+            flex-wrap: wrap;
+        }
+
+        &__img-item {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        &__container {
+            padding-bottom: 50px;
         }
     }
 }
