@@ -120,7 +120,7 @@
                             だからこそ人を大事にしますし、サービスも人だと言い切っていきます。
                         </p>
                         <div class="service-btn-wrapper js-animate fade-in-up delay-500">
-                            <a href="<?php echo home_url('/coming-soon/'); ?>"
+                            <a href="<?php echo home_url('/service/'); ?>"
                                 class="btn btn--pill btn--service-custom">VIEW MORE</a>
                         </div>
                     </div>
@@ -167,7 +167,7 @@
                             仕事面と共に仕事へのモチベーションや会社への想いを紹介しています。
                         </p>
                         <div class="member__btn-wrapper">
-                            <a href="<?php echo home_url('/coming-soon/'); ?>" class="btn btn--pill btn--pink">VIEW
+                            <a href="<?php echo home_url('/member/'); ?>" class="btn btn--pill btn--pink">VIEW
                                 MORE</a>
                         </div>
                     </div>

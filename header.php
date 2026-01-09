@@ -34,7 +34,7 @@
                     <ul>
                         <li><a href="<?php echo home_url('/about/'); ?>">ABOUT US</a></li>
                         <li><a href="<?php echo home_url('/service/'); ?>">SERVICE</a></li>
-                        <li><a href="<?php echo home_url('/'); ?>#member">MEMBER</a></li>
+                        <li><a href="<?php echo home_url('/member/'); ?>">MEMBER</a></li>
                         <li><a href="<?php echo home_url('/company/'); ?>">COMPANY</a></li>
                         <li><a href="<?php echo home_url('/gallery/'); ?>">GALLERY</a></li>
                     </ul>

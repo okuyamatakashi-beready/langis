@@ -28,7 +28,7 @@
                 <li><a href="<?php echo home_url('/'); ?>">_TOP</a></li>
                 <li><a href="<?php echo home_url('/about/'); ?>">_ABOUT US</a></li>
                 <li><a href="<?php echo home_url('/service/'); ?>">_SERVICE</a></li>
-                <li><a href="<?php echo home_url('/#member'); ?>">_MEMBER</a></li>
+                <li><a href="<?php echo home_url('/member/'); ?>">_MEMBER</a></li>
             </ul>
             <ul>
                 <li><a href="<?php echo home_url('/company/'); ?>">_COMPANY</a></li>
