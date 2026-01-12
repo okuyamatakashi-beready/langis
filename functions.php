@@ -109,6 +109,7 @@ function langis_create_pages()
         ['slug' => 'company', 'title' => 'Company'],
         ['slug' => 'gallery', 'title' => 'Gallery'],
         ['slug' => 'contact', 'title' => 'Contact'],
+        ['slug' => 'member', 'title' => 'Member'], // Parent
     ];
 
     foreach ($pages as $page) {
@@ -119,73 +120,70 @@ function langis_create_pages()
                 'post_name' => $page['slug'],
                 'post_status' => 'publish',
                 'post_type' => 'page',
-                'post_content' => '', // テンプレート側で表示するので空でOK
+                'post_content' => '',
             ]);
+        }
+    }
+
+    // Create Child Pages for Members
+    $parent = get_page_by_path('member');
+    if ($parent) {
+        $children = [
+            ['slug' => '01', 'title' => 'Member 01'],
+            ['slug' => '02', 'title' => 'Member 02'],
+            ['slug' => '03', 'title' => 'Member 03'],
+            ['slug' => '04', 'title' => 'Member 04'],
+        ];
+
+        foreach ($children as $child) {
+            // Check if exists as child of member
+            $existing_child = get_page_by_path('member/' . $child['slug']);
+            if (!$existing_child) {
+                wp_insert_post([
+                    'post_title' => $child['title'],
+                    'post_name' => $child['slug'], // slug is '01'
+                    'post_parent' => $parent->ID,
+                    'post_status' => 'publish',
+                    'post_type' => 'page',
+                    'post_content' => '',
+                ]);
+            }
         }
     }
 }
 
 add_action('init', 'langis_create_pages');
 
-// Register Member Custom Post Type
-function langis_register_member_cpt()
+// Flush rewrite rules to fix 404/redirect issues after disabling CPT
+add_action('init', function () {
+    // Only flush if needed (expensive operation, but necessary here)
+    // For development/debugging now:
+    flush_rewrite_rules();
+});
+
+// Disable CPT Registration
+// function langis_register_member_cpt() { ... }
+// add_action('init', 'langis_register_member_cpt');
+
+// Force Child Pages of 'member' to use page-member-detail.php
+function langis_member_template($template)
 {
-    $labels = [
-        'name' => 'Members',
-        'singular_name' => 'Member',
-        'menu_name' => 'Members',
-        'add_new' => 'Add New Member',
-        'add_new_item' => 'Add New Member',
-        'edit_item' => 'Edit Member',
-        'new_item' => 'New Member',
-        'view_item' => 'View Member',
-        'all_items' => 'All Members',
-        'search_items' => 'Search Members',
-        'not_found' => 'No members found',
-        'not_found_in_trash' => 'No members found in Trash',
-    ];
-
-    $args = [
-        'labels' => $labels,
-        'public' => true,
-        'has_archive' => true,
-        'menu_position' => 20, // Below Pages
-        'menu_icon' => 'dashicons-groups',
-        'supports' => ['title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'],
-        'show_in_rest' => true, // Enable Gutenberg/REST API
-        'rewrite' => ['slug' => 'member', 'with_front' => false],
-    ];
-
-    register_post_type('member', $args);
-}
-add_action('init', 'langis_register_member_cpt');
-
-// Create Dummy Member Posts
-function langis_create_member_posts()
-{
-    // Check if any member posts exist
-    $existing = get_posts([
-        'post_type' => 'member',
-        'numberposts' => 1,
-        'post_status' => 'any'
-    ]);
-
-    if (empty($existing)) {
-        $members = [
-            ['title' => 'Member 01', 'content' => 'Interview content for Member 01...'],
-            ['title' => 'Member 02', 'content' => 'Interview content for Member 02...'],
-            ['title' => 'Member 03', 'content' => 'Interview content for Member 03...'],
-            ['title' => 'Member 04', 'content' => 'Interview content for Member 04...'],
-        ];
-
-        foreach ($members as $member) {
-            wp_insert_post([
-                'post_title' => $member['title'],
-                'post_content' => $member['content'],
-                'post_status' => 'publish',
-                'post_type' => 'member',
-            ]);
+    if (is_page()) {
+        global $post;
+        // Get Parent
+        if ($post->post_parent) {
+            $parent = get_post($post->post_parent);
+            if ($parent && $parent->post_name === 'member') {
+                $new_template = locate_template(['page-member-detail.php']);
+                if ($new_template != '') {
+                    return $new_template;
+                }
+            }
         }
     }
+    return $template;
 }
-// add_action('init', 'langis_create_member_posts');
+add_filter('template_include', 'langis_member_template');
+
+// Create Dummy Member Posts -> DISABLED (No longer needed)
+// function langis_create_member_posts() ...

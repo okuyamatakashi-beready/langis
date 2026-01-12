@@ -2,63 +2,123 @@
 
 .member-archive {
     padding: 80px 0;
+    background-color: #ffccd5; // Pink background
+
+    &__header {
+        text-align: center;
+        margin-bottom: 50px;
+        color: #fff;
+    }
+
+    &__title {
+        font-family: $font-en;
+        font-size: 60px;
+        font-weight: 900;
+        line-height: 1;
+        margin-bottom: 10px;
+        letter-spacing: 0.05em;
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+    }
 
     .member-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
+        grid-template-columns: repeat(2, 1fr); // 2 columns
+        gap: 60px; // Spacing between cards
+        max-width: 1000px;
+        margin: 0 auto;
 
         @media (max-width: $breakpoint-mobile) {
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 40px;
         }
     }
 
     .member-card {
-        display: block;
+        display: flex;
+        flex-direction: column;
         text-decoration: none;
         color: $color-text;
-        transition: opacity 0.3s;
+        // background-color: #fff; // 削除: 全体の背景色
+        transition: transform 0.3s, box-shadow 0.3s;
+        // padding: 20px; // 削除: 全体のパディング
 
         &:hover {
-            opacity: 0.7;
+            transform: translateY(-5px);
+            // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // 画像部分にも影がつくと違和感がある場合はbodyにつけるか検討
         }
 
-        &__image {
+        &__image-wrapper {
+            position: relative;
             width: 100%;
-            aspect-ratio: 3 / 4;
-            background-color: #eee;
-            overflow: hidden;
-            margin-bottom: 20px;
+            // aspect-ratio: 3 / 4; // Use image spacing
+            margin-bottom: 0; // Connected to body
+            overflow: visible; // 数字がはみ出る可能性があるデザインならvisible推奨だが今回はoverlayなのでhiddenでもいいが、デザイン調整
 
             img {
                 width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .member-card__no-image {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-                color: #999;
+                height: auto;
+                display: block;
             }
         }
 
-        &__info {
-            text-align: center;
+        &__body {
+            background-color: #fff; // ここに背景色移動
+            padding: 30px; // パディング追加
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); // bodyに影をつける
         }
 
-        &__name {
-            font-size: 20px;
+        &__jp-name {
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin: 0 0 20px 0;
+            letter-spacing: 0.05em;
         }
 
-        &__excerpt {
+        &__meta {
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 500;
+
+            p {
+                margin: 0;
+            }
+        }
+
+        &__btn {
+            margin-top: auto;
+            background-color: #ffccd5;
+            color: $color-text;
+            border-radius: 999px;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 700;
             font-size: 14px;
-            line-height: 1.6;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s;
+            border: 2px solid #333; // Black border as seen in design
+
+            .arrow {
+                font-weight: bold;
+            }
+
+            // Hover style handled by card hover mostly, but let's add specific
+        }
+
+        &:hover .member-card__btn {
+            background-color: darken(#ffccd5, 10%);
         }
     }
 }

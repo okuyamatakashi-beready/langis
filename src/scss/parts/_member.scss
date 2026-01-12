@@ -5,6 +5,7 @@
     padding-bottom: 120px;
     position: relative;
     overflow: hidden; // 装飾などが溢れる場合
+    background-color: $color-primary;
 
     .section-title--zabuton {
         text-align: left;
@@ -62,6 +63,7 @@
     }
 
     .member__vertical-text {
+        display: none;
         writing-mode: vertical-rl;
         color: rgba(255, 255, 255, 1);
         font-size: 30px;
@@ -102,7 +104,8 @@
     }
 
     .member__card {
-        width: 720px;
+        width: 960px;
+        height: 780px;
         max-width: 100%;
         background-color: #fff;
         border-radius: 0;
@@ -130,8 +133,9 @@
 
     .member__images {
         width: 100%; // 横幅いっぱいに
+        flex: 1; // 高さを埋める
         position: relative;
-        min-height: 420px;
+        // min-height: 420px; // 削除
         background-color: $color-primary;
         border: solid #fff;
         border-width: 20px 20px 0 20px; // 上左右に20px border
@@ -140,6 +144,39 @@
         @media (max-width: 768px) {
             min-height: 300px;
             border-width: 10px 10px 0 10px; // スマホは少し細く
+        }
+    }
+
+    .member__center-text {
+        position: absolute;
+        top: calc(50% + 40px); // 中心より40px下へ
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        pointer-events: none; // 画像のクリック等を邪魔しないように
+    }
+
+    .member__center-text-item {
+        background-color: #fff;
+        color: $color-primary;
+        font-weight: 700;
+        font-size: 16px; // 調整
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        line-height: 1.2;
+        white-space: nowrap; // 改行しない
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+            padding: 8px 15px;
         }
     }
 
@@ -167,7 +204,7 @@
 
         &--01 {
             // 右下配置
-            width: 450px;
+            width: 495px; // 450px * 1.1
             height: auto;
             bottom: -255px;
             right: -60px;
@@ -190,7 +227,7 @@
 
         &--02 {
             // 右上
-            width: 296px;
+            width: 326px; // 296px * 1.1
             height: auto;
             top: -173px;
             right: -15px;
@@ -209,7 +246,7 @@
 
         &--03 {
             // 左下
-            width: 438px;
+            width: 482px; // 438px * 1.1
             height: auto;
             bottom: -160px;
             left: -64px;
@@ -229,7 +266,7 @@
 
         &--04 {
             // 左上
-            width: 550px;
+            width: 605px; // 550px * 1.1
             height: auto;
             top: -280px;
             left: -153px;
@@ -251,15 +288,17 @@
 
     .member__info {
         width: 100%; // 横幅いっぱいに
-        padding: 25px 50px 50px 50px;
+        padding: 50px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 10px; // 少し狭める
+        flex-direction: row; // 横並びに変更
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
 
         @media (max-width: 768px) {
+            flex-direction: column;
             padding: 30px 20px;
-            gap: 30px;
+            gap: 20px;
         }
     }
 
@@ -281,7 +320,7 @@
         line-height: 2;
         color: $color-text;
         font-weight: bold;
-        margin: 0 0 20px 0;
+        margin: 0; // 横並びのためマージン削除
 
         @media (max-width: 768px) {
             font-size: 14px;

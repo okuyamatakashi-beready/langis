@@ -156,6 +156,10 @@
                                     alt="Member <?php echo $img_num; ?>">
                             </div>
                         <?php endforeach; ?>
+                        <div class="member__center-text">
+                            <p class="member__center-text-item">上からも下からも信頼を集める</p>
+                            <p class="member__center-text-item">頼りになるメンバー</p>
+                        </div>
                     </div>
 
                     <div class="member__info">

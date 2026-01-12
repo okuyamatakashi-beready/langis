@@ -65,6 +65,10 @@
             &--blue {
                 background: #a9e0db; // Blue highlight for Company page
             }
+
+            &--pink {
+                background: #FFccd5; // Pink highlight for Member page
+            }
         }
 
         @media screen and (max-width: $breakpoint-mobile) {

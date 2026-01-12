@@ -85,7 +85,7 @@
                                         </a>
                                     </li>
                                     <li class="global-menu__item">
-                                        <a href="<?php echo home_url('/'); ?>#member">
+                                        <a href="<?php echo home_url('/member/'); ?>">
                                             <span class="en">_MEMBER</span>
                                             <span class="ja">ランギスの核となるメンバーたち</span>
                                         </a>
