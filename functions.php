@@ -103,11 +103,7 @@ function langis_create_pages()
         ['slug' => 'service', 'title' => 'Service'],
         ['slug' => 'company', 'title' => 'Company'],
         ['slug' => 'gallery', 'title' => 'Gallery'],
-        ['slug' => 'contact', 'title' => 'Contact'],
-<<<<<<< HEAD
-=======
         ['slug' => 'member', 'title' => 'Member'], // Parent
->>>>>>> develop
     ];
 
     foreach ($pages as $page) {
@@ -118,14 +114,7 @@ function langis_create_pages()
                 'post_name' => $page['slug'],
                 'post_status' => 'publish',
                 'post_type' => 'page',
-<<<<<<< HEAD
-                'post_content' => '', // テンプレート側で表示するので空でOK
-            ]);
-        }
-    }
-}
-add_action('init', 'langis_create_pages');
-=======
+
                 'post_content' => '',
             ]);
         }
@@ -193,4 +182,4 @@ add_filter('template_include', 'langis_member_template');
 
 // Create Dummy Member Posts -> DISABLED (No longer needed)
 // function langis_create_member_posts() ...
->>>>>>> develop
+
