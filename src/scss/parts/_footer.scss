@@ -5,7 +5,7 @@
     padding: 100px 0 50px;
     border-top-left-radius: 100px;
     position: relative;
-    // overflow: hidden; // Removed to allow back-to-top button visibility outside
+    overflow: hidden; // Hide overlapping decor
     margin-top: 0;
     // Overlapping managed by previous section's pseudo-element extensions
     // Design check: Does it overlap? The design shows a rounded corner implying potential overlap or just style.
@@ -20,19 +20,19 @@
     // Hand Background Decoration (Large Logo)
     .footer__decor {
         position: absolute;
-        bottom: 0;
+        top: -10%;
         left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
         pointer-events: none;
         z-index: 0;
 
         img {
-            width: 270px;
+            width: 17%;
             height: auto;
             display: block;
-
-            @media (max-width: 768px) {
-                width: 200px;
-            }
+            mix-blend-mode: overlay; // Blend with white bg
         }
     }
 

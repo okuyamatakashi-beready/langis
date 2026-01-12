@@ -4,7 +4,7 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="page-header__inner">
-            <p class="page-header__label">_COMPANY</p>
+            <p class="page-header__label">COMPANY</p>
             <h1 class="page-header__title">
                 <span class="u-highlight u-highlight--blue">ランギスを知る。</span>
             </h1>

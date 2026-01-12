@@ -72,7 +72,7 @@
 
             <div class="about__content-below about__lower-grid">
                 <div class="about__lower-col js-animate fade-in-up">
-                    <a href="<?php echo home_url('/coming-soon/'); ?>" class="btn btn--circle">通信の会社？<br>営業の会社？</a>
+                    <a href="<?php echo home_url('/about/'); ?>" class="btn btn--circle">通信の会社？<br>営業の会社？</a>
                 </div>
 
                 <div class="about__text-box js-animate fade-in-up delay-200">
@@ -82,13 +82,12 @@
                 </div>
 
                 <div class="about__lower-col js-animate fade-in-up delay-400">
-                    <a href="<?php echo home_url('/coming-soon/'); ?>"
-                        class="btn btn--circle">いや、<br>ランギスは<br>瞬発力の会社！</a>
+                    <a href="<?php echo home_url('/about/'); ?>" class="btn btn--circle">いや、<br>ランギスは<br>瞬発力の会社！</a>
                 </div>
             </div>
 
             <div class="u-center u-mt-40 js-animate fade-in-up delay-500">
-                <a href="<?php echo home_url('/coming-soon/'); ?>" class="btn btn--pill">VIEW MORE</a>
+                <a href="<?php echo home_url('/about/'); ?>" class="btn btn--pill">VIEW MORE</a>
             </div>
         </div>
     </section>
@@ -206,7 +205,7 @@
                     東海エリアを中心に関西エリアにも進出中。
                 </p>
                 <div class="company__btn">
-                    <a href="<?php echo home_url('/coming-soon/'); ?>" class="btn btn--pill btn--company-teal">VIEW
+                    <a href="<?php echo home_url('/company/'); ?>" class="btn btn--pill btn--company-teal">VIEW
                         MORE</a>
                 </div>
             </div>
@@ -229,7 +228,7 @@
                 <span class="section-label">GALLERY</span>
                 <h2 class="section-title">ランギスの素や<br>プライベートなんかも。</h2>
                 <div class="gallery__btn">
-                    <a href="<?php echo home_url('/coming-soon/'); ?>" class="btn btn--pill btn--gallery">VIEW MORE</a>
+                    <a href="<?php echo home_url('/gallery/'); ?>" class="btn btn--pill btn--gallery">VIEW MORE</a>
                 </div>
             </div>
         </div>

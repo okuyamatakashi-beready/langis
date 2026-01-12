@@ -1,0 +1,284 @@
+@use '../variables' as *;
+
+// Contact Page Styles
+// -----------------------------------------------------------------------------
+
+// Contact Page Styles
+// -----------------------------------------------------------------------------
+
+body.page-contact {
+    background-color: $color-primary !important;
+}
+
+.contact-phone {
+    background-color: $color-primary; // Orange
+    padding: 80px 0;
+    color: #fff;
+    text-align: center;
+
+    &__container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__box {
+        border: 2px solid #fff;
+        padding: 50px 0;
+        width: 100%;
+        max-width: 860px; // Inner box width constraint
+        margin: 0 auto;
+        font-family: $font-ja; // Base font
+    }
+
+    &__title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        letter-spacing: 0.05em;
+    }
+
+    &__number {
+        font-family: $font-en;
+        font-size: 19px; // Increased size
+        font-weight: 500;
+        margin-bottom: 25px;
+        line-height: 1;
+        letter-spacing: 0.02em; // Standard tracking for numbers
+        display: block; // If wrapped in link
+        color: #fff;
+        text-decoration: none;
+        pointer-events: none; // Disable click if it's just text, or make clickable on mobile
+
+        @media (max-width: 768px) {
+            pointer-events: auto; // Enable click on mobile
+        }
+    }
+
+    &__desc {
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+    }
+
+    &__hours {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+
+        .highlight-text {
+            color: #7b61ff; // Purple/Blue color from image?
+            // Wait, looking at image "受付: 月〜金曜日 10:00〜18:00"
+            // There seems to be a purple cursor or highlight?
+            // "アンカー" text is visible in the image which usually means "Anchor" or a comment.
+            // Oh, the purple text "アンカー" is likely an annotation layer in the image saying "Anchor".
+            // The text itself is white.
+            // I will assume text is white.
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 60px 0;
+
+        &__title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        &__number {
+            font-size: 28px;
+        }
+
+        &__desc {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        &__hours {
+            font-size: 14px;
+        }
+
+        &__box {
+            padding: 40px 20px;
+        }
+    }
+}
+
+// Contact Form Section
+.contact-form-section {
+    background-color: $color-primary; // Orange
+    padding: 0 0 100px;
+
+    &__container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__title {
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .contact-form-card {
+        background: #fff;
+        padding: 50px 80px;
+
+        @media (max-width: 768px) {
+            padding: 30px 20px;
+        }
+    }
+
+    // Form Styles
+    .form-row {
+        margin-bottom: 30px;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: $color-text;
+
+        .required {
+            color: #e60012; // Red color for required
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: 500;
+        }
+    }
+
+    .form-input {
+        width: 100%;
+
+        &--zip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .zip-mark {
+                font-weight: 700;
+                font-size: 14px;
+            }
+
+            input {
+                width: 150px; // Zip input width
+            }
+        }
+    }
+
+    // Input Group for Address
+    .form-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    // Inputs
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+        width: 100%;
+        background-color: #f2f2f2; // Light gray bg
+        border: none;
+        padding: 15px;
+        font-size: 14px;
+        appearance: none;
+        border-radius: 0; // Square borders based on image? Looks mostly square.
+
+        &::placeholder {
+            color: #999;
+        }
+
+        &:focus {
+            outline: 1px solid $color-primary;
+        }
+    }
+
+    textarea {
+        height: 200px;
+        resize: vertical;
+    }
+
+    // Footer
+    .form-footer {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .privacy-link {
+        font-size: 12px;
+        margin-bottom: 20px;
+
+        a {
+            color: $color-text;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .privacy-check {
+        margin-bottom: 40px;
+        font-size: 14px;
+        font-weight: 700;
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .required {
+            color: #e60012;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    }
+
+    .submit-btn-wrapper {
+        text-align: center;
+    }
+
+    .btn-submit {
+        background-color: #333; // Dark gray/black
+        color: #fff;
+        border: none;
+        border-radius: 50px; // Pill shape
+        padding: 20px 80px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: opacity 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        .arrow {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-top: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: rotate(45deg);
+        }
+    }
+}

@@ -1,5 +1,10 @@
 @use '../variables' as *;
 
+// Page Specific Background
+body.page-about {
+    background-color: #f9e79f;
+}
+
 .about-intro {
     background-color: $color-primary;
     padding-top: 40px;

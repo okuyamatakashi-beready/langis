@@ -88,6 +88,17 @@ function langis_add_type_attribute($tag, $handle, $src)
 }
 add_filter('script_loader_tag', 'langis_add_type_attribute', 10, 3);
 
+// Add slug to body class
+function langis_add_slug_body_class($classes)
+{
+    global $post;
+    if (isset($post)) {
+        $classes[] = 'page-' . $post->post_name;
+    }
+    return $classes;
+}
+add_filter('body_class', 'langis_add_slug_body_class');
+
 function langis_setup()
 {
     add_theme_support('title-tag');
@@ -120,30 +131,58 @@ function langis_create_pages()
         }
     }
 
-    // Create Child Pages for Members
-    $parent = get_page_by_path('member');
-    if ($parent) {
-        $children = [
-            ['slug' => '01', 'title' => 'Member 01'],
-            ['slug' => '02', 'title' => 'Member 02'],
-            ['slug' => '03', 'title' => 'Member 03'],
-            ['slug' => '04', 'title' => 'Member 04'],
-        ];
+    // Create Specific Member Page (Suzuki)
+    $suzuki_slug = 'member-suzuki'; // Top level or flat, depends on preference, but user asked for specific file
+    // Let's create it as a child of member for URL structure /member/suzuki/ IF consistent, 
+    // BUT user said "page-member-suzuki.php", which matches slug "member-suzuki".
+    // Let's try to keep it simple.
 
-        foreach ($children as $child) {
-            // Check if exists as child of member
-            $existing_child = get_page_by_path('member/' . $child['slug']);
-            if (!$existing_child) {
-                wp_insert_post([
-                    'post_title' => $child['title'],
-                    'post_name' => $child['slug'], // slug is '01'
-                    'post_parent' => $parent->ID,
-                    'post_status' => 'publish',
-                    'post_type' => 'page',
-                    'post_content' => '',
-                ]);
-            }
-        }
+    $suzuki_page = get_page_by_path('member-suzuki');
+    if (!$suzuki_page) {
+        wp_insert_post([
+            'post_title' => 'Hironori Suzuki',
+            'post_name' => 'member-suzuki',
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_content' => '',
+        ]);
+        // Note: No parent set, so it's top level /member-suzuki/
+    }
+
+    // Create Specific Member Page (Sebe)
+    $sebe_page = get_page_by_path('member-sebe');
+    if (!$sebe_page) {
+        wp_insert_post([
+            'post_title' => 'Takuya Sebe',
+            'post_name' => 'member-sebe',
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_content' => '',
+        ]);
+    }
+
+    // Create Specific Member Page (Furuhashi)
+    $furuhashi_page = get_page_by_path('member-furuhashi');
+    if (!$furuhashi_page) {
+        wp_insert_post([
+            'post_title' => 'Masato Furuhashi',
+            'post_name' => 'member-furuhashi',
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_content' => '',
+        ]);
+    }
+
+    // Create Specific Member Page (Ban)
+    $ban_page = get_page_by_path('member-ban');
+    if (!$ban_page) {
+        wp_insert_post([
+            'post_title' => 'Kousei Ban',
+            'post_name' => 'member-ban',
+            'post_status' => 'publish',
+            'post_type' => 'page',
+            'post_content' => '',
+        ]);
     }
 }
 

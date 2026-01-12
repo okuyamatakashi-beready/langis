@@ -1,8 +1,15 @@
 @use '../variables' as *;
 
+// Page Specific Background
+body.page-member {
+    background-color: #ffccd5 !important;
+}
+
 .member-archive {
     padding: 80px 0;
     background-color: #ffccd5; // Pink background
+    position: relative;
+    z-index: 10; // Ensure it sits above overlapping elements from previous section
 
     &__header {
         text-align: center;
@@ -43,13 +50,14 @@
         flex-direction: column;
         text-decoration: none;
         color: $color-text;
-        // background-color: #fff; // 削除: 全体の背景色
         transition: transform 0.3s, box-shadow 0.3s;
-        // padding: 20px; // 削除: 全体のパディング
+        position: relative;
+        z-index: 2;
+        cursor: pointer; // Ensure cursor pointer
 
         &:hover {
             transform: translateY(-5px);
-            // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); // 画像部分にも影がつくと違和感がある場合はbodyにつけるか検討
+            z-index: 3; // Pop up on hover
         }
 
         &__image-wrapper {
@@ -123,68 +131,610 @@
     }
 }
 
-.member-single {
-    padding: 80px 0;
 
-    &__header {
-        margin-bottom: 60px;
-        text-align: center;
+
+// Bottom Section (Replicated from .about-bottom)
+.member-bottom {
+    background-color: #ffccd5; // Pink background for Member
+
+    &--detail {
+        background-color: $color-primary;
+
+        .member-bottom__bg-text {
+            color: rgba(255, 255, 255, 0.1); // Adjust text color for orange bg
+        }
+    }
+
+    padding-top: 100px;
+    padding-bottom: 0px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+
+    &__bg-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 25vw;
+        font-weight: 900;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: -1;
+        font-family: $font-en;
+    }
+
+    &__container {
+        position: relative;
+        z-index: 2;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding-bottom: 0px;
+    }
+
+    &__images {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        gap: 0;
+        flex-wrap: nowrap;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__img-item {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+        position: relative;
+        transition: transform 0.3s ease;
+
+        img {
+            height: 277px;
+            width: auto;
+            display: block;
+        }
+
+        &:not(:first-child) {
+            margin-left: -50px;
+        }
+
+        @for $i from 1 through 4 {
+            &:nth-child(#{$i}) {
+                z-index: 5 - $i;
+            }
+        }
+
+        &:nth-child(4) {
+            margin-left: -80px;
+        }
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding-top: 50px;
+
+        &__bg-text {
+            font-size: 30vw;
+        }
+
+        &__images {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        &__img-item {
+            flex: 0 0 50%;
+            max-width: 50%;
+
+            &:not(:first-child) {
+                margin-left: 0;
+            }
+
+            &:nth-child(4) {
+                margin-left: 0;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        &__container {
+            padding-bottom: 50px;
+        }
+    }
+}
+
+
+
+// Member Page Header (Common)
+.member-page-header {
+    background-color: $color-primary; // Orange
+    padding-bottom: 0px; // Connects to hero
+    padding-top: 80px;
+
+    &__container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    &__box {
+        background-color: #fff;
+        border-radius: 60px; // Rounded corners
+        padding: 60px 80px;
+        position: relative;
+        overflow: hidden; // Clip the big text
+        min-height: 400px; // Adjust based on design
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    &__label {
+        font-family: $font-en;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        margin-bottom: 30px;
+        color: #333;
     }
 
     &__title {
-        font-size: 32px;
+        font-size: 40px;
+        font-weight: 900;
+        line-height: 1.8;
+    }
+
+    .highlight {
+        background-color: #ffccd5; // Pink
+        padding: 5px 10px;
+        display: inline-block; // Box decoration break clone behavior not strictly needed if separated lines
+        margin-bottom: 5px;
+    }
+
+    &__bg-text {
+        position: absolute;
+        bottom: -45px; // Push down slightly
+        right: -20px;
+        font-family: $font-en;
+        font-size: 180px; // Huge
+        font-weight: 900;
+        color: $color-primary; // Orange text
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding-top: 40px;
+
+        &__container {
+            padding: 0 20px;
+        }
+
+        &__box {
+            border-radius: 40px;
+            padding: 40px 30px;
+            min-height: 300px;
+        }
+
+        &__title {
+            font-size: 24px;
+        }
+
+        &__bg-text {
+            font-size: 100px;
+            bottom: -20px;
+            right: -10px;
+        }
+    }
+}
+
+
+// Member Detail Hero
+.member-hero {
+    background-color: $color-primary; // Orange
+    position: relative;
+    padding: 120px 0 0; // Top padding
+    overflow: hidden;
+
+    &__container {
+        // position: relative; // Removed to allow image to position relative to .member-hero (viewport width)
+        // z-index: 2;
+        width: 83vw; // Match design update
+        max-width: none; // Unset default
+        margin-left: auto; // Align to right
+        margin-right: 0;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end; // Bottom align like design
+        min-height: 600px; // Ensure height
+        position: static; // Explicitly static to be safe
+    }
+
+    &__content {
+        color: #fff;
+        padding-bottom: 80px;
+        padding-top: 60px;
+        width: 45%;
+        position: relative; // Ensure text is above image
+        z-index: 3;
+    }
+
+    &__label {
+        font-size: 14px;
+        letter-spacing: 0.1em;
+        margin-bottom: 5px;
+        opacity: 0.9;
+        font-family: $font-en;
+    }
+
+    &__number {
+        font-family: $font-en;
+        font-size: 140px;
+        font-weight: 400;
+        line-height: 1;
+        margin-bottom: 30px;
+        color: #fff;
+        opacity: 0.5; // Semi-transparent white
+        letter-spacing: -0.02em;
+    }
+
+    &__names {
+        margin-bottom: 30px;
+    }
+
+    &__en-name {
+        font-family: $font-en;
+        font-size: 42px;
         font-weight: 700;
-        margin-bottom: 20px;
+        line-height: 1.2;
+        margin-bottom: 8px;
+        letter-spacing: 0.02em;
     }
 
-    &__position {
-        font-size: 16px;
-        color: $color-primary;
+    &__jp-name {
+        font-size: 20px;
+        font-weight: 700;
+        opacity: 0.9;
     }
 
-    &__main-image {
-        margin-bottom: 60px;
+    &__meta {
+        margin-top: 30px;
+        font-size: 14px;
+        line-height: 1.6;
+
+        dl {
+            display: flex;
+            align-items: flex-start; // Align top if wrapping
+            margin-bottom: 5px;
+            font-weight: 500;
+
+            dt {
+                width: auto;
+                margin-right: 5px; // Tighter
+                opacity: 0.9;
+                white-space: nowrap; // Keep label on one line
+            }
+
+            dd {
+                margin: 0;
+            }
+        }
+    }
+
+    &__image {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 600px;
+        width: 70vw; // 70% screen width
+        max-width: none;
+        z-index: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start; // Align top to prevent jumpiness
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Ensure it covers the area without distortion
+            object-position: top right; // Focus on face/corner
+            border-top-left-radius: 150px;
+            border-bottom-left-radius: 150px;
+            display: block;
+            box-shadow: -20px 20px 50px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding-top: 60px;
+
+        &__bg-text {
+            font-size: 40vw;
+            top: 5%;
+        }
+
+        &__container {
+            width: 100% !important; // Reset width
+            margin: 0 auto !important; // Reset margin
+            flex-direction: column;
+            padding: 0 20px;
+            position: relative; // Restore relative for mobile stacking if needed, or keep static
+        }
+
+        &__content {
+            width: 100%;
+            padding-bottom: 40px;
+            padding-top: 0;
+            position: relative;
+            z-index: 2; // Ensure text is above image if they overlap on tablet
+        }
+
+        &__number {
+            font-size: 100px;
+            margin-bottom: 20px;
+        }
+
+        &__en-name {
+            font-size: 32px;
+        }
+
+        &__image {
+            position: relative; // Reset to flow
+            width: 100%;
+            right: auto;
+            bottom: auto;
+            margin-right: -20px; // Pull to edge on mobile
+            width: calc(100% + 40px); // Fill padding: 100% + 20px left + 20px right
+            margin-left: -20px;
+
+            img {
+                border-top-left-radius: 60px;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+}
+
+// Member Body Section
+.member-body {
+    background-color: $color-primary;
+    padding: 100px 0 150px;
+    color: #fff;
+
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    &__heading {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.6;
+        margin-bottom: 80px;
+    }
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; // Vertical center
+        gap: 60px;
+        margin-bottom: 80px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__text-col {
+        width: 50%;
+    }
+
+    &__img-col {
+        width: 45%;
 
         img {
             width: 100%;
             height: auto;
-            max-height: 600px;
-            object-fit: cover;
+            border-radius: 60px;
+            display: block;
         }
     }
 
-    &__body {
-        margin-bottom: 80px;
+    &__labels {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    &__label {
+        background-color: #fff;
+        color: $color-primary;
+        font-weight: 700;
+        padding: 8px 20px;
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    &__text {
+        font-size: 15px;
+        line-height: 2;
+        text-align: justify;
+    }
+
+    &__divider {
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.7);
+        margin: 80px 0;
+        width: 100%;
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding: 60px 0 100px;
+
+        &__container {
+            padding: 0 20px;
+        }
+
+        &__heading {
+            font-size: 24px;
+            margin-bottom: 40px;
+
+            br {
+                display: block; // Ensure break stays active
+            }
+        }
+
+        &__row {
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 0; // Use divider spacing
+
+            &--reverse {
+                flex-direction: column; // Keep consistent order on mobile
+            }
+        }
+
+        &__text-col,
+        &__img-col {
+            width: 100%;
+        }
+
+        &__divider {
+            margin: 60px 0;
+        }
+
+        &__img-col {
+            img {
+                border-radius: 30px;
+            }
+        }
+
+        &__label {
+            font-size: 14px;
+        }
+    }
+}
+
+// Member Closing Message Section
+.member-message {
+    background-color: $color-primary;
+    padding: 0 0 0;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &__container {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+        text-align: left;
+        padding-bottom: 80px; // Add internal padding instead
+    }
+
+    &__image {
+        width: 520px;
+        margin: 0 auto 40px;
+        border: none;
+        position: relative;
+        z-index: 1;
+
+        img:not(.member-message__logo) {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    &__logo {
+        position: absolute;
+        width: 347px;
+        top: 70%;
+        right: -290px;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    &__heading {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.6;
+        margin-bottom: 40px;
+        margin-top: -210px; // Pull up to overlap image
+        position: relative;
+        z-index: 5; // Ensure above image
+
+        .highlight {
+            background-color: #ffccd5; // Pink
+            color: $color-text; // Dark text
+            padding: 10px 20px; // Slightly larger padding
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            display: inline-block;
+            margin: 5px 0;
+        }
+    }
+
+    &__text {
         font-size: 16px;
         line-height: 2;
-
-        h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        p {
-            margin-bottom: 30px;
-        }
-    }
-
-    &__footer {
-        text-align: center;
-    }
-
-    .c-button-back {
+        text-align: justify;
         display: inline-block;
-        padding: 15px 60px;
-        background-color: #333;
-        color: #fff;
-        text-decoration: none;
-        transition: background-color 0.3s;
+        margin-bottom: 60px;
+        max-width: 700px; // Compact width
+        font-weight: 500;
+    }
 
-        &:hover {
-            background-color: $color-primary;
+    &__action {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+// Specific Button Style for this section
+
+
+@media screen and (max-width: $breakpoint-mobile) {
+    .member-message {
+        padding-bottom: 0px;
+
+        &__container {
+            padding-bottom: 60px;
+        }
+
+        &__image {
+            width: 200px;
+            height: 200px;
+        }
+
+        &__logo {
+            width: 140px;
+            right: -60px;
+        }
+
+        &__heading {
+            font-size: 20px;
+
+            .highlight {
+                padding: 4px 10px;
+            }
+        }
+
+        &__text {
+            font-size: 14px;
         }
     }
 }

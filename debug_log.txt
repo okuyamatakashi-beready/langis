@@ -1,0 +1,236 @@
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 606
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 607
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 608
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 609
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 610
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 611
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 612
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 613
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 614
+Attempted Create. Result ID: 615
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 616
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 617
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 618
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 619
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 620
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 621
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 622
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 623
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 624
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 625
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 626
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 627
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 628
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 629
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 630
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 631
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 632
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 633
+Checking Child: 01
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 634
+Checking Child: 02
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 635
+Checking Child: 03
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 636
+Checking Child: 04
+Parent ID: 13
+Found in Query? NO
+Attempted Create. Result ID: 637
+CLEANUP: Keeping ID 630 for 01. Deleting 155 duplicates.
+CLEANUP: Keeping ID 631 for 02. Deleting 155 duplicates.
+CLEANUP: Keeping ID 632 for 03. Deleting 155 duplicates.
+CLEANUP: Keeping ID 633 for 04. Deleting 155 duplicates.
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04
+FIX: Updating slug for ID 630 from 01-2 to 01
+FIX: Updating slug for ID 631 from 02-2 to 02
+FIX: Updating slug for ID 632 from 03-2 to 03
+FIX: Updating slug for ID 633 from 04-2 to 04

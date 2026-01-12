@@ -1,15 +1,16 @@
 @use '../variables' as *;
 
 .section-gallery {
+    // Top page styles (Original)
     position: relative;
     width: 100%;
-    // Remove padding/min-height to let image dictate size
     padding: 0;
+    background-color: transparent; // or #fff, transparent lets bg image work
     min-height: 0;
-    display: block;
-    margin-bottom: 160px; // Spacing for footer flow
+    display: block; // Ensure block display
+    margin-bottom: 160px; // Revert margin from original file if needed, or keep 0? Original had 160px.
 
-    // Orange margin area covers gap AND extends behind footer
+    // Orange margin area covers gap AND extends behind footer (Restored)
     &::after {
         content: '';
         display: block;
@@ -20,6 +21,79 @@
         bottom: -280px;
         left: 0;
         z-index: 0;
+    }
+
+    // Container Overlay (Restored for Top Page)
+    .gallery__container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+    }
+
+    // Detail Page Styles (Orange BG)
+    &.section-gallery--page {
+        padding: 80px 0 120px;
+        background-color: $color-primary; // Orange
+        margin-bottom: 0; // Reset margin for detail page
+
+
+        .gallery__container {
+            display: block; // Block for grid
+            position: relative; // Reset absolute
+            top: auto;
+            left: auto;
+            height: auto;
+            pointer-events: auto;
+        }
+    }
+
+    // ... rest of file ...
+
+    // Grid Layout
+    .gallery__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); // 3 columns
+        gap: 20px; // Spacing between items
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr); // 2 columns on tablet
+            gap: 10px;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr; // 1 column on mobile (optional, or keep 2)
+        }
+    }
+
+    .gallery__item {
+        position: relative;
+        width: 100%;
+        padding-top: 100%; // 1:1 Aspect Ratio (Square)
+        overflow: hidden;
+        background-color: #eee; // Placeholder color
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        &:hover {
+            img {
+                transform: scale(1.05);
+            }
+        }
     }
 
     // Full Background Image (Responsive)
@@ -36,20 +110,7 @@
         }
     }
 
-    // Container Overlay
-    .gallery__container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        pointer-events: none; // Allow clicks to pass through to image if needed (though button needs pointer-events)
-    }
-
+    // CMS Center Block (Mockup simulation if needed, but for now simple grid)
     .gallery__card {
         background-color: #fff;
         padding: 4% 4% 5% 4%; // Liquid padding
@@ -101,5 +162,4 @@
             }
         }
     }
-
 }

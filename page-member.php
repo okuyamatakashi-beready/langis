@@ -63,7 +63,12 @@
 
             <div class="member-grid">
                 <!-- Member 01 -->
-                <a href="<?php echo home_url('/member/01/'); ?>" class="member-card">
+                <!-- Member 01 -->
+                <?php
+                // Link to new static page for Suzuki
+                $link01 = home_url('/member-suzuki/');
+                ?>
+                <a href="<?php echo esc_url($link01); ?>" class="member-card">
                     <div class="member-card__image-wrapper">
                         <img src="<?php echo get_theme_file_uri('src/images/member/member-img01.png'); ?>"
                             alt="Hironori Suzuki">
@@ -83,7 +88,10 @@
                 </a>
 
                 <!-- Member 02 -->
-                <a href="<?php echo home_url('/member/02/'); ?>" class="member-card">
+                <?php
+                $link02 = home_url('/member-sebe/');
+                ?>
+                <a href="<?php echo esc_url($link02); ?>" class="member-card">
                     <div class="member-card__image-wrapper">
                         <img src="<?php echo get_theme_file_uri('src/images/member/member-img02.png'); ?>"
                             alt="Takuya Sebe">
@@ -102,18 +110,21 @@
                     </div>
                 </a>
 
-                <!-- Member 03 (Placeholder) -->
-                <a href="<?php echo home_url('/member/03/'); ?>" class="member-card">
+                <!-- Member 03 -->
+                <?php
+                $link03 = home_url('/member-furuhashi/');
+                ?>
+                <a href="<?php echo esc_url($link03); ?>" class="member-card">
                     <div class="member-card__image-wrapper">
                         <img src="<?php echo get_theme_file_uri('src/images/member/member-img03.png'); ?>"
                             alt="Member 03">
                     </div>
                     <div class="member-card__body">
-                        <h3 class="member-card__jp-name">メンバー 名</h3>
+                        <h3 class="member-card__jp-name">古橋 真人</h3>
                         <div class="member-card__meta">
-                            <p class="member-card__dept">部署：部署名</p>
-                            <p class="member-card__position">役職：役職名</p>
-                            <p class="member-card__date">入社年月：0000年0月</p>
+                            <p class="member-card__dept">部署：〇〇〇〇</p>
+                            <p class="member-card__position">役職：課長</p>
+                            <p class="member-card__date">入社年月：2023年8月</p>
                         </div>
                         <div class="member-card__btn">
                             <span>VIEW MORE</span>
@@ -122,18 +133,21 @@
                     </div>
                 </a>
 
-                <!-- Member 04 (Placeholder) -->
-                <a href="<?php echo home_url('/member/04/'); ?>" class="member-card">
+                <!-- Member 04 -->
+                <?php
+                $link04 = home_url('/member-ban/');
+                ?>
+                <a href="<?php echo esc_url($link04); ?>" class="member-card">
                     <div class="member-card__image-wrapper">
                         <img src="<?php echo get_theme_file_uri('src/images/member/member-img04.png'); ?>"
                             alt="Member 04">
                     </div>
                     <div class="member-card__body">
-                        <h3 class="member-card__jp-name">メンバー 名</h3>
+                        <h3 class="member-card__jp-name">坂 康成</h3>
                         <div class="member-card__meta">
-                            <p class="member-card__dept">部署：部署名</p>
-                            <p class="member-card__position">役職：役職名</p>
-                            <p class="member-card__date">入社年月：0000年0月</p>
+                            <p class="member-card__dept">部署：〇〇〇〇</p>
+                            <p class="member-card__position">役職：マネージャー</p>
+                            <p class="member-card__date">入社年月：2021年7月</p>
                         </div>
                         <div class="member-card__btn">
                             <span>VIEW MORE</span>
@@ -142,6 +156,27 @@
                     </div>
                 </a>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Section -->
+    <section class="member-bottom">
+        <div class="member-bottom__bg-text">LANGIS</div>
+        <div class="container member-bottom__container">
+            <div class="member-bottom__images">
+                <div class="member-bottom__img-item js-animate fade-in-up delay-200">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom01.png'); ?>" alt="Staff 01">
+                </div>
+                <div class="member-bottom__img-item js-animate fade-in-up delay-400">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom02.png'); ?>" alt="Staff 02">
+                </div>
+                <div class="member-bottom__img-item js-animate fade-in-up delay-600">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom03.png'); ?>" alt="Staff 03">
+                </div>
+                <div class="member-bottom__img-item js-animate fade-in-up delay-800">
+                    <img src="<?php echo get_theme_file_uri('src/images/about/about_bottom04.png'); ?>" alt="Staff 04">
+                </div>
             </div>
         </div>
     </section>
