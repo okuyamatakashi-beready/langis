@@ -1,26 +1,24 @@
 @use '../variables' as *;
 
 .section-member {
-    padding-top: 120px; // 上の余白を追加
+    // Shared Base Styles (or specific to Top Page unless overridden)
+    padding-top: 120px;
     padding-bottom: 120px;
     position: relative;
-    overflow: hidden; // 装飾などが溢れる場合
-    background-color: $color-primary;
+    overflow: hidden;
 
     .section-title--zabuton {
         text-align: left;
-        margin-bottom: -200px; // さらに深く被せる
+        margin-bottom: -200px;
         position: relative;
-        z-index: 5; // 画像 (max z-index: 4) より上に
+        z-index: 5;
         line-height: 1.4;
 
-        // Animation Trigger
         &.is-visible {
             .zabuton {
                 clip-path: inset(0 0 0 0);
             }
 
-            // Delay for the second line
             .zabuton:nth-of-type(2) {
                 transition-delay: 0.2s;
             }
@@ -38,8 +36,6 @@
             letter-spacing: 0em;
             position: relative;
             z-index: 1;
-
-            // Initial State: Hidden from right
             clip-path: inset(0 100% 0 0);
             transition: clip-path 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 
@@ -62,8 +58,9 @@
         }
     }
 
+    // --- Original Styles (Top Page Defaults) ---
     .member__vertical-text {
-        display: none;
+        display: block; // Default visible
         writing-mode: vertical-rl;
         color: rgba(255, 255, 255, 1);
         font-size: 30px;
@@ -76,13 +73,12 @@
         font-weight: 700;
 
         span {
-            display: inline-block; // vertical-rl内では列として振る舞う
-            border-right: 1px solid #fff; // 各行の右側に罫線
-            padding-right: 20px; // 線と文字の間隔
-            margin-left: 30px; // 行間の間隔（左側へ送る）
+            display: inline-block;
+            border-right: 1px solid #fff;
+            padding-right: 20px;
+            margin-left: 30px;
         }
 
-        // コンテナ自体の疑似要素は削除
         &::after {
             content: none;
         }
@@ -95,8 +91,6 @@
             text-align: center;
             transform: none;
 
-            // スマホは罫線なし、または下など調整（今回は一旦消すか、そのまま横書き用にするか）
-            // スマホレイアウトでの右側罫線は不自然なので消す
             &::after {
                 content: none;
             }
@@ -104,20 +98,20 @@
     }
 
     .member__card {
-        width: 960px;
-        height: 780px;
+        width: 720px; // Original Width
+        // height: auto; // Default
         max-width: 100%;
         background-color: #fff;
         border-radius: 0;
         padding: 0;
         display: flex;
-        flex-direction: column; // 縦並びに変更
+        flex-direction: column;
         align-items: stretch;
         position: relative;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         margin-left: auto;
         margin-right: 0;
-        box-sizing: border-box; // Paddingを含めて幅を計算
+        box-sizing: border-box;
 
         *,
         *::before,
@@ -132,61 +126,31 @@
     }
 
     .member__images {
-        width: 100%; // 横幅いっぱいに
-        flex: 1; // 高さを埋める
+        width: 100%;
         position: relative;
-        // min-height: 420px; // 削除
+        min-height: 420px; // Original height
         background-color: $color-primary;
         border: solid #fff;
-        border-width: 20px 20px 0 20px; // 上左右に20px border
-        overflow: hidden; // はみ出る部分を隠す
+        border-width: 20px 20px 0 20px;
+        overflow: hidden;
 
         @media (max-width: 768px) {
             min-height: 300px;
-            border-width: 10px 10px 0 10px; // スマホは少し細く
+            border-width: 10px 10px 0 10px;
         }
     }
 
+    // New element, hidden by default on Top Page
     .member__center-text {
-        position: absolute;
-        top: calc(50% + 40px); // 中心より40px下へ
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        pointer-events: none; // 画像のクリック等を邪魔しないように
-    }
-
-    .member__center-text-item {
-        background-color: #fff;
-        color: $color-primary;
-        font-weight: 700;
-        font-size: 16px; // 調整
-        padding: 10px 20px;
-        margin-bottom: 10px;
-        line-height: 1.2;
-        white-space: nowrap; // 改行しない
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 768px) {
-            font-size: 14px;
-            padding: 8px 15px;
-        }
+        display: none;
     }
 
     .member__image {
         position: absolute;
         border-radius: 10px;
         overflow: hidden;
-        // box-shadow is managed individually
-        transition: transform 0.8s ease, opacity 0.8s ease; // アニメーション設定
-        opacity: 0; // 初期状態：非表示
+        transition: transform 0.8s ease, opacity 0.8s ease;
+        opacity: 0;
 
         img {
             width: 100%;
@@ -194,25 +158,19 @@
             object-fit: cover;
         }
 
-        // 表示時 (JavaScriptで is-visible クラスが付与されたら)
         &.is-visible {
             opacity: 1;
-            transform: translate(0, 0) !important; // 元の位置に戻る (他の指定を上書き)
+            transform: translate(0, 0) !important;
         }
 
-        // --- 個別の配置とアニメーション初期位置 ---
-
+        // Original Image Styles
         &--01 {
-            // 右下配置
-            width: 495px; // 450px * 1.1
+            width: 450px;
             height: auto;
             bottom: -255px;
             right: -60px;
             left: auto;
             z-index: 4;
-            box-shadow: none;
-
-            // アニメーション: 4番目 (真下から)
             transform: translate(0, 80px);
             transition-delay: 0.6s;
 
@@ -226,18 +184,14 @@
         }
 
         &--02 {
-            // 右上
-            width: 326px; // 296px * 1.1
+            width: 296px;
             height: auto;
             top: -173px;
             right: -15px;
             left: auto;
             z-index: 2;
-            box-shadow: none;
-
-            // アニメーション初期位置: 右上から
             transform: translate(50px, -50px);
-            transition-delay: 0.2s; // 2番目
+            transition-delay: 0.2s;
 
             @media (max-width: 768px) {
                 width: 180px;
@@ -245,17 +199,13 @@
         }
 
         &--03 {
-            // 左下
-            width: 482px; // 438px * 1.1
+            width: 438px;
             height: auto;
             bottom: -160px;
             left: -64px;
             top: auto;
             right: auto;
             z-index: 3;
-            box-shadow: none;
-
-            // アニメーション: 3番目 (真下から)
             transform: translate(0, 80px);
             transition-delay: 0.4s;
 
@@ -265,18 +215,13 @@
         }
 
         &--04 {
-            // 左上
-            width: 605px; // 550px * 1.1
+            width: 550px;
             height: auto;
             top: -280px;
             left: -153px;
             bottom: auto;
             right: auto;
             z-index: 1;
-            box-shadow: none;
-            // opacity: 1; // 削除 (共通で制御)
-
-            // アニメーション: 1番目 (左上から)
             transform: translate(-50px, -50px);
             transition-delay: 0s;
 
@@ -287,18 +232,16 @@
     }
 
     .member__info {
-        width: 100%; // 横幅いっぱいに
-        padding: 50px;
+        width: 100%;
+        padding: 25px 50px 50px 50px; // Original Padding
         display: flex;
-        flex-direction: row; // 横並びに変更
-        align-items: center;
-        justify-content: space-between;
-        gap: 30px;
+        flex-direction: column; // Original Direction
+        justify-content: center;
+        gap: 10px; // Original Gap
 
         @media (max-width: 768px) {
-            flex-direction: column;
             padding: 30px 20px;
-            gap: 20px;
+            gap: 30px;
         }
     }
 
@@ -320,7 +263,7 @@
         line-height: 2;
         color: $color-text;
         font-weight: bold;
-        margin: 0; // 横並びのためマージン削除
+        margin: 0 0 20px 0; // Original Margin
 
         @media (max-width: 768px) {
             font-size: 14px;
@@ -333,6 +276,96 @@
 
         @media (max-width: 768px) {
             text-align: center;
+        }
+    }
+
+    // --- Member Page Specific Overrides ---
+    &--page {
+        background-color: $color-primary; // Restored background
+
+        .member__vertical-text {
+            display: none;
+        }
+
+        .member__card {
+            width: 960px;
+            height: 780px;
+        }
+
+        .member__images {
+            flex: 1;
+            min-height: 0; // Override min-height
+            // min-height: 420px; // removed
+        }
+
+        .member__center-text {
+            position: absolute;
+            top: calc(50% + 40px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .member__center-text-item {
+            background-color: #fff;
+            color: $color-primary;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            white-space: nowrap;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 14px;
+                padding: 8px 15px;
+            }
+        }
+
+        .member__image {
+
+            // New Scaled Sizes (1.1x)
+            &--01 {
+                width: 495px;
+            }
+
+            &--02 {
+                width: 326px;
+            }
+
+            &--03 {
+                width: 482px;
+            }
+
+            &--04 {
+                width: 605px;
+            }
+        }
+
+        .member__info {
+            padding: 50px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .member__description {
+            margin: 0;
         }
     }
 }

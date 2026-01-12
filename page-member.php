@@ -13,7 +13,7 @@
     </div>
 
     <!-- Member Intro Section (Reused from Top Page) -->
-    <section class="section-member" style="padding-top: 0;">
+    <section class="section-member section-member--page" style="padding-top: 0;">
         <div class="container">
             <div class="member__layout-wrapper">
                 <div class="member__vertical-text js-animate fade-in-up delay-400">
