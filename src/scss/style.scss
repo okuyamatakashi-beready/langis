@@ -1,3 +1,4 @@
+@use 'base/reset';
 @use 'variables' as *;
 @use 'global';
 @use 'base/utility-pages';
@@ -14,6 +15,7 @@
 @use 'parts/about';
 @use 'parts/service';
 @use 'parts/member';
+@use 'parts/page-member';
 @use 'parts/company';
 @use 'parts/gallery';
 @use 'parts/footer';

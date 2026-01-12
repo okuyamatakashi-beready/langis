@@ -104,6 +104,10 @@ function langis_create_pages()
         ['slug' => 'company', 'title' => 'Company'],
         ['slug' => 'gallery', 'title' => 'Gallery'],
         ['slug' => 'contact', 'title' => 'Contact'],
+<<<<<<< HEAD
+=======
+        ['slug' => 'member', 'title' => 'Member'], // Parent
+>>>>>>> develop
     ];
 
     foreach ($pages as $page) {
@@ -114,9 +118,79 @@ function langis_create_pages()
                 'post_name' => $page['slug'],
                 'post_status' => 'publish',
                 'post_type' => 'page',
+<<<<<<< HEAD
                 'post_content' => '', // テンプレート側で表示するので空でOK
             ]);
         }
     }
 }
 add_action('init', 'langis_create_pages');
+=======
+                'post_content' => '',
+            ]);
+        }
+    }
+
+    // Create Child Pages for Members
+    $parent = get_page_by_path('member');
+    if ($parent) {
+        $children = [
+            ['slug' => '01', 'title' => 'Member 01'],
+            ['slug' => '02', 'title' => 'Member 02'],
+            ['slug' => '03', 'title' => 'Member 03'],
+            ['slug' => '04', 'title' => 'Member 04'],
+        ];
+
+        foreach ($children as $child) {
+            // Check if exists as child of member
+            $existing_child = get_page_by_path('member/' . $child['slug']);
+            if (!$existing_child) {
+                wp_insert_post([
+                    'post_title' => $child['title'],
+                    'post_name' => $child['slug'], // slug is '01'
+                    'post_parent' => $parent->ID,
+                    'post_status' => 'publish',
+                    'post_type' => 'page',
+                    'post_content' => '',
+                ]);
+            }
+        }
+    }
+}
+
+add_action('init', 'langis_create_pages');
+
+// Flush rewrite rules to fix 404/redirect issues after disabling CPT
+add_action('init', function () {
+    // Only flush if needed (expensive operation, but necessary here)
+    // For development/debugging now:
+    flush_rewrite_rules();
+});
+
+// Disable CPT Registration
+// function langis_register_member_cpt() { ... }
+// add_action('init', 'langis_register_member_cpt');
+
+// Force Child Pages of 'member' to use page-member-detail.php
+function langis_member_template($template)
+{
+    if (is_page()) {
+        global $post;
+        // Get Parent
+        if ($post->post_parent) {
+            $parent = get_post($post->post_parent);
+            if ($parent && $parent->post_name === 'member') {
+                $new_template = locate_template(['page-member-detail.php']);
+                if ($new_template != '') {
+                    return $new_template;
+                }
+            }
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'langis_member_template');
+
+// Create Dummy Member Posts -> DISABLED (No longer needed)
+// function langis_create_member_posts() ...
+>>>>>>> develop

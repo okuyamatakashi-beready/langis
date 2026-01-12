@@ -1,111 +1,400 @@
 @use '../variables' as *;
 
+.service-intro {
+    background-color: $color-primary; // Orange background
+    padding-top: 60px;
+    padding-bottom: 150px; // Space at bottom
+
+    &__container {
+        position: relative;
+        max-width: 1024px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+        position: relative;
+        z-index: 2;
+    }
+
+    &__image-area {
+        flex: 0 0 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__circle-img {
+        width: 380px;
+        height: 380px;
+        background-color: #a6e5a4; // Green circle matching header highlight
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        img {
+            width: 90%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: bottom center;
+        }
+    }
+
+    &__text-area {
+        flex: 1;
+        padding-top: 0;
+    }
+
+    &__heading {
+        margin-bottom: 30px;
+        line-height: 1.8;
+    }
+
+    .u-highlight-white {
+        background-color: #fff;
+        color: $color-primary;
+        font-weight: 700;
+        font-size: 24px;
+        padding: 8px 20px;
+        display: inline-block;
+        margin-bottom: 10px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+    }
+
+    &__desc {
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 2.0;
+    }
+
+    // Responsive
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding-bottom: 80px;
+
+        &__content {
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        // ... existing props
+        &__image-area {
+            flex: 0 0 auto;
+            width: 100%;
+        }
+
+        &__circle-img {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+        }
+
+        &__text-area {
+            width: 100%;
+        }
+
+        .u-highlight-white {
+            font-size: 18px;
+            padding: 6px 15px;
+        }
+
+        &__desc {
+            font-size: 14px;
+        }
+    }
+}
+
+// Service Gallery
+.service-gallery {
+    background-color: $color-primary; // Orange
+    padding-bottom: 120px;
+
+    &__container {
+        max-width: 1280px; // Increased from 1024px to make top row wider
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__grid {
+        display: flex;
+        flex-direction: column;
+        gap: 30px; // Gap between rows
+    }
+
+    &__top-row {
+        display: flex;
+        gap: 30px;
+        justify-content: center; // Center the fixed-width items
+        align-items: center; // Vertically center items (User request)
+    }
+
+    &__item {
+        border-radius: 60px; // Increased roundedness
+        overflow: hidden;
+        line-height: 0; // Remove image spacing
+
+        img {
+            width: 100%;
+            height: auto; // Allow natural height
+            display: block;
+        }
+    }
+
+    &__item--01 {
+        width: 630px; // User specified width
+        flex: 0 0 auto; // Prevent flexing
+    }
+
+    &__item--02 {
+        width: 428px; // User specified width
+        flex: 0 0 auto; // Prevent flexing
+    }
+
+    &__bottom-row {
+        width: 100%;
+        max-width: 944px; // User specified width
+        margin: 0 auto; // Center it
+    }
+
+    &__item--03 {
+        width: 100%;
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding-bottom: 80px;
+
+        &__top-row {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        &__grid {
+            gap: 20px;
+        }
+    }
+}
+
+// Service Works
+.service-works {
+    background-color: $color-primary; // Orange
+    padding-bottom: 150px;
+    color: #fff;
+
+    &__container {
+        max-width: 1000px; // Slightly narrower for cards
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+
+    &__title {
+        font-family: $font-en;
+        font-size: 80px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 10px;
+        letter-spacing: 0.05em;
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    &__card {
+        background-size: cover;
+        background-position: center;
+        border-radius: 60px;
+        overflow: hidden;
+        position: relative;
+        height: 420px; // User specified height
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // White overlay mask
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            // Radial gradient to keep edges visible but fade center to white?
+            // Or solid white with opacity?
+            // Image shows white overlay primarily in center/behind text area.
+            // Let's try a strong white overlay.
+            // background-color: rgba(255, 255, 255, 0.85); // Removed as requested
+            z-index: 1;
+        }
+    }
+
+    &__card-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: #333; // Dark text on white overlay
+        width: 100%;
+        padding: 0 40px;
+    }
+
+    &__card-title-box {
+        display: inline-block;
+        background-color: $color-primary;
+        padding: 15px 40px;
+        margin-bottom: 40px;
+    }
+
+    &__card-title {
+        color: #fff;
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0;
+        letter-spacing: 0.05em;
+    }
+
+    &__card-desc {
+        font-size: 16px;
+        line-height: 2;
+        font-weight: 700;
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+        padding-bottom: 80px;
+
+        &__title {
+            font-size: 50px;
+        }
+
+        &__card {
+            height: auto;
+            padding: 60px 20px;
+            border-radius: 30px;
+        }
+
+        &__card-title-box {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 30px;
+        }
+
+        &__card-title {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        &__card-desc {
+            font-size: 14px;
+            text-align: left; // Or justify
+        }
+    }
+}
+
+// Service Bottom Override
+.service-bottom {
+    background-color: $color-primary; // Override yellow with orange
+}
+
+// =================================================================
+// Section Service (Top Page) RECOVERED
+// =================================================================
 .section-service {
-    padding: 0px 0 140px 0; // 100px -> 80px
-    // Section background is white/transparent default, content is in the card
+    padding: 0 0 140px;
 }
 
 .service-card {
     position: relative;
-    border-radius: 60px; // Visual estimate
-    padding: 60px; // 80px -> 60px
+    border-radius: 60px;
+    padding: 60px;
     overflow: hidden;
     color: #fff;
     display: flex;
-    flex-direction: column; // Stack Label and Body
-    gap: 20px; // 40px -> 20px
-    align-items: flex-start; // Align everything left
-    box-sizing: border-box; // Fix padding overflow
-
-    // ... (lines 19-58 unchanged)
-
-    &__right {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 20px; // 40px -> 20px
-    }
-
-    // Left Column Content
-    .section-label {
-        color: #fff;
-        font-size: 22px; // 14px -> 22px (User request)
-        letter-spacing: 0.1em;
-        margin-bottom: 0; // 20px -> 0 (Rely on gap)
-        display: block;
-        opacity: 0.9;
-        font-weight: bold;
-    }
-
-    // Background Image
-    // background-image set inline in HTML for path reliability
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    box-sizing: border-box;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    // Orange Overlay using Pseudo-element
-    &::before {
-        content: '';
+    // Overlay
+    &:before {
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba($color-primary, 0.8); // 0.9 -> 0.8 (Lower opacity to show image)
+        background-color: rgba(234, 139, 7, 0.8); // #ea8b07cc
         z-index: 1;
     }
 
-    // Ensure content is above overlay
-    &>* {
+    >* {
         position: relative;
         z-index: 2;
     }
 
-    // New Body Wrapper for Left/Right columns
     &__body {
         display: flex;
         width: 100%;
         gap: 100px;
-        align-items: center; // Align columns
+        align-items: center;
     }
 
     &__left {
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
-        align-items: flex-start; // Align Left as requested
+        align-items: flex-start;
     }
 
     &__right {
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 40px; // Spacing between keywords, desc, button
+        gap: 40px;
     }
 
-    // Left Column Content
     .section-label {
         color: #fff;
-        font-size: 22px; // 14px -> 22px (User request)
-        letter-spacing: 0.1em;
+        font-size: 22px;
+        letter-spacing: .1em;
         margin-bottom: 20px;
         display: block;
-        opacity: 0.9;
-        font-weight: bold;
+        opacity: .9;
+        font-weight: 700;
     }
 
     .section-title--vertical-big {
         writing-mode: vertical-rl;
-        font-size: 90px; // Specified
-        font-weight: bold;
+        font-size: 90px;
+        font-weight: 700;
         line-height: 1.2;
-        // letter-spacing removed
         height: auto;
-        margin: 0; // Reset user agent margins (which become horizontal in vertical-rl)
+        margin: 0;
         width: auto;
     }
 
-    // Right Column Content
     .service-keywords {
         display: flex;
         flex-direction: column;
@@ -115,140 +404,123 @@
 
     .keyword-box {
         background-color: #fff;
-        color: $color-primary; // Orange text
-        font-size: 20px; // Specified
-        font-weight: bold;
+        color: #ea8b07;
+        font-size: 20px;
+        font-weight: 700;
         padding: 10px 20px;
         line-height: 1.4;
-        margin: 0; // Reset p margin
+        margin: 0;
         display: inline-block;
     }
 
     .service-description {
-        font-size: 16px; // Specified
+        font-size: 16px;
         line-height: 2;
         margin: 0;
-        font-weight: bold; // Added (User request)
+        font-weight: 700;
     }
 
     .service-btn-wrapper {
         margin-top: 20px;
-        text-align: right; // Align button right? Or left? Mockup looks Right-ish or generic? 
-        // Let's assume Left aligned with text block for now, or Right if visual suggests.
-        // Image shows button on bottom right of text block.
+        text-align: right;
         display: flex;
         justify-content: flex-end;
     }
 
-    // Custom Button
     .btn--service-custom {
-        height: 70px; // Specified
-        line-height: 70px; // Centering text
-        padding: 0 60px; // Wide button
-        background-color: #D4E157; // Light Green/Yellow-ish approximation
-        // Or is it #CCE5FF? Image shows Light Greenish. 
-        // Let's use a nice light green variable or hex.
-        // Approx hex from visual memory of description: #CDE695 or similar.
-        // Let's pick a vibrant light green.
-        background-color: #C1E185;
-        color: #333; // Dark text
+        height: 70px;
+        line-height: 70px;
+        padding: 0 60px;
+        background-color: #c1e185; // Green
+        color: #333;
         font-size: 18px;
-        font-weight: bold;
-        border-radius: 35px; // Half of height
-        transition: opacity 0.3s;
+        font-weight: 700;
+        border-radius: 35px;
+        transition: opacity .3s;
         display: inline-flex;
         align-items: center;
         justify-content: center;
 
         &:hover {
-            opacity: 0.8;
-            background-color: #C1E185;
+            opacity: .8;
+            background-color: #c1e185;
             color: #333;
-        }
-
-        &::after {
-            // Arrow icon if needed? Standard btn has arrow logic?
-            // If standard btn structure is used, arrow might be there.
         }
     }
 
-    // Responsive
     @media (max-width: 768px) {
         padding: 60px 20px;
 
-        .service-card {
-            padding: 40px 20px; // Reduce padding
-            gap: 40px;
-            border-radius: 40px;
+        // Adjust formatting that might have been flattened
+        // Using & selector for service-card modification
+        padding: 40px 20px;
+        gap: 40px;
+        border-radius: 40px;
 
-            &__body {
-                flex-direction: column;
-                gap: 30px;
-                align-items: stretch; // Full width items
-            }
+        &__body {
+            flex-direction: column;
+            gap: 30px;
+            align-items: stretch;
+        }
 
-            &__left {
-                width: 100%;
-                align-items: center; // Center content
-                text-align: center;
-                gap: 15px;
-            }
+        &__left {
+            width: 100%;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+        }
 
-            &__right {
-                width: 100%;
-                align-items: center;
-                text-align: left; // Keep description text aligned left for readability
-                gap: 30px;
-            }
+        &__right {
+            width: 100%;
+            align-items: center;
+            text-align: left;
+            gap: 30px;
+        }
 
-            // Label
-            .section-label {
-                text-align: center;
-                margin-bottom: 0px;
-                font-size: 16px;
-            }
+        .section-label {
+            text-align: center;
+            margin-bottom: 0;
+            font-size: 16px;
+        }
 
-            // Switch large vertical title to horizontal on mobile
-            .section-title--vertical-big {
-                writing-mode: horizontal-tb;
-                font-size: 40px;
-                width: 100%;
-                text-align: center;
-                margin: 0;
-            }
+        .section-title--vertical-big {
+            writing-mode: horizontal-tb;
+            font-size: 40px;
+            width: 100%;
+            text-align: center;
+            margin: 0;
+        }
 
-            // Keyword Box Styles for Mobile
-            .service-keywords {
-                align-items: center; // Center keywords
-                width: 100%;
-                gap: 15px;
-            }
+        .service-keywords {
+            align-items: center;
+            width: 100%;
+            gap: 15px;
+        }
 
-            .keyword-box {
-                font-size: 16px;
-                padding: 8px 16px;
-            }
+        .keyword-box {
+            font-size: 16px;
+            padding: 8px 16px;
+        }
 
-            .service-description {
-                text-align: justify; // Justify for clean blocks of text
-                font-size: 14px;
-            }
+        .service-description {
+            text-align: justify;
+            font-size: 14px;
+        }
 
-            .service-btn-wrapper {
-                justify-content: center;
-                width: 100%;
-                margin-top: 20px;
-                text-align: center;
-            }
+        .service-btn-wrapper {
+            justify-content: center;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+        }
 
-            .btn--service-custom {
-                width: 100%;
-                max-width: 280px;
-                height: 50px; // Smaller button height
-                line-height: 50px;
-                font-size: 16px;
-                padding: 0 20px;
-            }
+        .btn--service-custom {
+            width: 100%;
+            max-width: 280px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 16px;
+            padding: 0 20px;
         }
     }
 }

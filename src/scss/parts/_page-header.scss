@@ -10,15 +10,25 @@
     &__inner {
         background-color: #fff;
         width: 100%;
+<<<<<<< HEAD
         max-width: 1000px; // Adjust as needed
+=======
+>>>>>>> develop
         margin: 0 auto;
         border-radius: 40px;
         padding: 60px;
         position: relative;
+<<<<<<< HEAD
         min-height: 300px; // Ensure some height
         display: flex;
         flex-direction: column;
         justify-content: center;
+=======
+        min-height: 400px; // Ensure some height
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+>>>>>>> develop
 
         @media screen and (max-width: $breakpoint-mobile) {
             padding: 30px;
@@ -30,10 +40,17 @@
     &__label {
         font-family: $font-family-base;
         font-weight: bold;
+<<<<<<< HEAD
         font-size: 14px;
         color: #666;
         letter-spacing: 0.05em;
         margin-bottom: 20px;
+=======
+        font-size: 22px;
+        color: #333;
+        letter-spacing: 0.05em;
+        margin-bottom: 0px;
+>>>>>>> develop
         text-transform: uppercase;
 
         &::before {
@@ -47,16 +64,39 @@
         font-weight: 700;
         line-height: 1.5;
         margin-bottom: 40px;
+<<<<<<< HEAD
+=======
+        margin-top: 10px;
+>>>>>>> develop
         position: relative;
         z-index: 2;
 
         .u-highlight {
             background: #f9e79f; // Zabuton style (solid color)
             display: inline; // Changed from inline-block to inline for multi-line support
+<<<<<<< HEAD
             padding: 5px 10px;
             line-height: 1.6; // Increase line-height slightly to separate lines
             box-decoration-break: clone;
             -webkit-box-decoration-break: clone;
+=======
+            padding: 10px 10px;
+            line-height: 2; // Increase line-height slightly to separate lines
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+
+            &--green {
+                background: #a6e5a4; // Green highlight for Service page
+            }
+
+            &--blue {
+                background: #a9e0db; // Blue highlight for Company page
+            }
+
+            &--pink {
+                background: #FFccd5; // Pink highlight for Member page
+            }
+>>>>>>> develop
         }
 
         @media screen and (max-width: $breakpoint-mobile) {
@@ -66,10 +106,17 @@
 
     &__en-title {
         position: absolute;
+<<<<<<< HEAD
         bottom: -23px;
         right: -10px;
         font-family: $font-family-base; // Or a condensed font if needed
         font-weight: 900;
+=======
+        bottom: -26px; // Overlap slightly or inside
+        right: -10px;
+        font-family: $font-family-base; // Or a condensed font if needed
+        font-weight: 700;
+>>>>>>> develop
         font-size: 180px;
         color: $color-primary; // Orange text
         line-height: 1;
@@ -77,9 +124,12 @@
         z-index: 1;
         text-transform: uppercase;
 
+<<<<<<< HEAD
         // Make it look like the reference (big, maybe outlined or filled)
         // Reference looks filled.
 
+=======
+>>>>>>> develop
         @media screen and (max-width: $breakpoint-mobile) {
             font-size: 50px;
             right: 20px;
