@@ -14,3 +14,9 @@ $font-family-heading: $font-family-base;
 
 // Breakpoints
 $breakpoint-mobile: 768px;
+
+@mixin mq($breakpoint: md) {
+    @media (max-width: $breakpoint-mobile) {
+        @content;
+    }
+}

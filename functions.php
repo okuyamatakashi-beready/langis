@@ -9,12 +9,6 @@
 // localhostが含まれる、またはIPがローカルの場合のみ開発モード(true)にする
 // shared hosting (XServer)などでREMOTE_ADDRが127.0.0.1になる可能性があるためIP判定は削除し、
 // HTTP_HOSTのみで判定します。 (localhost または langis を含む場合)
-// Enable error logging for debugging (safe to leave in dev/staging)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// localhostが含まれる、またはIPがローカルの場合判定（修正版）
 $http_host = $_SERVER['HTTP_HOST'] ?? '';
 $is_local = false;
 
@@ -25,6 +19,17 @@ if (strpos($http_host, 'localhost') !== false) {
     if (strpos($http_host, 'stg-') === false && strpos($http_host, 'llc-beready') === false) {
         $is_local = true;
     }
+}
+
+// Enable error logging for debugging (safe to leave in dev/staging)
+if ($is_local) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+} else {
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    error_reporting(0);
 }
 
 define('IS_VITE_DEVELOPMENT', $is_local);
@@ -80,8 +85,30 @@ function langis_enqueue_scripts()
             }
         }
     }
+
+    // YubinBango (Auto Address Entry)
+    wp_enqueue_script('yubinbango', 'https://yubinbango.github.io/yubinbango/yubinbango.js', [], null, false);
 }
 add_action('wp_enqueue_scripts', 'langis_enqueue_scripts');
+
+/**
+ * Contact Form 7: Add h-adr class to form
+ */
+function langis_cf7_form_class($class)
+{
+    $class .= ' h-adr';
+    return $class;
+}
+add_filter('wpcf7_form_class_attr', 'langis_cf7_form_class');
+
+/**
+ * Contact Form 7: Add hidden country field for YubinBango
+ */
+function langis_cf7_country_field($content)
+{
+    return '<span class="p-country-name" style="display:none;">Japan</span>' . $content;
+}
+add_filter('wpcf7_form_elements', 'langis_cf7_country_field');
 
 // Vite用のスクリプトに type="module" を付与する
 function langis_add_type_attribute($tag, $handle, $src)

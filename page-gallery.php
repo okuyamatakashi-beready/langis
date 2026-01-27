@@ -12,18 +12,35 @@
         </div>
     </div>
     <!-- Gallery Section -->
-    <section class="section section-gallery" id="gallery">
-        <div class="gallery__bg">
-            <img src="<?php echo get_theme_file_uri('src/images/gallery/gallery_bg.jpg'); ?>" alt="Gallery Background">
-        </div>
+    <section class="section section-gallery section-gallery--page" id="gallery">
         <div class="container gallery__container">
-            <div class="gallery__card js-animate fade-in-up">
-                <span class="section-label">GALLERY</span>
-                <h2 class="section-title">ランギスの素や<br>プライベートなんかも。</h2>
-                <div class="gallery__btn">
-                    <a href="<?php echo home_url('/coming-soon/'); ?>" class="btn btn--pill btn--gallery">VIEW MORE</a>
+            <?php if (have_rows('gallery_repeater')): ?>
+                <div class="gallery__grid">
+                    <?php while (have_rows('gallery_repeater')):
+                        the_row(); ?>
+                        <?php
+                        $image = get_sub_field('gallery_image');
+                        if ($image):
+                            // Image ID comes in as array or ID depending on return setting. 
+                            // Assuming Image Array or URL. Let's handle generic image output.
+                            // If return format is 'Image Array'
+                            $img_url = '';
+                            $img_alt = '';
+                            if (is_array($image)) {
+                                $img_url = $image['url'];
+                                $img_alt = $image['alt'];
+                            } else {
+                                // URL string
+                                $img_url = $image;
+                            }
+                            ?>
+                            <div class="gallery__item js-animate fade-in-up">
+                                <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($img_alt); ?>">
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </section>
 </main>
