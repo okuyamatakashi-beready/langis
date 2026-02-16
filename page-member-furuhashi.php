@@ -10,7 +10,7 @@ global $post;
 $member_data = [
     'en_name' => 'Masato Furuhashi',
     'jp_name' => '古橋 真人',
-    'dept' => '〇〇〇〇',
+    'dept' => '第一営業部',
     'position' => '課長',
     'date' => '2023年8月',
     'image_url' => get_theme_file_uri('src/images/member/furuhashi-mv.png'),

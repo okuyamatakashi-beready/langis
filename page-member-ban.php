@@ -8,9 +8,9 @@ get_header();
 global $post;
 
 $member_data = [
-    'en_name' => 'Kousei Ban',
+    'en_name' => 'Yasunari Ban',
     'jp_name' => '坂 康成',
-    'dept' => '〇〇〇〇',
+    'dept' => '第二営業部',
     'position' => 'マネージャー',
     'date' => '2021年7月',
     'image_url' => get_theme_file_uri('src/images/member/ban-mv.png'),

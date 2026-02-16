@@ -122,7 +122,7 @@
                     <div class="member-card__body">
                         <h3 class="member-card__jp-name">古橋 真人</h3>
                         <div class="member-card__meta">
-                            <p class="member-card__dept">部署：〇〇〇〇</p>
+                            <p class="member-card__dept">部署：第一営業部</p>
                             <p class="member-card__position">役職：課長</p>
                             <p class="member-card__date">入社年月：2023年8月</p>
                         </div>
@@ -145,7 +145,7 @@
                     <div class="member-card__body">
                         <h3 class="member-card__jp-name">坂 康成</h3>
                         <div class="member-card__meta">
-                            <p class="member-card__dept">部署：〇〇〇〇</p>
+                            <p class="member-card__dept">部署：第二営業部</p>
                             <p class="member-card__position">役職：マネージャー</p>
                             <p class="member-card__date">入社年月：2021年7月</p>
                         </div>
