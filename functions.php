@@ -3,10 +3,7 @@
  * Theme Functions
  */
 
-// Enable error logging for debugging (safe to leave in dev/staging)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Enable error logging for debugging is now handled conditionally below
 
 // ローカル環境判定 (修正版)
 // localhostが含まれる、またはIPがローカルの場合判定
@@ -23,6 +20,16 @@ if (strpos($http_host, 'localhost') !== false) {
 }
 
 define('IS_VITE_DEVELOPMENT', $is_local);
+
+if (IS_VITE_DEVELOPMENT) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+} else {
+    ini_set('display_errors', 0);
+    ini_set('display_startup_errors', 0);
+    error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
+}
 
 function langis_enqueue_scripts()
 {
