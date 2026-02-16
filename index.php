@@ -60,6 +60,32 @@
                     <img src="<?php echo get_theme_file_uri('src/images/top/about-img01.png'); ?>" alt="About Image 1">
                 </div>
 
+                <!-- Mobile Only Grid -->
+                <div class="about__mobile-visual js-animate fade-in-up">
+                    <div class="about__mobile-grid">
+                        <div class="about__grid-item about__grid-item--logo">
+                            <img src="<?php echo get_theme_file_uri('src/images/common/logo.svg'); ?>"
+                                alt="Langis Logo">
+                        </div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv01.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv02.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv03.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv04.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv05.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv06.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv01.png'); ?>" alt="Member"></div>
+                        <div class="about__grid-item"><img
+                                src="<?php echo get_theme_file_uri('src/images/top/mv02.png'); ?>" alt="Member"></div>
+                    </div>
+                </div>
+
                 <div class="about__center-col js-animate fade-in-up delay-200">
                     <h3 class="section-label">ABOUT US</h3>
                     <h2 class="section-title section-title--vertical">ランギスの<br>良さって、<br>どこにある？</h2>

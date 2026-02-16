@@ -617,18 +617,98 @@ body.page-about {
     }
 
     @media (max-width: 768px) {
+        padding: 80px 0;
+
         .about__wrapper {
-            flex-direction: column;
-            gap: 40px;
+            flex-direction: row; // Changed from column to allow wrapping
+            flex-wrap: wrap; // Allow items to wrap
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .about__center-col {
+            order: 1; // Title first
+            width: 100%; // Full width
+            margin-bottom: 20px;
+        }
+
+        .about__img-col {
+            display: block; // Show PC images
+            order: 2; // Images second
+            width: calc(50% - 10px); // Side by side with gap
+            margin: 0; // Reset margins
+
+            img {
+                width: 100%;
+                height: auto; // Allow natural height
+                border-radius: 20px; // Use base style radius
+            }
+        }
+
+        .about__mobile-visual {
+            display: none; // Hide the mobile grid I added, as user wants img-col
+        }
+
+        // Lower Grid (Buttons + Text)
+        .about__lower-grid {
+            flex-direction: row; // Side by side buttons?
+            flex-wrap: wrap; // Allow text to wrap to next line
+            justify-content: center;
+            align-items: flex-start;
+            gap: 15px;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .about__lower-col {
+            width: calc(50% - 10px); // Two buttons side by side
+            order: 1; // Buttons first
+            display: flex;
+            justify-content: center;
+        }
+
+        .about__text-box {
+            order: 3; // Text last
+            width: 100%; // Full width
+            margin-top: 30px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .btn--circle {
+            width: 100%; // Responsive width inside col
+            max-width: 140px; // Limit size
+            height: auto;
+            aspect-ratio: 1 / 1;
+            font-size: 13px; // Adjust text size
+            padding: 10px;
+            background-color: $color-primary; // Orange background
+            color: #fff; // White text
+            border: none; // Remove border
         }
 
         .section-title--vertical {
             writing-mode: horizontal-tb;
-            font-size: 32px;
+            font-size: 28px;
+            text-align: center;
+            line-height: 1.4;
+
+            br {
+                display: block; // Ensure breaks work
+            }
         }
 
-        .about__lower-grid {
-            flex-direction: column;
+        // Hide "ABOUT US" label if design doesn't show it or keep it?
+        // Design shows "ABOUT US" at very top.
+        .section-label {
+            margin-bottom: 20px;
         }
+    }
+
+    // Default (Mobile Hidden)
+    .about__mobile-visual {
+        display: none;
     }
 }

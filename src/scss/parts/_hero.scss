@@ -172,14 +172,18 @@
         padding-bottom: 150px;
 
         &__visual {
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
+            flex-direction: row; // Change to row to show side-by-side
+            flex-wrap: wrap; // Allow wrapping
+            justify-content: center; // Center content
+            align-items: flex-start; // Align top
+            gap: 10px; // Spacing between sliders
         }
 
         &__slider {
-            width: 80%;
+            width: calc(50% - 10px); // Approx half width minus gap
             aspect-ratio: 3 / 4; // Adjust aspect ratio for mobile if needed
+            margin-bottom: 0; // Remove any margin if present
+            order: 1; // Prioritize sliders
         }
 
         &__center-text {
