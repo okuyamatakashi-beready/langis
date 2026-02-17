@@ -7,12 +7,20 @@
     position: relative;
     overflow: hidden;
 
+    @media (max-width: 768px) {
+        padding-top: 60px;
+    }
+
     .section-title--zabuton {
         text-align: left;
         margin-bottom: -200px;
         position: relative;
         z-index: 5;
         line-height: 1.4;
+
+        @media (max-width: 768px) {
+            margin-bottom: 30px; // Reset negative margin for stacking
+        }
 
         &.is-visible {
             .zabuton {
@@ -86,8 +94,12 @@
         @media (max-width: 768px) {
             writing-mode: horizontal-tb;
             position: static;
-            margin-bottom: 20px;
+            margin-bottom: 30px; // Increased spacing
             font-size: 18px;
+            text-align: left; // Align left as per typical SP design principles or user intent?
+            // User didn't specify alignment, but usually left or center.
+            // keeping center for now as per previous code, or changing if "vertical text" implies something else.
+            // Actually, vertical text usually becomes horizontal on SP.
             text-align: center;
             transform: none;
 
@@ -135,7 +147,7 @@
         overflow: hidden;
 
         @media (max-width: 768px) {
-            min-height: 300px;
+            min-height: 220px; // Scaled down from 420px (approx 52%)
             border-width: 10px 10px 0 10px;
         }
     }
@@ -179,7 +191,11 @@
             }
 
             @media (max-width: 768px) {
-                width: 260px;
+                // PC: w450, b-255, r-60
+                width: 234px; // 450 * 0.52
+                bottom: -132px; // -255 * 0.52
+                right: -31px; // -60 * 0.52
+                transform: translate(0, 40px); // Scaled transform
             }
         }
 
@@ -194,7 +210,11 @@
             transition-delay: 0.2s;
 
             @media (max-width: 768px) {
-                width: 180px;
+                // PC: w296, t-173, r-15
+                width: 154px; // 296 * 0.52
+                top: -90px; // -173 * 0.52
+                right: -8px; // -15 * 0.52
+                transform: translate(26px, -26px);
             }
         }
 
@@ -210,7 +230,11 @@
             transition-delay: 0.4s;
 
             @media (max-width: 768px) {
-                width: 260px;
+                // PC: w438, b-160, l-64
+                width: 228px; // 438 * 0.52
+                bottom: -83px; // -160 * 0.52
+                left: -33px; // -64 * 0.52
+                transform: translate(0, 42px);
             }
         }
 
@@ -226,7 +250,11 @@
             transition-delay: 0s;
 
             @media (max-width: 768px) {
-                width: 220px;
+                // PC: w550, t-280, l-153
+                width: 286px; // 550 * 0.52
+                top: -145px; // -280 * 0.52
+                left: -80px; // -153 * 0.52
+                transform: translate(-26px, -26px);
             }
         }
     }
